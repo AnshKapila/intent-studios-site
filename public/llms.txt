@@ -1,0 +1,26 @@
+# Intent Studios
+
+> AI-powered creative and digital product studio. We design for conversion, not just for looks.
+> Sign-off: Intent is in the Details.
+
+## Core Services
+- Website Design & Build: /services/website-design/
+  - E-commerce Website Design: /services/website-design/ecommerce/
+  - Business Website Design: /services/website-design/business/
+- Product & App Design: /services/product-design/
+- Brand Identity: /services/brand-identity/
+- Content & Social: /services/content-social/
+
+## Key Pages
+- Home: /
+- Work (11 case study slots): /work/
+- Services Overview: /services/
+- About: /about/
+- Who We Help: /who-we-help/
+  - Fitness & Wellness: /who-we-help/fitness-wellness/
+  - D2C & Product Brands: /who-we-help/d2c-brands/
+- Intent Circle: /intent-circle/
+- Contact & Discovery Call: /contact/
+
+## Positioning
+Intent Studios partners with early-stage startups, growing businesses, D2C brands, fitness & wellness studios, and service businesses that sit between generic freelancers and expensive traditional agencies.

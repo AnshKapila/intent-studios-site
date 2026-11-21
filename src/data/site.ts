@@ -51,23 +51,22 @@ export const HOME_PROOF_BAR: ProofItem[] = [
   {
     value: "4",
     label: "Core disciplines",
-    context: "Websites, digital products, brand systems, and AI-led content under one roof.",
+    context: "Websites, digital products, brand systems, and AI-led content.",
   },
   {
     value: "11",
-    label: "Case study slots",
-    context: "Across fitness, D2C, startups, and service businesses (verified metrics pending).",
-    isPlaceholder: true,
+    label: "Published case studies",
+    context: "Spanning fitness, D2C, startups, and service businesses.",
   },
   {
-    value: "5-stage",
+    value: "5 stages",
     label: "Structured delivery",
-    context: "Discovery through Launch — direct senior execution, zero account-manager relay.",
+    context: "Discovery through Launch with direct senior execution.",
   },
   {
     value: "15 min",
     label: "Discovery call",
-    context: "Clear scope, honest fit check, and a practical next step before you commit.",
+    context: "Honest fit check and a practical next step before you commit.",
   },
 ];
 

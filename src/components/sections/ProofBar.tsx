@@ -16,8 +16,8 @@ export function ProofBar({
     <div
       className={cn(
         variant === "standalone"
-          ? "border-y border-white/10 bg-[#0A0A0A] py-10"
-          : "border-t border-white/10 bg-black/50 backdrop-blur-md",
+          ? "border-y border-white/10 bg-[#0A0A0A] py-9"
+          : "border-t border-white/10 bg-[#0A0A0A]/90",
         className
       )}
     >
@@ -26,7 +26,7 @@ export function ProofBar({
           className={cn(
             "grid gap-6 sm:grid-cols-2",
             items.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4",
-            variant === "hero" ? "py-6" : ""
+            variant === "hero" ? "py-5" : ""
           )}
         >
           {items.map((item) => (
@@ -34,13 +34,13 @@ export function ProofBar({
               key={item.label}
               className="flex flex-col gap-1 border-l border-white/10 pl-4 first:border-l-0 first:pl-0 sm:first:border-l sm:first:pl-4"
             >
-              <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-[#A0A0A0]">
+              <dt className="text-[13px] font-medium text-[#A0A0A0]">
                 {item.label}
               </dt>
-              <dd className="tabular-nums text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#F5F5F5]">
+              <dd className="tabular-nums text-2xl font-medium tracking-[-0.03em] text-[#F5F5F5]">
                 {item.value}
               </dd>
-              <p className="text-xs sm:text-sm leading-relaxed text-[#A0A0A0]">
+              <p className="text-[14px] leading-snug text-[#A0A0A0]">
                 {item.context}
               </p>
             </div>

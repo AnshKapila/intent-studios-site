@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 
@@ -21,20 +21,20 @@ interface ButtonProps {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-[#F24E1E] text-white border border-[#F24E1E] hover:bg-[#D94114] hover:border-[#D94114] shadow-[0_8px_28px_rgba(242,78,30,0.22)]",
+    "bg-[#F24E1E] text-white border border-[#F24E1E] hover:bg-[#D94114] hover:border-[#D94114]",
   secondary:
-    "bg-white/[0.05] text-[#F5F5F5] border border-white/15 hover:bg-white/[0.11] hover:border-white/30",
+    "bg-transparent text-[#F5F5F5] border border-white/20 hover:bg-white/[0.06] hover:border-white/35",
   ghost:
     "bg-transparent text-[#F5F5F5] border border-transparent hover:bg-white/[0.06]",
   "light-primary":
-    "bg-[#111111] text-[#F5F5F5] border border-[#111111] hover:bg-[#222222]",
+    "bg-[#111111] text-[#F5F5F5] border border-[#111111] hover:bg-[#262626] hover:border-[#262626]",
   "light-secondary":
-    "bg-transparent text-[#111111] border border-[#111111]/20 hover:bg-[#111111]/[0.06] hover:border-[#111111]/40",
+    "bg-transparent text-[#111111] border border-[#111111]/25 hover:bg-[#111111]/[0.05] hover:border-[#111111]/45",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  md: "min-h-[44px] px-5 py-2.5 text-sm",
-  lg: "min-h-[50px] px-7 py-3.5 text-[15px]",
+  md: "h-[44px] px-5 text-[15px]",
+  lg: "h-[48px] px-6 text-[15px]",
 };
 
 export function Button({
@@ -50,9 +50,10 @@ export function Button({
   ariaLabel,
 }: ButtonProps) {
   const classes = cn(
-    "group inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-[-0.01em] cursor-pointer select-none",
-    "transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",
-    "active:scale-[0.98] disabled:opacity-45 disabled:cursor-not-allowed disabled:active:scale-100",
+    "group inline-flex items-center justify-center gap-2 rounded-[8px] font-medium tracking-[-0.01em] cursor-pointer select-none whitespace-nowrap",
+    "transition-[background-color,border-color,color,transform] duration-150 ease-[cubic-bezier(0.2,0.8,0.2,1)]",
+    "hover:-translate-y-[1px] active:translate-y-[1px] active:scale-[0.985]",
+    "disabled:opacity-45 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:scale-100",
     variantClasses[variant],
     sizeClasses[size],
     className
@@ -62,8 +63,8 @@ export function Button({
     <>
       <span>{children}</span>
       {showArrow && (
-        <ArrowUpRight
-          className="h-4 w-4 shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        <ArrowRight
+          className="h-4 w-4 shrink-0 transition-transform duration-150 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:translate-x-[3px]"
           aria-hidden="true"
         />
       )}

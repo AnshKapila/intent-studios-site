@@ -40,17 +40,17 @@
 - **Selective Editorial Accent Font:** `Instrument Serif` (Italic 400 only, loaded via `next/font/google`) — used *sparingly* on 1–2 highlighted words inside key display/section headings or editorial callouts. Never used as the default heading font.
 - **Brand Wordmark:** `Intent` (tight geometric display weight, Title Case) + `STUDIOS` (`Inter` Black 900, `0.38em` tracking, ALL CAPS — isolated strictly to the logo lockup).
 
-### Fluid Type Scale
+### Fluid Type Scale (Refined via Taste Skill)
 | Token | Size | Line Height | Tracking | Weight | Usage |
 |---|---|---|---|---|---|
-| `--text-display` | `clamp(2.75rem, 6vw, 5.25rem)` | `1.04` | `-0.035em` | `600` | Homepage Hero H1 |
-| `--text-h1` | `clamp(2.25rem, 4.5vw, 3.75rem)` | `1.08` | `-0.03em` | `600` | Inner page H1 |
-| `--text-h2` | `clamp(1.75rem, 3.2vw, 2.75rem)` | `1.14` | `-0.025em` | `600` | Section H2 |
-| `--text-h3` | `clamp(1.25rem, 1.8vw, 1.5rem)` | `1.25` | `-0.015em` | `600` | Card & subsection titles |
-| `--text-body-lg` | `clamp(1.0625rem, 1.2vw, 1.1875rem)` | `1.6` | `-0.005em` | `400` | Section intros & leads |
-| `--text-body` | `1rem` (16px) | `1.6` | `0` | `400` | Standard body copy |
-| `--text-body-sm` | `0.875rem` (14px) | `1.55` | `0` | `400` | Secondary copy, metadata (min body size = 14px) |
-| `--text-eyebrow` | `0.75rem` (12px) | `1.2` | `0.12em` | `600` | Uppercase section eyebrows & tags |
+| `--text-display` | `clamp(2.25rem, 4.3vw, 3.65rem)` | `1.08` | `-0.035em` | `500` | Homepage Hero H1 (2 clean lines; Hero + Proof Bar inside 1440×900) |
+| `--text-h1` | `clamp(2.1rem, 4vw, 3.25rem)` | `1.08` | `-0.03em` | `500` | Inner page H1 |
+| `--text-h2` | `clamp(1.75rem, 2.8vw, 2.45rem)` | `1.12` | `-0.03em` | `500` | Section H2 |
+| `--text-h3` | `clamp(1.125rem, 1.5vw, 1.35rem)` | `1.25` | `-0.02em` | `600` | Card & subsection titles |
+| `--text-body-lg` | `1.0625rem` (17px) | `1.6` | `-0.005em` | `400` | Hero & section leads |
+| `--text-body` | `1rem` (16px) | `1.6` | `0` | `400` | Standard body & card copy |
+| `--text-body-sm` | `0.9375rem` (15px) | `1.55` | `0` | `400` | Secondary body & list items |
+| `--text-eyebrow` | `0.8125rem` (13px) | `1.2` | `0` | `500` | Sentence-case architectural eyebrows (16px `#F24E1E` hairline dash, no pill borders) |
 
 All headings use `text-wrap: balance`; numeric columns and metrics use `font-variant-numeric: tabular-nums`.
 

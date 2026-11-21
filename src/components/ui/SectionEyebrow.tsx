@@ -6,6 +6,9 @@ interface SectionEyebrowProps {
   className?: string;
 }
 
+/**
+ * Quiet, architectural sentence-case label (replaces generic glowing-dot ALL-CAPS pills).
+ */
 export function SectionEyebrow({
   children,
   tone = "dark",
@@ -14,18 +17,16 @@ export function SectionEyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.12em]",
-        tone === "dark"
-          ? "bg-[#F24E1E]/10 text-[#FFD1C2] border border-[#F24E1E]/25"
-          : "bg-[#111111]/[0.06] text-[#111111] border border-[#111111]/12",
+        "inline-flex items-center gap-2.5 text-[13px] font-medium tracking-normal",
+        tone === "dark" ? "text-[#A0A0A0]" : "text-[#52504C]",
         className
       )}
     >
       <span
-        className="h-1.5 w-1.5 rounded-full bg-[#F24E1E] shrink-0"
+        className="h-[1.5px] w-4 bg-[#F24E1E] shrink-0"
         aria-hidden="true"
       />
-      {children}
+      <span>{children}</span>
     </span>
   );
 }

@@ -1,0 +1,100 @@
+{
+ "photos": [
+  {
+   "trade": "studio",
+   "draft": true,
+   "lead": "c734",
+   "ids": [
+    "c734",
+    "d88",
+    "c826",
+    "c823"
+   ],
+   "sections": [
+    "hero",
+    "process",
+    "detail",
+    "texture",
+    "texture"
+   ],
+   "seed": "4t8758",
+   "at": "2026-11-21T19:05:48.555Z"
+  },
+  {
+   "trade": "wellness",
+   "draft": true,
+   "lead": null,
+   "ids": [
+    "d88",
+    "m61880133",
+    "m61777177"
+   ],
+   "sections": [
+    "detail",
+    "detail",
+    "detail"
+   ],
+   "seed": "sb7wej",
+   "at": "2026-11-21T19:05:48.826Z"
+  },
+  {
+   "trade": "cafe",
+   "draft": true,
+   "lead": null,
+   "ids": [
+    "m189498721",
+    "m187311853",
+    "m28989985",
+    "m61713103",
+    "m28146075",
+    "m201752739",
+    "m62054123",
+    "m147143943",
+    "m147143894"
+   ],
+   "sections": [
+    "bar",
+    "coffee",
+    "beans"
+   ],
+   "seed": "m5yeae",
+   "at": "2026-11-21T19:06:28.862Z"
+  },
+  {
+   "trade": "office",
+   "draft": true,
+   "lead": null,
+   "ids": [
+    "d183",
+    "c877",
+    "c823"
+   ],
+   "sections": [
+    "desk",
+    "desk",
+    "texture"
+   ],
+   "seed": "f2qako",
+   "at": "2026-11-21T19:06:29.133Z"
+  }
+ ],
+ "palettes": [],
+ "types": [],
+ "dealt": [
+  "bricolage",
+  "rethink",
+  "newsreader"
+ ],
+ "moments": [
+  {
+   "id": "word-highlight",
+   "at": "2026-11-21T19:06:10.386Z",
+   "seed": "97ad05f7"
+  },
+  {
+   "id": "picture-develops",
+   "at": "2026-11-21T19:06:10.386Z",
+   "seed": "97ad05f7"
+  }
+ ]
+}

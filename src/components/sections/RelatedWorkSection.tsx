@@ -66,34 +66,28 @@ export function RelatedWorkSection({
             <Link
               key={project.slug}
               href={`/work/${project.slug}/`}
-              className="group flex flex-col overflow-hidden rounded-[22px] border border-white/10 bg-[#0A0A0A] p-4 transition-[border-color,transform,background-color] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-white/25 hover:bg-[#101010]"
+              className="group flex flex-col overflow-hidden rounded-[16px] border border-white/10 bg-[#0A0A0A] p-4 transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-white/25"
             >
-              <div className="overflow-hidden rounded-[16px]">
-                <ProjectVisualFrame
-                  project={project}
-                  aspect="square"
-                  className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
-                />
-              </div>
+              <ProjectVisualFrame project={project} aspect="square" />
 
-              <div className="flex flex-1 flex-col justify-between gap-4 px-2 pt-5 pb-2">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-2 text-xs text-[#A0A0A0]">
+              <div className="flex flex-1 flex-col justify-between gap-4 px-1 pt-5 pb-1">
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between gap-2 text-[13px] text-[#A0A0A0]">
                     <span>{project.industryLabel}</span>
-                    <span className="text-[#FFD1C2]">{project.serviceName}</span>
+                    <span className="text-[#FFD1C2] font-medium">{project.serviceName}</span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-semibold tracking-[-0.02em] text-[#F5F5F5] group-hover:text-white">
+                  <h3 className="text-lg font-semibold tracking-[-0.02em] text-[#F5F5F5]">
                     {project.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-[#A0A0A0] line-clamp-2">
+                  <p className="text-[15px] leading-relaxed text-[#A0A0A0] line-clamp-2">
                     {project.outcomeTitle}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-white/10 pt-3 text-xs font-semibold text-[#F5F5F5]">
+                <div className="flex items-center justify-between border-t border-white/10 pt-3 text-[14px] font-medium text-[#F5F5F5]">
                   <span>View case study</span>
                   <ArrowUpRight
-                    className="h-4 w-4 text-[#F24E1E] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="h-4 w-4 text-[#F24E1E] transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     aria-hidden="true"
                   />
                 </div>

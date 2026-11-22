@@ -22,10 +22,10 @@ export default function IntentCirclePage() {
 
         <div className="intent-container relative z-10 max-w-4xl space-y-6">
           <SectionEyebrow>{INTENT_CIRCLE.name}</SectionEyebrow>
-          <h1 className="text-[clamp(2.25rem,5vw,3.9rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#F5F5F5]">
+          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
             {INTENT_CIRCLE.heroTitle}
           </h1>
-          <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
             {INTENT_CIRCLE.heroSubtitle}
           </p>
         </div>

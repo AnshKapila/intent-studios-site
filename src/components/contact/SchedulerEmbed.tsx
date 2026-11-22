@@ -12,15 +12,15 @@ export function SchedulerEmbed({ id = "scheduler" }: { id?: string }) {
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-white/10 pb-5">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#FFD1C2]">
+          <div className="inline-flex items-center gap-2 text-[13px] font-medium text-[#FFD1C2]">
             <Calendar className="h-3.5 w-3.5 text-[#F24E1E]" aria-hidden="true" />
-            Discovery Call Scheduler
+            Discovery call scheduler
           </div>
           <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#F5F5F5]">
             Pick a 15-minute slot directly
           </h3>
         </div>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.04] px-3 py-1 text-xs text-[#A0A0A0] self-start sm:self-center">
+        <span className="inline-flex items-center gap-1.5 rounded-[8px] border border-white/12 bg-white/[0.04] px-3 py-1.5 text-[13px] text-[#A0A0A0] self-start sm:self-center">
           <Clock className="h-3.5 w-3.5 text-[#F24E1E]" aria-hidden="true" />
           15 minutes · Video call
         </span>

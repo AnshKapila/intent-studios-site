@@ -46,14 +46,14 @@ export default function ServicesOverviewPage() {
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
         <div className="intent-container relative z-10 max-w-4xl space-y-5">
-          <SectionEyebrow>Services Overview</SectionEyebrow>
-          <h1 className="text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#F5F5F5]">
+          <SectionEyebrow>Services overview</SectionEyebrow>
+          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
             Design, engineering &amp; AI production built to{" "}
             <span className="font-editorial font-normal text-[#FFD1C2]">
               grow your business.
             </span>
           </h1>
-          <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
             Four focused services — each structured around clarity, speed, and measurable conversion rather than bloated deliverables.
           </p>
         </div>

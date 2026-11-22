@@ -30,14 +30,14 @@ export default function WorkPage() {
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
         <div className="intent-container relative z-10 max-w-4xl space-y-5">
-          <SectionEyebrow>Portfolio &amp; Case Studies</SectionEyebrow>
-          <h1 className="text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#F5F5F5]">
+          <SectionEyebrow>Portfolio &amp; case studies</SectionEyebrow>
+          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
             Work designed to move{" "}
             <span className="font-editorial font-normal text-[#FFD1C2]">
               real business metrics.
             </span>
           </h1>
-          <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
             Websites, digital products, brand identities, and art-directed visual campaigns built for startups, D2C brands, fitness studios, and service businesses.
           </p>
         </div>
@@ -47,12 +47,9 @@ export default function WorkPage() {
       <section className="border-t border-white/10 bg-[#111111] py-16 sm:py-20">
         <div className="intent-container space-y-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.025em] text-[#F5F5F5]">
+            <h2 className="text-xl sm:text-2xl font-medium tracking-[-0.025em] text-[#F5F5F5]">
               Featured three
             </h2>
-            <span className="text-xs text-[#A0A0A0]">
-              Placeholder slots ready for verified media &amp; outcomes
-            </span>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
@@ -60,21 +57,21 @@ export default function WorkPage() {
               <Link
                 key={project.slug}
                 href={`/work/${project.slug}/`}
-                className="group flex flex-col overflow-hidden rounded-[22px] border border-[#F24E1E]/25 bg-[#0A0A0A] p-4 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F24E1E]/60"
+                className="group flex flex-col overflow-hidden rounded-[16px] border border-white/12 bg-[#0A0A0A] p-4 transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-white/25"
               >
                 <ProjectVisualFrame project={project} aspect="square" />
-                <div className="mt-5 flex flex-1 flex-col justify-between gap-3 px-2 pb-2">
+                <div className="mt-5 flex flex-1 flex-col justify-between gap-3 px-1 pb-1">
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-xs text-[#FFD1C2]">
+                    <div className="flex items-center justify-between text-[13px] text-[#FFD1C2]">
                       <span>{project.serviceName}</span>
                       <span className="text-[#A0A0A0]">{project.industryLabel}</span>
                     </div>
-                    <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#F5F5F5]">
+                    <h3 className="text-lg font-semibold tracking-[-0.02em] text-[#F5F5F5]">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-[#A0A0A0] line-clamp-2">{project.outcomeTitle}</p>
+                    <p className="text-[15px] text-[#A0A0A0] line-clamp-2">{project.outcomeTitle}</p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#F5F5F5] pt-2">
+                  <span className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#F5F5F5] pt-2">
                     Read case study
                     <ArrowUpRight className="h-3.5 w-3.5 text-[#F24E1E]" aria-hidden="true" />
                   </span>

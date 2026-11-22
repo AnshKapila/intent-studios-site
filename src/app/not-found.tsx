@@ -11,11 +11,11 @@ export default function NotFound() {
       <div className="absolute inset-0 glow-edge-bottom-right opacity-70" aria-hidden="true" />
 
       <div className="intent-container relative z-10 max-w-3xl space-y-6">
-        <SectionEyebrow>404 — Page Not Found</SectionEyebrow>
-        <h1 className="text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#F5F5F5]">
+        <SectionEyebrow>404 — Page not found</SectionEyebrow>
+        <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
           That page moved — or never existed.
         </h1>
-        <p className="max-w-xl text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+        <p className="max-w-xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
           Start from our work, explore our four services, or jump straight to booking a discovery call.
         </p>
 

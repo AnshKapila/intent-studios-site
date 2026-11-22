@@ -44,10 +44,10 @@ export function WorkFilterGrid() {
   return (
     <div className="space-y-10">
       {/* Filter Controls (URL-synced) */}
-      <div className="rounded-2xl border border-white/10 bg-[#0A0A0A] p-5 sm:p-6 space-y-5">
+      <div className="rounded-[16px] border border-white/10 bg-[#0A0A0A] p-5 sm:p-6 space-y-5">
         <div className="space-y-2.5">
-          <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#A0A0A0]">
-            Filter by Service
+          <span className="text-[13px] font-medium text-[#A0A0A0]">
+            Filter by service
           </span>
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects by service">
             <button
@@ -55,13 +55,13 @@ export function WorkFilterGrid() {
               onClick={() => updateFilter("service", "all")}
               aria-pressed={activeService === "all"}
               className={cn(
-                "min-h-[40px] rounded-full px-4 py-1.5 text-xs font-medium border cursor-pointer transition-[background-color,border-color,color] duration-200",
+                "h-[40px] rounded-[8px] px-4 text-[14px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
                 activeService === "all"
                   ? "border-[#F24E1E] bg-[#F24E1E] text-white"
                   : "border-white/12 bg-white/[0.03] text-[#A0A0A0] hover:text-[#F5F5F5]"
               )}
             >
-              All Services
+              All services
             </button>
             {SERVICES.map((service) => (
               <button
@@ -70,7 +70,7 @@ export function WorkFilterGrid() {
                 onClick={() => updateFilter("service", service.slug)}
                 aria-pressed={activeService === service.slug}
                 className={cn(
-                  "min-h-[40px] rounded-full px-4 py-1.5 text-xs font-medium border cursor-pointer transition-[background-color,border-color,color] duration-200",
+                  "h-[40px] rounded-[8px] px-4 text-[14px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
                   activeService === service.slug
                     ? "border-[#F24E1E] bg-[#F24E1E] text-white"
                     : "border-white/12 bg-white/[0.03] text-[#A0A0A0] hover:text-[#F5F5F5]"
@@ -83,8 +83,8 @@ export function WorkFilterGrid() {
         </div>
 
         <div className="space-y-2.5 border-t border-white/10 pt-4">
-          <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#A0A0A0]">
-            Filter by Industry
+          <span className="text-[13px] font-medium text-[#A0A0A0]">
+            Filter by industry
           </span>
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects by industry">
             <button
@@ -92,13 +92,13 @@ export function WorkFilterGrid() {
               onClick={() => updateFilter("industry", "all")}
               aria-pressed={activeIndustry === "all"}
               className={cn(
-                "min-h-[40px] rounded-full px-4 py-1.5 text-xs font-medium border cursor-pointer transition-[background-color,border-color,color] duration-200",
+                "h-[40px] rounded-[8px] px-4 text-[14px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
                 activeIndustry === "all"
                   ? "border-[#F5F5F5] bg-[#F5F5F5] text-[#111111]"
                   : "border-white/12 bg-white/[0.03] text-[#A0A0A0] hover:text-[#F5F5F5]"
               )}
             >
-              All Industries
+              All industries
             </button>
             {INDUSTRY_FILTERS.map((ind) => (
               <button
@@ -107,7 +107,7 @@ export function WorkFilterGrid() {
                 onClick={() => updateFilter("industry", ind.slug)}
                 aria-pressed={activeIndustry === ind.slug}
                 className={cn(
-                  "min-h-[40px] rounded-full px-4 py-1.5 text-xs font-medium border cursor-pointer transition-[background-color,border-color,color] duration-200",
+                  "h-[40px] rounded-[8px] px-4 text-[14px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
                   activeIndustry === ind.slug
                     ? "border-[#F5F5F5] bg-[#F5F5F5] text-[#111111]"
                     : "border-white/12 bg-white/[0.03] text-[#A0A0A0] hover:text-[#F5F5F5]"

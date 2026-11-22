@@ -67,16 +67,16 @@ export default async function ServiceDetailPage({
 
           <div className="flex flex-wrap items-center gap-3">
             <SectionEyebrow>{service.name}</SectionEyebrow>
-            <span className="rounded-full border border-white/12 bg-white/[0.04] px-3 py-1 text-xs text-[#A0A0A0]">
-              Typical timeline: {service.timeline}
+            <span className="text-[13px] font-medium text-[#A0A0A0]">
+              · Typical timeline: {service.timeline}
             </span>
           </div>
 
-          <h1 className="text-[clamp(2.1rem,4.8vw,3.75rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#F5F5F5]">
+          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
             {service.heroTitle}
           </h1>
 
-          <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
             {service.heroIntro}
           </p>
 

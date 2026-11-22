@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, User } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { SITE, STUDIO_PRINCIPLES, HOME_FIT_LIST } from "@/data/site";
 import { getFeaturedProjects } from "@/data/projects";
+import { PHOTOS } from "@/data/media";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
@@ -20,24 +21,25 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const featuredWork = getFeaturedProjects();
+  const studioPhoto = PHOTOS.scatteredCard;
 
   return (
     <>
-      {/* 1. Opening: H1, portrait slot, CTA */}
+      {/* 1. Opening: H1, studio frame, CTA */}
       <section className="relative overflow-hidden bg-[#000000] pt-36 pb-16 sm:pt-44 sm:pb-24">
-        <div className="absolute inset-0 bg-grid-dark opacity-55" aria-hidden="true" />
-        <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
+        <div className="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true" />
+        <div className="absolute inset-0 glow-edge-top-right opacity-65" aria-hidden="true" />
 
         <div className="intent-container relative z-10 grid gap-10 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7 space-y-6">
             <SectionEyebrow>About Intent Studios</SectionEyebrow>
-            <h1 className="text-[clamp(2.25rem,5vw,3.9rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#F5F5F5]">
+            <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
               A creative &amp; product partner built for teams who want{" "}
               <span className="font-editorial font-normal text-[#FFD1C2]">
                 real leverage.
               </span>
             </h1>
-            <p className="max-w-xl text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+            <p className="max-w-xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
               We combine sharp design direction, full-stack engineering, and practical AI production workflows to help ambitious businesses look legitimate and convert better.
             </p>
             <div className="pt-2">
@@ -47,47 +49,58 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Real Founder Portrait Slot (never AI-generated) */}
+          {/* Editorial Founder & Studio Frame (real photography, zero AI face, zero debug label) */}
           <div className="lg:col-span-5">
-            <div className="relative overflow-hidden rounded-[26px] border border-white/12 bg-[#0A0A0A] p-8 min-h-[380px] flex flex-col justify-between">
-              <div className="absolute inset-0 glow-edge-bottom-left opacity-70" aria-hidden="true" />
-              <div className="relative z-10 flex items-center justify-between">
-                <span className="rounded-full border border-white/15 bg-black/50 px-3 py-1 text-[11px] font-medium text-[#FFD1C2]">
-                  Founder Portrait Slot
+            <div className="relative overflow-hidden rounded-[16px] border border-white/12 bg-[#0A0A0A] min-h-[380px] flex flex-col justify-between">
+              <img
+                src={studioPhoto.src}
+                srcSet={studioPhoto.srcSet}
+                sizes="(max-width: 1023px) 100vw, 40vw"
+                width={studioPhoto.width}
+                height={studioPhoto.height}
+                alt={studioPhoto.alt}
+                loading="eager"
+                decoding="async"
+                data-source={studioPhoto.source}
+                data-subject={studioPhoto.subject}
+                className="absolute inset-0 h-full w-full object-cover opacity-35 grayscale"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35"
+              />
+              <div className="relative z-10 p-8 flex flex-1 flex-col justify-between">
+                <span className="text-[13px] font-medium text-[#FFD1C2]">
+                  Creative direction
                 </span>
-                <User className="h-4 w-4 text-[#A0A0A0]" aria-hidden="true" />
-              </div>
 
-              <div className="relative z-10 my-auto text-center py-8">
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-white/15 bg-white/[0.05] text-3xl font-semibold text-[#F5F5F5]">
-                  AK
+                <div className="my-8 space-y-1.5">
+                  <p className="text-2xl font-semibold tracking-[-0.025em] text-[#F5F5F5]">
+                    {SITE.founder.name}
+                  </p>
+                  <p className="text-[15px] text-[#A0A0A0]">{SITE.founder.role}</p>
                 </div>
-                <p className="mt-5 text-lg font-semibold text-[#F5F5F5]">{SITE.founder.name}</p>
-                <p className="mt-1 text-xs text-[#A0A0A0]">{SITE.founder.role}</p>
-                <p className="mx-auto mt-3 max-w-xs text-xs text-[#A0A0A0]">
-                  Real photography placeholder — natural light, dark background.
-                </p>
-              </div>
 
-              <div className="relative z-10 flex items-center justify-between border-t border-white/10 pt-4 text-xs text-[#A0A0A0]">
-                <a
-                  href={SITE.founder.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 hover:text-[#F5F5F5]"
-                >
-                  {SITE.founder.instagramHandle}
-                  <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
-                </a>
-                <a
-                  href={SITE.founder.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 hover:text-[#F5F5F5]"
-                >
-                  LinkedIn
-                  <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
-                </a>
+                <div className="flex items-center justify-between border-t border-white/15 pt-4 text-[14px] text-[#F5F5F5]/85">
+                  <a
+                    href={SITE.founder.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 hover:text-white"
+                  >
+                    {SITE.founder.instagramHandle}
+                    <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </a>
+                  <a
+                    href={SITE.founder.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 hover:text-white"
+                  >
+                    LinkedIn
+                    <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

@@ -44,13 +44,13 @@ export default function ContactPage() {
 
         <div className="intent-container relative z-10 max-w-4xl space-y-5">
           <SectionEyebrow>Contact</SectionEyebrow>
-          <h1 className="text-[clamp(2.25rem,5vw,3.9rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#F5F5F5]">
+          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
             Book a 15-minute discovery call — or send a{" "}
             <span className="font-editorial font-normal text-[#FFD1C2]">
               short brief.
             </span>
           </h1>
-          <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
             Tell us what you are building, where your current presence is holding you back, and when you want to launch.
           </p>
           <a
@@ -114,14 +114,13 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Relevant Testimonial */}
+            {/* Studio Conviction */}
             <ClientQuoteCard
-              quote="Contact page testimonial placeholder — reserved for a verified client quote on communication speed and clarity."
-              name="Verified Client Name [Pending]"
-              role="Founder"
-              company="Intent Studios Partner"
-              credibilityLine="Verified engagement"
-              isPlaceholder
+              quote="We listen first, then lead. If a requested direction works against your own goals, we say it once clearly and show you the stronger path."
+              name={SITE.founder.name}
+              role="Founder & Creative Director"
+              company="Intent Studios"
+              credibilityLine="Direct senior communication"
             />
           </aside>
         </div>

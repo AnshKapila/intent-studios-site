@@ -68,12 +68,12 @@ export default async function ProjectDetailPage({
           <div className="space-y-4 max-w-4xl">
             <div className="flex flex-wrap items-center gap-2.5">
               <SectionEyebrow>{project.serviceName}</SectionEyebrow>
-              <span className="rounded-full border border-white/12 bg-white/[0.04] px-3 py-1 text-xs text-[#A0A0A0]">
-                {project.industryLabel}
+              <span className="text-[13px] text-[#A0A0A0]">
+                · {project.industryLabel}
               </span>
             </div>
 
-            <h1 className="text-[clamp(2.1rem,4.8vw,3.75rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#F5F5F5]">
+            <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
               {project.outcomeTitle}
             </h1>
 

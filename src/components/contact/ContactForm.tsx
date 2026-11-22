@@ -79,7 +79,7 @@ export function ContactForm() {
           <div className="flex flex-wrap gap-3 pt-2">
             <Link
               href="/thank-you/"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[#F24E1E] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#D94114] transition-colors"
+              className="inline-flex h-[44px] items-center gap-2 rounded-[8px] bg-[#F24E1E] px-5 text-[15px] font-medium text-white hover:bg-[#D94114] transition-colors"
             >
               Continue to Thank You page
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -87,7 +87,7 @@ export function ContactForm() {
             <button
               type="button"
               onClick={() => setSubmitted(false)}
-              className="inline-flex min-h-[44px] items-center rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-[#A0A0A0] hover:text-[#F5F5F5] cursor-pointer"
+              className="inline-flex h-[44px] items-center rounded-[8px] border border-white/20 px-5 text-[15px] font-medium text-[#A0A0A0] hover:text-[#F5F5F5] hover:border-white/35 cursor-pointer"
             >
               Edit brief
             </button>

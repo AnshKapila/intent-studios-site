@@ -23,14 +23,14 @@ export default function WhoWeHelpPage() {
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
         <div className="intent-container relative z-10 max-w-4xl space-y-5">
-          <SectionEyebrow>Who We Help</SectionEyebrow>
-          <h1 className="text-[clamp(2.25rem,5vw,3.9rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#F5F5F5]">
+          <SectionEyebrow>Who we help</SectionEyebrow>
+          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
             Built for ambitious teams where{" "}
             <span className="font-editorial font-normal text-[#FFD1C2]">
               credibility drives revenue.
             </span>
           </h1>
-          <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
             We publish dedicated industry pages only where we have deep category proof. Start with our live playbooks below — or reach out directly if you are building in another sector.
           </p>
         </div>

@@ -1,57 +1,309 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { SERVICES, type ServiceSlug } from "@/data/services";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+  type MotionValue,
+} from "framer-motion";
+import { SERVICES, type ServiceItem, type ServiceSlug } from "@/data/services";
 import { SERVICE_PHOTOS } from "@/data/media";
 import { INDUSTRIES } from "@/data/industries";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
-export function ServicesDeckSection() {
-  const [selectedGoal, setSelectedGoal] = useState<ServiceSlug | "all">("all");
+const SERVICE_TAGS: Record<ServiceSlug, string[]> = {
+  "website-design": [
+    "Marketing Sites",
+    "E-commerce",
+    "Conversion UX",
+    "Next.js & React",
+    "Shopify",
+    "CMS Architecture",
+    "Technical SEO",
+    "Motion Design",
+  ],
+  "product-design": [
+    "Product UI/UX",
+    "SaaS Interfaces",
+    "Mobile Apps",
+    "Design Systems",
+    "Token Architecture",
+    "Interactive Prototypes",
+    "Onboarding Flows",
+    "Frontend Build",
+  ],
+  "brand-identity": [
+    "Brand Strategy",
+    "Visual Identity",
+    "Logo Systems",
+    "Typography",
+    "Color Architecture",
+    "Brand Guidelines",
+    "Packaging Direction",
+    "Digital Collateral",
+  ],
+  "content-social": [
+    "AI Product Shoots",
+    "Editorial Visuals",
+    "Campaign Kits",
+    "Social Systems",
+    "Carousel Design",
+    "Launch Assets",
+    "Art Direction",
+    "Color Grading",
+  ],
+};
+
+/**
+ * Forma-style header pill button:
+ * White pill at rest with a dark 44x44 left circular badge;
+ * On hover, pill fills with Intent Studios Orange (#F24E1E), text turns white,
+ * and dual right-arrows slide horizontally inside the clipped circle.
+ */
+function FormaSeeAllButton({ href }: { href: string }) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "group inline-flex items-center gap-4 rounded-full bg-white py-[3px] pl-[3px] pr-6 text-[15px] font-medium text-[#0D0D0D]",
+        "transition-[background-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "hover:bg-[#F24E1E] hover:text-white"
+      )}
+    >
+      <span
+        aria-hidden="true"
+        className="relative flex h-[44px] w-[44px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#0D0D0D] text-white"
+      >
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-7" />
+        <ArrowRight className="absolute h-4 w-4 -translate-x-7 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
+      </span>
+      <span>See All Services</span>
+    </Link>
+  );
+}
+
+/**
+ * Forma-style card CTA pill:
+ * White pill with vertical text-swap marquee on hover.
+ */
+function FormaSwapPillButton({
+  href,
+  label,
+}: {
+  href: string;
+  label: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "group relative inline-flex h-[44px] items-center justify-center overflow-hidden rounded-full bg-white px-5 text-[15px] font-medium text-[#0D0D0D]",
+        "transition-[background-color,color] duration-200 hover:bg-[#F5F5F5]"
+      )}
+    >
+      <span className="relative block h-[20px] overflow-hidden leading-[20px]">
+        <span className="block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
+          {label}
+        </span>
+        <span
+          aria-hidden="true"
+          className="block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full"
+        >
+          {label}
+        </span>
+      </span>
+    </Link>
+  );
+}
+
+function StickyServiceCard({
+  service,
+  index,
+  total,
+  stackProgress,
+  isHighlighted,
+  isDimmed,
+}: {
+  service: ServiceItem;
+  index: number;
+  total: number;
+  stackProgress: MotionValue<number>;
+  isHighlighted: boolean;
+  isDimmed: boolean;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+  const photo = SERVICE_PHOTOS[service.slug];
+  const tags = SERVICE_TAGS[service.slug];
+  const isLast = index === total - 1;
+
+  // Map this card's exact slice of the non-sticky stack scroll progress
+  const segment = 1 / Math.max(1, total - 1);
+  const start = index * segment;
+  const end = Math.min(1, (index + 1) * segment);
+
+  const scale = useTransform(stackProgress, [start, end], [1, isLast ? 1 : 0.74]);
+  const rotateX = useTransform(stackProgress, [start, end], [0, isLast ? 0 : 48]);
+  const opacity = useTransform(
+    stackProgress,
+    [start, start + (end - start) * 0.75, end],
+    [1, 1, isLast ? 1 : 0.45]
+  );
 
   return (
-    <section className="relative overflow-hidden border-t border-white/10 bg-[#000000] py-20 sm:py-24">
-      <div className="intent-container space-y-10">
-        {/* Heading + Interactive Goal Chips */}
-        <div className="space-y-6">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="space-y-3 max-w-2xl">
-              <SectionEyebrow>Services</SectionEyebrow>
-              <h2 className="text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#F5F5F5]">
-                Four focused disciplines built to move your business forward.
-              </h2>
+    <div
+      id={`service-${service.index}`}
+      style={{ zIndex: index + 1 }}
+      className={cn(
+        "relative w-full lg:sticky lg:top-[84px]",
+        isDimmed ? "opacity-45 transition-opacity duration-200" : "opacity-100 transition-opacity duration-200"
+      )}
+    >
+      <motion.div
+        style={
+          prefersReducedMotion
+            ? undefined
+            : {
+                transformPerspective: 2000,
+                scale,
+                rotateX,
+                opacity,
+                transformOrigin: "center top",
+              }
+        }
+        className={cn(
+          "w-full rounded-[24px] bg-[#111111] p-4 sm:p-6 will-change-transform",
+          isHighlighted ? "ring-1 ring-[#F24E1E]/60" : ""
+        )}
+      >
+        <div className="grid gap-4 lg:grid-cols-2 lg:min-h-[640px]">
+          {/* Left Column: Index pinned top-left, content + tags + CTA anchored bottom-left */}
+          <div className="flex flex-col justify-between gap-14 p-4 sm:p-8 lg:p-10">
+            <div className="flex items-start justify-between gap-4">
+              <span className="tabular-nums text-[36px] sm:text-[48px] font-medium leading-[1.1] tracking-[-0.03em] text-white">
+                {service.index}
+              </span>
+              <span className="text-[13px] font-medium text-white/50 pt-2">
+                {service.timeline}
+              </span>
             </div>
-            <Link
-              href="/services/"
-              className="group inline-flex h-[44px] items-center gap-2 text-[15px] font-medium text-[#F5F5F5] hover:text-[#FFD1C2] transition-colors duration-150"
-            >
-              Explore services overview
-              <ArrowRight
-                className="h-4 w-4 text-[#F24E1E] transition-transform duration-150 group-hover:translate-x-[3px]"
-                aria-hidden="true"
-              />
-            </Link>
+
+            <div className="space-y-10 sm:space-y-12">
+              <div className="space-y-3">
+                <h3 className="text-[26px] sm:text-[32px] font-medium leading-[1.15] tracking-[-0.025em] text-white">
+                  {service.name}
+                </h3>
+                <p className="max-w-lg text-[16px] sm:text-[19px] leading-[1.45] tracking-[-0.01em] text-white/50">
+                  {service.outcomeLine}
+                </p>
+              </div>
+
+              {/* 8 Tag Pills (Forma structure) */}
+              <div className="flex max-w-[512px] flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center rounded-full bg-white/[0.14] px-3 py-2 text-[12px] font-medium leading-none text-white"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Card CTA + Website Type sub-links */}
+              <div className="flex flex-wrap items-center gap-4 pt-1">
+                <FormaSwapPillButton
+                  href={service.href}
+                  label={`Explore ${service.shortName}`}
+                />
+                {service.hasTypePages && (
+                  <div className="flex flex-wrap items-center gap-4 text-[14px] text-white/55">
+                    <Link
+                      href="/services/website-design/ecommerce/"
+                      className="underline decoration-white/20 underline-offset-4 hover:text-white hover:decoration-[#F24E1E] transition-colors"
+                    >
+                      E-commerce
+                    </Link>
+                    <Link
+                      href="/services/website-design/business/"
+                      className="underline decoration-white/20 underline-offset-4 hover:text-white hover:decoration-[#F24E1E] transition-colors"
+                    >
+                      Business sites
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
-          {/* Unified Architectural Goal Chips */}
+          {/* Right Column: Full-height rounded photograph */}
+          <div className="relative min-h-[300px] sm:min-h-[420px] lg:min-h-full w-full overflow-hidden rounded-[16px] bg-[#0A0A0A]">
+            <img
+              src={photo.src}
+              srcSet={photo.srcSet}
+              sizes="(max-width: 1023px) 100vw, 48vw"
+              width={photo.width}
+              height={photo.height}
+              alt={photo.alt}
+              loading="lazy"
+              decoding="async"
+              data-source={photo.source}
+              data-subject={photo.subject}
+              style={{ objectPosition: photo.objectPosition || "50% 50%" }}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+export function ServicesDeckSection() {
+  const [selectedGoal, setSelectedGoal] = useState<ServiceSlug | "all">("all");
+  const stackRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: stackRef,
+    offset: ["start 84px", "end end"],
+  });
+
+  return (
+    <section className="relative overflow-visible border-t border-white/10 bg-[#000000] py-20 sm:py-28">
+      <div className="intent-container space-y-12 sm:space-y-16">
+        {/* Forma 3-part Header Row: (Services) left | Services we offer. center | See All Services right */}
+        <div className="space-y-8">
+          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+            <span className="text-[15px] font-medium text-white/85">
+              (Services)
+            </span>
+
+            <h2 className="text-[clamp(2.25rem,4.4vw,3.85rem)] font-medium leading-[1.08] tracking-[-0.03em] text-white lg:text-center">
+              Services{" "}
+              <span className="font-editorial font-normal">we offer.</span>
+            </h2>
+
+            <FormaSeeAllButton href="/services/" />
+          </div>
+
+          {/* Interactive Goal Chips (Sitemap Section 7 requirement) */}
           <div
             role="group"
             aria-label="Filter services by business goal"
-            className="flex flex-wrap items-center gap-2"
+            className="flex flex-wrap items-center justify-start lg:justify-center gap-2"
           >
             <button
               type="button"
               onClick={() => setSelectedGoal("all")}
               aria-pressed={selectedGoal === "all"}
               className={cn(
-                "h-[44px] rounded-[8px] px-4 text-[14px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
+                "h-[40px] rounded-full px-4 text-[13px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
                 selectedGoal === "all"
                   ? "border-[#F24E1E] bg-[#F24E1E] text-white"
-                  : "border-white/12 bg-[#0A0A0A] text-[#A0A0A0] hover:border-white/25 hover:text-[#F5F5F5]"
+                  : "border-white/15 bg-[#111111] text-white/65 hover:border-white/30 hover:text-white"
               )}
             >
               All goals
@@ -65,10 +317,10 @@ export function ServicesDeckSection() {
                   onClick={() => setSelectedGoal(active ? "all" : service.slug)}
                   aria-pressed={active}
                   className={cn(
-                    "h-[44px] rounded-[8px] px-4 text-[14px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
+                    "h-[40px] rounded-full px-4 text-[13px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
                     active
                       ? "border-[#F24E1E] bg-[#F24E1E] text-white"
-                      : "border-white/12 bg-[#0A0A0A] text-[#A0A0A0] hover:border-white/25 hover:text-[#F5F5F5]"
+                      : "border-white/15 bg-[#111111] text-white/65 hover:border-white/30 hover:text-white"
                   )}
                 >
                   {service.goalLabel}
@@ -78,101 +330,23 @@ export function ServicesDeckSection() {
           </div>
         </div>
 
-        {/* Wireframe Block 4: Stacked horizontal split cards with real local WebP photography */}
-        <div className="space-y-5">
-          {SERVICES.map((service) => {
-            const isDimmed = selectedGoal !== "all" && selectedGoal !== service.slug;
-            const isHighlighted = selectedGoal === service.slug;
-            const photo = SERVICE_PHOTOS[service.slug];
-
-            return (
-              <div
-                key={service.slug}
-                className={cn(
-                  "group relative overflow-hidden rounded-[16px] border bg-[#0A0A0A] p-6 sm:p-8",
-                  "transition-[border-color,opacity] duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)]",
-                  isHighlighted
-                    ? "border-[#F24E1E]/60"
-                    : "border-white/10 hover:border-white/25",
-                  isDimmed ? "opacity-45" : "opacity-100"
-                )}
-              >
-                <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
-                  {/* Left: Index, Title, Outcome, Proof, Unified Button */}
-                  <div className="lg:col-span-6 flex flex-col justify-between gap-6">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="tabular-nums text-[15px] font-semibold text-[#F24E1E]">
-                          {service.index}
-                        </span>
-                        <span className="text-[13px] font-medium text-[#A0A0A0]">
-                          {service.timeline}
-                        </span>
-                      </div>
-
-                      <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.025em] text-[#F5F5F5]">
-                        {service.name}
-                      </h3>
-
-                      <p className="text-base leading-[1.6] text-[#A0A0A0]">
-                        {service.outcomeLine}
-                      </p>
-
-                      <p className="text-[15px] leading-relaxed text-[#F5F5F5]/85 border-l-2 border-[#F24E1E] pl-3.5">
-                        {service.proofLine}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-3 pt-1">
-                      <Button href={service.href} variant="secondary" size="md" showArrow>
-                        Explore {service.shortName}
-                      </Button>
-                      {service.hasTypePages && (
-                        <div className="flex flex-wrap items-center gap-4 pl-1 text-[14px] text-[#A0A0A0]">
-                          <Link
-                            href="/services/website-design/ecommerce/"
-                            className="underline decoration-white/20 underline-offset-4 hover:text-[#F5F5F5] hover:decoration-[#F24E1E] transition-colors"
-                          >
-                            E-commerce
-                          </Link>
-                          <Link
-                            href="/services/website-design/business/"
-                            className="underline decoration-white/20 underline-offset-4 hover:text-[#F5F5F5] hover:decoration-[#F24E1E] transition-colors"
-                          >
-                            Business sites
-                          </Link>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Right: Real local WebP photography */}
-                  <div className="lg:col-span-6">
-                    <div className="aspect-[16/10] w-full overflow-hidden rounded-[12px] bg-[#111111]">
-                      <img
-                        src={photo.src}
-                        srcSet={photo.srcSet}
-                        sizes="(max-width: 1023px) 100vw, 45vw"
-                        width={photo.width}
-                        height={photo.height}
-                        alt={photo.alt}
-                        loading="lazy"
-                        decoding="async"
-                        data-source={photo.source}
-                        data-subject={photo.subject}
-                        style={{ objectPosition: photo.objectPosition || "50% 50%" }}
-                        className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.03]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        {/* Sticky 3D Perspective Stacking Card Deck (Forma structure) */}
+        <div ref={stackRef} className="relative flex flex-col gap-8">
+          {SERVICES.map((service, idx) => (
+            <StickyServiceCard
+              key={service.slug}
+              service={service}
+              index={idx}
+              total={SERVICES.length}
+              stackProgress={scrollYProgress}
+              isHighlighted={selectedGoal === service.slug}
+              isDimmed={selectedGoal !== "all" && selectedGoal !== service.slug}
+            />
+          ))}
         </div>
 
-        {/* Industry Line */}
-        <div className="flex flex-col gap-4 rounded-[12px] border border-white/10 bg-[#0A0A0A] px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+        {/* Industry Line (Sitemap Section 7 requirement) */}
+        <div className="flex flex-col gap-4 rounded-[16px] border border-white/10 bg-[#111111] px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
             <p className="text-[13px] font-medium text-[#A0A0A0]">
               Dedicated industry playbooks

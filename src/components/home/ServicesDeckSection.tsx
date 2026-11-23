@@ -176,28 +176,28 @@ function StickyServiceCard({
               }
         }
         className={cn(
-          "w-full rounded-[24px] bg-[#111111] p-4 sm:p-5 will-change-transform lg:h-[calc(100svh-248px)] lg:max-h-[calc(100svh-248px)]",
+          "w-full overflow-hidden rounded-[24px] bg-[#111111] p-4 sm:p-5 will-change-transform lg:h-[600px]",
           isHighlighted ? "ring-1 ring-[#F24E1E]/60" : ""
         )}
       >
         <div className="grid h-full gap-4 lg:grid-cols-2">
-          {/* Left Column: Index pinned top-left, content + tags + CTA anchored bottom-left */}
-          <div className="flex flex-col justify-between gap-6 p-4 sm:p-6 lg:p-8">
-            <div className="flex items-start justify-between gap-4">
-              <span className="tabular-nums text-[32px] sm:text-[42px] font-medium leading-none tracking-[-0.03em] text-white">
+          {/* Left Column: Index pinned top-left, content + tags + CTA anchored bottom-left with guaranteed breathing room */}
+          <div className="flex h-full min-h-0 flex-col justify-between gap-6 p-4 sm:p-6 lg:p-8">
+            <div className="flex shrink-0 items-start justify-between gap-4">
+              <span className="tabular-nums text-[32px] sm:text-[40px] font-medium leading-none tracking-[-0.03em] text-white">
                 {service.index}
               </span>
-              <span className="text-[13px] font-medium text-white/50 pt-1">
+              <span className="pt-1 text-[13px] font-medium text-white/50">
                 {service.timeline}
               </span>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-5">
               <div className="space-y-2">
                 <h3 className="text-[24px] sm:text-[28px] font-medium leading-[1.15] tracking-[-0.025em] text-white">
                   {service.name}
                 </h3>
-                <p className="max-w-lg text-[15px] sm:text-[17px] leading-[1.45] tracking-[-0.01em] text-white/55">
+                <p className="max-w-lg text-[15px] sm:text-[16px] leading-[1.45] tracking-[-0.01em] text-white/55">
                   {service.outcomeLine}
                 </p>
               </div>
@@ -215,7 +215,7 @@ function StickyServiceCard({
               </div>
 
               {/* Card CTA + Website Type sub-links */}
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4 pt-1">
                 <FormaSwapPillButton
                   href={service.href}
                   label={`Explore ${service.shortName}`}
@@ -240,8 +240,8 @@ function StickyServiceCard({
             </div>
           </div>
 
-          {/* Right Column: Full-height rounded photograph */}
-          <div className="relative min-h-[260px] sm:min-h-[340px] lg:min-h-0 lg:h-full w-full overflow-hidden rounded-[16px] bg-[#0A0A0A]">
+          {/* Right Column: Equal-height rounded photograph */}
+          <div className="relative h-[260px] sm:h-[340px] lg:h-full w-full overflow-hidden rounded-[16px] bg-[#0A0A0A]">
             <img
               src={photo.src}
               srcSet={photo.srcSet}
@@ -272,9 +272,12 @@ export function ServicesDeckSection() {
   });
 
   return (
-    <section className="relative overflow-visible border-t border-white/10 bg-[#000000] py-10 sm:py-12">
-      <div className="intent-container space-y-6 sm:space-y-8">
-        {/* Forma 3-part Header Row + Goal Chips — compact so Header + each individual card fit cleanly within 100vh */}
+    <section
+      id="services-deck"
+      className="relative overflow-visible border-t border-white/10 bg-[#000000] py-16 sm:py-20"
+    >
+      <div className="intent-container space-y-8 sm:space-y-10">
+        {/* Forma 3-part Header Row + Goal Chips */}
         <div className="space-y-4">
           <div className="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
             <span className="text-[15px] font-medium text-white/85">

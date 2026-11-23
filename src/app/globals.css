@@ -270,6 +270,33 @@ select {
   top: 1rem;
 }
 
+/* Dual-row logo marquee animations (Taffy-style, pauses on row hover & reduced-motion) */
+@keyframes intent-marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes intent-marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  animation: intent-marquee-left 34s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: intent-marquee-right 36s linear infinite;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

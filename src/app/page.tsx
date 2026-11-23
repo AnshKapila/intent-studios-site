@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HOME_FAQ, HOME_FIT_LIST, SITE } from "@/data/site";
 import { HeroSection } from "@/components/home/HeroSection";
+import { LogoMarqueeSection } from "@/components/home/LogoMarqueeSection";
 import { ProblemBentoSection } from "@/components/home/ProblemBentoSection";
 import { WorkShowcaseSection } from "@/components/home/WorkShowcaseSection";
 import { ClientQuoteOrbitSection } from "@/components/home/ClientQuoteOrbitSection";
@@ -24,6 +25,9 @@ export default function HomePage() {
     <>
       {/* 1. Header (layout) + 2. Hero + 3. Proof Bar */}
       <HeroSection />
+
+      {/* Dual-Row Brand Logo Marquee (Taffy-style colorless-to-color + service pill on hover) */}
+      <LogoMarqueeSection />
 
       {/* 4. The Problem (Buyer Quotes) + What We Do & Don't (Wireframe Block 2 Bento) */}
       <ProblemBentoSection />

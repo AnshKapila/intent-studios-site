@@ -159,29 +159,29 @@ export interface FaqItem {
 
 export const HOME_FAQ: FaqItem[] = [
   {
-    question: "What makes Intent Studios different from a freelancer or traditional agency?",
+    question: "What can Intent Studios help me with?",
     answer:
-      "Freelancers often execute isolated tasks without strategic ownership, while traditional agencies add layers of overhead and slow timelines. Intent Studios gives you senior creative direction, full-stack engineering, and practical AI production workflows in one focused team.",
+      "We bring together Website Design & Build, Product & App Design, Brand Identity, and Content & Social. Start with one focused need, or connect the pieces into a more considered whole.",
   },
   {
-    question: "How do you use AI in your creative and product workflow?",
+    question: "Who do you work best with?",
     answer:
-      "We treat AI as a practical studio instrument — accelerating research synthesis, visual prototyping, and studio-grade content production — while keeping strategy, brand taste, UX architecture, and frontend code firmly human-directed.",
+      "Early-stage startups, growing businesses, D2C and product brands, fitness studios, and service founders who sit between generic freelancers and slow traditional agencies — and want a capable creative and technical partner.",
   },
   {
-    question: "How long does a typical website or product engagement take?",
+    question: "How much does a project cost?",
     answer:
-      "Most focused brand or business websites ship in 3 to 6 weeks from Discovery to Launch. Multi-page e-commerce builds or end-to-end digital products typically run 6 to 10 weeks depending on scope and integrations.",
+      "Every project starts with the scope. We define the priorities, page depth, and technical requirements during our 15-minute discovery call, then send a clear fixed-scope proposal with milestones and timeline.",
   },
   {
-    question: "Do we need all our copy and photography ready before starting?",
+    question: "How do you use AI in your work?",
     answer:
-      "No. During Discovery and Strategy we map your messaging structure and identify exactly what real assets are needed. Where product or editorial visuals are missing, we can produce art-directed brand imagery as part of the engagement.",
+      "AI supports exploration and execution — accelerating research synthesis, prototyping, and art-directed visual production. Strategy, creative direction, UX architecture, and frontend engineering stay human-led.",
   },
   {
-    question: "What happens on the 15-minute discovery call?",
+    question: "What happens after the discovery call?",
     answer:
-      "We listen to where your business is right now, diagnose the biggest conversion or positioning bottleneck, and tell you candidly whether Intent Studios is the right fit — with a clear recommended next step and no hard pitch.",
+      "We clarify your goals, discuss the core conversion or positioning problem, and decide honestly whether Intent Studios is the right fit. If we move forward, you receive a structured scope and timeline within 48 hours.",
   },
 ];
 

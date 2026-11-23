@@ -160,7 +160,7 @@ export function Header() {
                 </Link>
               </nav>
 
-              <div className="mt-8 space-y-4 border-t border-white/10 pt-6">
+              <div className="mt-8 border-t border-white/10 pt-6">
                 <Button
                   href={SITE.primaryCta.href}
                   variant="primary"
@@ -170,9 +170,6 @@ export function Header() {
                 >
                   {SITE.primaryCta.label}
                 </Button>
-                <p className="text-center text-[13px] text-[#A0A0A0]">
-                  {SITE.signOff}
-                </p>
               </div>
             </div>
           </motion.div>

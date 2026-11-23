@@ -1,7 +1,6 @@
 # Intent Studios
 
 > AI-powered creative and digital product studio. We design for conversion, not just for looks.
-> Sign-off: Intent is in the Details.
 
 ## Core Services
 - Website Design & Build: /services/website-design/

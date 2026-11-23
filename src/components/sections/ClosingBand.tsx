@@ -43,10 +43,6 @@ export function ClosingBand({
               {SITE.secondaryCta.label}
             </Button>
           </div>
-
-          <p className="mt-9 text-[13px] font-medium text-[#A0A0A0]">
-            {SITE.signOff}
-          </p>
         </div>
       </div>
     </section>

@@ -142,7 +142,7 @@ export function FounderCircleBentoSection() {
             </span>
             <div className="my-6 space-y-2">
               <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111]">
-                Intent is in the Details.
+                Craft earns trust.
               </h3>
               <p className="text-[15px] leading-[1.6] text-[#52504C]">
                 Spacing rhythm, typographic contrast, micro-interactions, and load speed are not polish — they are why visitors trust you.

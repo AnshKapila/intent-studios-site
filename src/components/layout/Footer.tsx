@@ -17,9 +17,6 @@ export function Footer() {
             <p className="max-w-xs text-[15px] leading-relaxed text-[#A0A0A0]">
               AI-powered creative and digital product studio. We design for conversion, not just for looks.
             </p>
-            <p className="text-[13px] font-medium text-[#A0A0A0]">
-              {SITE.signOff}
-            </p>
           </div>
 
           <div className="md:col-span-2 space-y-3">

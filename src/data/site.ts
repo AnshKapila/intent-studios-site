@@ -1,7 +1,6 @@
 export const SITE = {
   name: "Intent Studios",
   tagline: "We design for conversion, not just for looks.",
-  signOff: "Intent is in the Details",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://intentstudios.in",
   primaryCta: {
     label: "Book a 15-minute discovery call",

@@ -2,23 +2,30 @@ import { cn } from "@/lib/utils";
 
 interface SectionEyebrowProps {
   children: string;
-  tone?: "dark" | "light";
+  tone?: "auto" | "dark" | "light";
   className?: string;
 }
 
 /**
- * Quiet, architectural sentence-case label (replaces generic glowing-dot ALL-CAPS pills).
+ * Quiet, architectural sentence-case label (adapts automatically to Light & Dark mode).
  */
 export function SectionEyebrow({
   children,
-  tone = "dark",
+  tone = "auto",
   className,
 }: SectionEyebrowProps) {
+  const toneClass =
+    tone === "dark"
+      ? "text-[#A0A0A0]"
+      : tone === "light"
+        ? "text-[#52504C]"
+        : "text-[#52504C] dark:text-[#A0A0A0]";
+
   return (
     <span
       className={cn(
         "inline-flex items-center gap-2.5 text-[13px] font-medium tracking-normal",
-        tone === "dark" ? "text-[#A0A0A0]" : "text-[#52504C]",
+        toneClass,
         className
       )}
     >

@@ -52,14 +52,14 @@ export default async function ServiceDetailPage({
   return (
     <>
       {/* 1. H1 & Intro */}
-      <section className="relative overflow-hidden bg-[#000000] pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-32 pb-16 sm:pt-40 sm:pb-20">
         <div className="absolute inset-0 bg-grid-dark opacity-55" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-bottom-right opacity-70" aria-hidden="true" />
 
         <div className="intent-container relative z-10 max-w-4xl space-y-6">
           <Link
             href="/services/"
-            className="inline-flex min-h-[44px] items-center gap-2 text-sm text-[#A0A0A0] hover:text-[#F5F5F5] transition-colors"
+            className="inline-flex min-h-[44px] items-center gap-2 text-sm text-[#52504C] dark:text-[#A0A0A0] hover:text-[#F5F5F5] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             All Services
@@ -67,16 +67,16 @@ export default async function ServiceDetailPage({
 
           <div className="flex flex-wrap items-center gap-3">
             <SectionEyebrow>{service.name}</SectionEyebrow>
-            <span className="text-[13px] font-medium text-[#A0A0A0]">
+            <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
               · Typical timeline: {service.timeline}
             </span>
           </div>
 
-          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
+          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
             {service.heroTitle}
           </h1>
 
-          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
+          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
             {service.heroIntro}
           </p>
 
@@ -95,12 +95,12 @@ export default async function ServiceDetailPage({
       <ProofBar items={service.proofBar} />
 
       {/* 2. What You Get + 3. Who It Is For */}
-      <section className="border-t border-white/10 bg-[#111111] py-20 sm:py-24">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] py-20 sm:py-24">
         <div className="intent-container space-y-16">
           <div className="space-y-8">
             <div className="space-y-2 max-w-2xl">
               <SectionEyebrow>Deliverables</SectionEyebrow>
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#F5F5F5]">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
                 What you get.
               </h2>
             </div>
@@ -109,24 +109,24 @@ export default async function ServiceDetailPage({
               {service.deliverables.map((item, idx) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-white/10 bg-[#0A0A0A] p-6 sm:p-7 space-y-2.5"
+                  className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:p-7 space-y-2.5"
                 >
                   <span className="tabular-nums text-xs font-semibold text-[#F24E1E]">
                     0{idx + 1}
                   </span>
-                  <h3 className="text-lg font-semibold text-[#F5F5F5]">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-[#A0A0A0]">{item.detail}</p>
+                  <h3 className="text-lg font-semibold text-[#111111] dark:text-[#F5F5F5]">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">{item.detail}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid gap-8 border-t border-white/10 pt-14 lg:grid-cols-12">
+          <div className="grid gap-8 border-t border-[#111111]/10 dark:border-white/10 pt-14 lg:grid-cols-12">
             <div className="lg:col-span-4 space-y-2">
-              <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[#F5F5F5]">
+              <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[#111111] dark:text-[#F5F5F5]">
                 Who it is for.
               </h2>
-              <p className="text-sm text-[#A0A0A0]">
+              <p className="text-sm text-[#52504C] dark:text-[#A0A0A0]">
                 Built for teams ready to move past generic templates and piecemeal fixes.
               </p>
             </div>
@@ -134,7 +134,7 @@ export default async function ServiceDetailPage({
               {service.whoItIsFor.map((item) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3.5 rounded-2xl border border-white/10 bg-[#0A0A0A] p-5 text-sm sm:text-base text-[#F5F5F5]/90"
+                  className="flex items-start gap-3.5 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-5 text-sm sm:text-base text-[#111111] dark:text-[#F5F5F5]/90"
                 >
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#F24E1E]" aria-hidden="true" />
                   <span>{item}</span>
@@ -147,11 +147,11 @@ export default async function ServiceDetailPage({
 
       {/* Type Pages (Websites Only — Sitemap requirement) */}
       {service.hasTypePages && (
-        <section className="border-t border-white/10 bg-[#000000] py-16 sm:py-20">
+        <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16 sm:py-20">
           <div className="intent-container space-y-8">
             <div className="space-y-2 max-w-2xl">
               <SectionEyebrow>Specialized Builds</SectionEyebrow>
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#F5F5F5]">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
                 Choose your website type.
               </h2>
             </div>
@@ -161,16 +161,16 @@ export default async function ServiceDetailPage({
                 <Link
                   key={typePage.slug}
                   href={typePage.href}
-                  className="group flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-[#0A0A0A] p-7 transition-[border-color,background-color] duration-200 hover:border-[#F24E1E]/45 hover:bg-[#111111]"
+                  className="group flex flex-col justify-between gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-7 transition-[border-color,background-color] duration-200 hover:border-[#F24E1E]/45 hover:bg-[#111111]"
                 >
                   <div className="space-y-2">
-                    <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#FFD1C2]">
+                    <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#F24E1E] dark:text-[#FFD1C2]">
                       {typePage.timeline}
                     </span>
-                    <h3 className="text-xl font-semibold text-[#F5F5F5]">{typePage.name}</h3>
-                    <p className="text-sm leading-relaxed text-[#A0A0A0]">{typePage.intro}</p>
+                    <h3 className="text-xl font-semibold text-[#111111] dark:text-[#F5F5F5]">{typePage.name}</h3>
+                    <p className="text-sm leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">{typePage.intro}</p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#F5F5F5]">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#111111] dark:text-[#F5F5F5]">
                     Explore {typePage.name}
                     <ArrowUpRight className="h-4 w-4 text-[#F24E1E]" aria-hidden="true" />
                   </span>
@@ -199,14 +199,14 @@ export default async function ServiceDetailPage({
       />
 
       {/* 6. What Changes the Price */}
-      <section className="border-t border-white/10 bg-[#0A0A0A] py-16 sm:py-20">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] py-16 sm:py-20">
         <div className="intent-container grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4 space-y-2">
             <SectionEyebrow>Scope &amp; Investment</SectionEyebrow>
-            <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[#F5F5F5]">
+            <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[#111111] dark:text-[#F5F5F5]">
               What changes the price.
             </h2>
-            <p className="text-sm text-[#A0A0A0]">
+            <p className="text-sm text-[#52504C] dark:text-[#A0A0A0]">
               We scope fixed milestones after our 15-minute discovery call so you know the exact investment upfront.
             </p>
           </div>
@@ -214,7 +214,7 @@ export default async function ServiceDetailPage({
             {service.priceDrivers.map((driver, idx) => (
               <li
                 key={driver}
-                className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#111111] p-5 text-sm sm:text-base text-[#F5F5F5]/90"
+                className="flex items-start gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] p-5 text-sm sm:text-base text-[#111111] dark:text-[#F5F5F5]/90"
               >
                 <span className="tabular-nums text-xs font-semibold text-[#F24E1E] pt-1">
                   0{idx + 1}
@@ -233,21 +233,21 @@ export default async function ServiceDetailPage({
       />
 
       {/* 8. Related Services */}
-      <section className="border-t border-white/10 bg-[#000000] py-16">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16">
         <div className="intent-container space-y-6">
-          <h2 className="text-xl font-semibold text-[#F5F5F5]">Related services</h2>
+          <h2 className="text-xl font-semibold text-[#111111] dark:text-[#F5F5F5]">Related services</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {relatedServices.map((rel) => (
               <Link
                 key={rel.slug}
                 href={rel.href}
-                className="group flex flex-col justify-between gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A] p-6 transition-[border-color] duration-200 hover:border-[#F24E1E]/40"
+                className="group flex flex-col justify-between gap-3 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 transition-[border-color] duration-200 hover:border-[#F24E1E]/40"
               >
                 <div className="space-y-1.5">
-                  <h3 className="text-base font-semibold text-[#F5F5F5]">{rel.name}</h3>
-                  <p className="text-xs leading-relaxed text-[#A0A0A0]">{rel.outcomeLine}</p>
+                  <h3 className="text-base font-semibold text-[#111111] dark:text-[#F5F5F5]">{rel.name}</h3>
+                  <p className="text-xs leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">{rel.outcomeLine}</p>
                 </div>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#FFD1C2]">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#F24E1E] dark:text-[#FFD1C2]">
                   Explore
                   <ArrowUpRight className="h-3.5 w-3.5 text-[#F24E1E]" aria-hidden="true" />
                 </span>

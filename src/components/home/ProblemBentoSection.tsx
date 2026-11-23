@@ -179,19 +179,19 @@ function MessageRow({
           isRight ? "items-end" : "items-start"
         )}
       >
-        <div className="w-full rounded-[4px] border border-[#111111]/12 bg-white px-5 py-4 transition-colors duration-200 hover:border-[#111111]/25">
+        <div className="w-full rounded-[4px] border border-[#111111]/12 dark:border-white/12 bg-white dark:bg-[#111111] px-5 py-4 transition-colors duration-200 hover:border-[#111111]/25 dark:hover:border-white/25">
           {/* Top metadata line (Studio Maydit exact square-dot separator) */}
           <div className="flex flex-wrap items-center gap-2 text-[12.5px] leading-none tracking-[-0.01em]">
-            <span className="font-medium text-[#52504C]">{item.role}</span>
+            <span className="font-medium text-[#52504C] dark:text-[#A0A0A0]">{item.role}</span>
             <span
               aria-hidden="true"
-              className="h-1 w-1 shrink-0 bg-[#111111]/70"
+              className="h-1 w-1 shrink-0 bg-[#111111]/70 dark:bg-white/60"
             />
-            <span className="font-semibold text-[#111111]">{item.topic}</span>
+            <span className="font-semibold text-[#111111] dark:text-[#F5F5F5]">{item.topic}</span>
           </div>
 
           {/* Quote with inline tinted highlight mark */}
-          <p className="mt-2.5 text-[15px] font-medium leading-[1.45] tracking-[-0.012em] text-[#111111]">
+          <p className="mt-2.5 text-[15px] font-medium leading-[1.45] tracking-[-0.012em] text-[#111111] dark:text-[#F5F5F5]">
             {item.quotePrefix}
             <mark
               style={{ backgroundColor: item.highlightBg }}
@@ -216,8 +216,8 @@ function MessageRow({
                 className={cn(
                   "inline-flex h-[28px] cursor-pointer items-center gap-1.5 rounded-full border px-2.5 text-[12.5px] font-medium tabular-nums transition-all duration-150",
                   active
-                    ? "border-[#111111] bg-[#111111] text-white"
-                    : "border-[#111111]/12 bg-white text-[#52504C] hover:border-[#111111]/35 hover:text-[#111111]"
+                    ? "border-[#111111] bg-[#111111] text-white dark:border-[#F24E1E] dark:bg-[#F24E1E] dark:text-white"
+                    : "border-[#111111]/12 dark:border-white/15 bg-white dark:bg-[#111111] text-[#52504C] dark:text-[#A0A0A0] hover:border-[#111111]/35 dark:hover:border-white/35 hover:text-[#111111] dark:hover:text-white"
                 )}
               >
                 <span className="text-[12px] leading-none">
@@ -249,17 +249,17 @@ function StudioReplyRow() {
       </div>
 
       {/* High-contrast studio wrap-up card */}
-      <div className="w-full max-w-[360px] rounded-[4px] border border-[#111111] bg-white px-5 py-4">
-        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#52504C]">
+      <div className="w-full max-w-[360px] rounded-[4px] border border-[#111111] dark:border-white/30 bg-white dark:bg-[#161616] px-5 py-4">
+        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#52504C] dark:text-[#A0A0A0]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#F24E1E]" aria-hidden="true" />
           Intent Studios
         </div>
-        <p className="mt-2 text-[18px] font-semibold leading-[1.3] tracking-[-0.02em] text-[#111111]">
+        <p className="mt-2 text-[18px] font-semibold leading-[1.3] tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
           We hear this every week.
         </p>
         <a
           href="#services-deck"
-          className="mt-2 inline-flex items-center gap-1 text-[14px] font-medium text-[#111111] underline decoration-[#111111]/80 underline-offset-4 transition-colors hover:text-[#F24E1E] hover:decoration-[#F24E1E]"
+          className="mt-2 inline-flex items-center gap-1 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5] underline decoration-[#111111]/80 dark:decoration-white/50 underline-offset-4 transition-colors hover:text-[#F24E1E] hover:decoration-[#F24E1E]"
         >
           Here’s how we fix it ↓
         </a>
@@ -378,7 +378,7 @@ export function ProblemBentoSection() {
     <section
       ref={sectionRef}
       aria-labelledby="problem-section-heading"
-      className="relative border-t border-[#111111]/10 bg-white text-[#111111] py-12 lg:py-0 lg:h-[100svh] lg:max-h-[100svh] lg:flex lg:items-center"
+      className="relative border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] text-[#111111] dark:text-[#F5F5F5] py-12 lg:py-0 lg:h-[100svh] lg:max-h-[100svh] lg:flex lg:items-center transition-colors duration-200"
     >
       <div className="intent-container w-full">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
@@ -389,14 +389,14 @@ export function ProblemBentoSection() {
                 aria-hidden="true"
                 className="inline-block h-[1px] w-6 bg-[#F24E1E]"
               />
-              <span className="text-[13px] font-medium tracking-[0.01em] text-[#52504C]">
+              <span className="text-[13px] font-medium tracking-[0.01em] text-[#52504C] dark:text-[#A0A0A0]">
                 Sound familiar?
               </span>
             </div>
 
             <h2
               id="problem-section-heading"
-              className="mt-5 max-w-[440px] text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.035em] text-[#111111]"
+              className="mt-5 max-w-[440px] text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]"
             >
               Hard to trust
               <br />
@@ -404,7 +404,7 @@ export function ProblemBentoSection() {
               <span className="font-editorial font-normal">buy.</span>
             </h2>
 
-            <p className="mt-5 max-w-[430px] text-[16px] leading-[1.5] text-[#52504C]">
+            <p className="mt-5 max-w-[430px] text-[16px] leading-[1.5] text-[#52504C] dark:text-[#A0A0A0]">
               Buyers judge in seconds. If your website, app, brand identity, or
               content doesn’t signal quality on sight, most never make it to a
               conversation.
@@ -415,7 +415,7 @@ export function ProblemBentoSection() {
               <button
                 type="button"
                 onClick={() => setIsManuallyPaused((p) => !p)}
-                className="inline-flex h-[36px] cursor-pointer items-center gap-2 rounded-full border border-[#111111]/15 bg-[#FAF9F7] px-3.5 text-[12.5px] font-medium text-[#111111] transition-colors hover:border-[#111111]/35"
+                className="inline-flex h-[36px] cursor-pointer items-center gap-2 rounded-full border border-[#111111]/15 dark:border-white/15 bg-[#FAF9F7] dark:bg-[#141414] px-3.5 text-[12.5px] font-medium text-[#111111] dark:text-[#F5F5F5] transition-colors hover:border-[#111111]/35 dark:hover:border-white/35"
               >
                 {isManuallyPaused ? (
                   <Play className="h-3.5 w-3.5 text-[#F24E1E]" aria-hidden="true" />
@@ -425,12 +425,12 @@ export function ProblemBentoSection() {
                 <span>{isManuallyPaused ? "Resume feed" : "Pause feed"}</span>
               </button>
 
-              <span className="inline-flex items-center gap-2 text-[12.5px] text-[#7C756D]">
+              <span className="inline-flex items-center gap-2 text-[12.5px] text-[#7C756D] dark:text-[#A0A0A0]">
                 <span
                   aria-hidden="true"
                   className={cn(
                     "h-1.5 w-1.5 rounded-full transition-colors",
-                    isPlaying ? "bg-[#F24E1E] animate-pulse" : "bg-[#111111]/25"
+                    isPlaying ? "bg-[#F24E1E] animate-pulse" : "bg-[#111111]/25 dark:bg-white/25"
                   )}
                 />
                 Scroll up or down anytime
@@ -439,7 +439,7 @@ export function ProblemBentoSection() {
 
             <a
               href="#services-deck"
-              className="mt-8 inline-flex items-center gap-1.5 text-[14px] font-medium text-[#111111] underline decoration-[#111111]/30 underline-offset-4 transition-colors hover:text-[#F24E1E] hover:decoration-[#F24E1E]"
+              className="mt-8 inline-flex items-center gap-1.5 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5] underline decoration-[#111111]/30 dark:decoration-white/30 underline-offset-4 transition-colors hover:text-[#F24E1E] hover:decoration-[#F24E1E]"
             >
               See how we solve all four
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -455,12 +455,12 @@ export function ProblemBentoSection() {
             {/* Top fade mask */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-white via-white/85 to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-white via-white/85 dark:from-[#0A0A0A] dark:via-[#0A0A0A]/85 to-transparent"
             />
             {/* Bottom fade mask */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-14 bg-gradient-to-t from-white via-white/90 to-transparent"
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-14 bg-gradient-to-t from-white via-white/90 dark:from-[#0A0A0A] dark:via-[#0A0A0A]/90 to-transparent"
             />
 
             <div

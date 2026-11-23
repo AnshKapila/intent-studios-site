@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/providers/MotionProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { SITE } from "@/data/site";
 
 const inter = Inter({
@@ -22,7 +23,10 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
@@ -50,6 +54,18 @@ export const metadata: Metadata = {
   },
 };
 
+const THEME_INIT_SCRIPT = `
+(function(){
+  try {
+    var t = localStorage.getItem('intent-theme');
+    var mode = t === 'dark' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = mode;
+    document.documentElement.classList.toggle('dark', mode === 'dark');
+    document.documentElement.style.colorScheme = mode;
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -58,19 +74,26 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} dark`}
+      data-theme="light"
+      suppressHydrationWarning
+      className={`${inter.variable} ${instrumentSerif.variable}`}
     >
-      <body className="min-h-screen bg-[#000000] text-[#F5F5F5] antialiased selection:bg-[#F24E1E] selection:text-white">
-        <MotionProvider>
-          <a href="#main-content" className="skip-link">
-            Skip to main content
-          </a>
-          <Header />
-          <main id="main-content" className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-        </MotionProvider>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
+      <body className="min-h-screen bg-white text-[#111111] dark:bg-[#000000] dark:text-[#F5F5F5] antialiased selection:bg-[#F24E1E] selection:text-white transition-colors duration-200">
+        <ThemeProvider>
+          <MotionProvider>
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+            <Header />
+            <main id="main-content" className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </MotionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

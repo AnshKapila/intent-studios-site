@@ -35,7 +35,7 @@ export function ClientQuoteOrbitSection() {
   return (
     <section
       aria-label="Client perspective"
-      className="relative flex items-center overflow-hidden border-t border-white/10 bg-[#0A0A0A] py-12 lg:h-[100svh] lg:max-h-[100svh] lg:py-0"
+      className="relative flex items-center overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] py-12 lg:h-[100svh] lg:max-h-[100svh] lg:py-0 transition-colors duration-200"
     >
       <div className="intent-container relative z-10 w-full">
         {/* Radial orbital container sized cleanly within 100vh (heading/subheading/description removed) */}
@@ -44,13 +44,13 @@ export function ClientQuoteOrbitSection() {
             aria-hidden="true"
             className="pointer-events-none hidden lg:flex absolute inset-0 items-center justify-center"
           >
-            <div className="h-[440px] w-[440px] rounded-full border border-dashed border-white/10" />
-            <div className="absolute h-[640px] w-[640px] rounded-full border border-white/[0.06]" />
+            <div className="h-[440px] w-[440px] rounded-full border border-dashed border-[#111111]/12 dark:border-white/10" />
+            <div className="absolute h-[640px] w-[640px] rounded-full border border-[#111111]/[0.07] dark:border-white/[0.06]" />
           </div>
 
           {/* Centerpiece Video-First Card */}
-          <div className="relative z-10 mx-auto max-w-[520px] overflow-hidden rounded-[16px] border border-white/12 bg-[#111111]">
-            <div className="relative aspect-video w-full overflow-hidden bg-[#0A0A0A]">
+          <div className="relative z-10 mx-auto max-w-[520px] overflow-hidden rounded-[16px] border border-[#111111]/12 dark:border-white/12 bg-[#FAF9F7] dark:bg-[#111111]">
+            <div className="relative aspect-video w-full overflow-hidden bg-[#111111] dark:bg-[#0A0A0A]">
               <img
                 src={photo.src}
                 srcSet={photo.srcSet}
@@ -62,7 +62,7 @@ export function ClientQuoteOrbitSection() {
                 decoding="async"
                 data-source={photo.source}
                 data-subject={photo.subject}
-                className="h-full w-full object-cover opacity-55"
+                className="h-full w-full object-cover opacity-70 dark:opacity-55"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <button
@@ -94,13 +94,13 @@ export function ClientQuoteOrbitSection() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 p-6 space-y-4">
-              <blockquote className="text-base sm:text-[17px] font-medium leading-[1.55] text-[#F5F5F5]">
+            <div className="border-t border-[#111111]/10 dark:border-white/10 p-6 space-y-4">
+              <blockquote className="text-base sm:text-[17px] font-medium leading-[1.55] text-[#111111] dark:text-[#F5F5F5]">
                 “There’s a new problem in digital media — and if design, engineering, and AI can solve it, we’ll find the way. That’s what we’re built for.”
               </blockquote>
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-t border-white/10 pt-3.5 text-[14px]">
-                <span className="font-medium text-[#F5F5F5]">Intent Studios</span>
-                <span className="text-[#A0A0A0]">Video testimonial reel · Updating with client footage</span>
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-t border-[#111111]/10 dark:border-white/10 pt-3.5 text-[14px]">
+                <span className="font-medium text-[#111111] dark:text-[#F5F5F5]">Intent Studios</span>
+                <span className="text-[#52504C] dark:text-[#A0A0A0]">Video testimonial reel · Updating with client footage</span>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ export function ClientQuoteOrbitSection() {
               <div
                 key={node.label}
                 className={cn(
-                  "rounded-[12px] border border-white/10 bg-[#111111] px-4 py-3.5",
+                  "rounded-[12px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#111111] px-4 py-3.5",
                   "lg:absolute lg:w-56",
                   node.position
                 )}
@@ -119,8 +119,8 @@ export function ClientQuoteOrbitSection() {
                 <div className="flex items-start gap-2.5">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#F24E1E]" aria-hidden="true" />
                   <div>
-                    <div className="text-[14px] font-medium text-[#F5F5F5]">{node.label}</div>
-                    <div className="mt-0.5 text-[13px] text-[#A0A0A0]">{node.sub}</div>
+                    <div className="text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5]">{node.label}</div>
+                    <div className="mt-0.5 text-[13px] text-[#52504C] dark:text-[#A0A0A0]">{node.sub}</div>
                   </div>
                 </div>
               </div>

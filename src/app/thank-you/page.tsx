@@ -24,7 +24,7 @@ export default function ThankYouPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-[#000000] pt-36 pb-16 sm:pt-44 sm:pb-20">
+      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-36 pb-16 sm:pt-44 sm:pb-20">
         <div className="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-bottom-right opacity-65" aria-hidden="true" />
 
@@ -32,11 +32,11 @@ export default function ThankYouPage() {
           <SectionEyebrow>Brief Received</SectionEyebrow>
           <div className="flex items-center gap-3">
             <CheckCircle2 className="h-8 w-8 text-[#F24E1E] shrink-0" aria-hidden="true" />
-            <h1 className="text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#F5F5F5]">
+            <h1 className="text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]">
               Thank you — we are on it.
             </h1>
           </div>
-          <p className="text-base sm:text-lg leading-relaxed text-[#A0A0A0]">
+          <p className="text-base sm:text-lg leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">
             We review every enquiry personally and respond within one business day. If you have not booked your 15-minute discovery call yet, you can grab a time directly below.
           </p>
 

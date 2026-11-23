@@ -16,22 +16,22 @@ export function ClosingBand({
   subline = "Tell us where your business stands today. We will give you an honest assessment and a clear next step in 15 minutes.",
 }: ClosingBandProps) {
   return (
-    <section className="relative overflow-hidden bg-warm-dark border-t border-white/10 py-20 sm:py-24">
+    <section className="relative overflow-hidden bg-warm-dark border-t border-[#111111]/10 dark:border-white/10 py-20 sm:py-24 transition-colors duration-200">
       <div className="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true" />
-      <div className="absolute inset-0 glow-edge-bottom-right" aria-hidden="true" />
+      <div className="absolute inset-0 glow-edge-bottom-right opacity-40 dark:opacity-100" aria-hidden="true" />
 
       <div className="intent-container relative z-10">
         <div className="mx-auto max-w-2xl text-center">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
 
-          <h2 className="mt-5 text-[clamp(1.9rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
+          <h2 className="mt-5 text-[clamp(1.9rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
             {headline}{" "}
-            <span className="font-editorial font-normal text-[#FFD1C2]">
+            <span className="font-editorial font-normal text-[#F24E1E] dark:text-[#FFD1C2]">
               {italicAccent}
             </span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-base leading-[1.6] text-[#A0A0A0]">
+          <p className="mx-auto mt-4 max-w-xl text-base leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
             {subline}
           </p>
 

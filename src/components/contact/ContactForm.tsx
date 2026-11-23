@@ -57,23 +57,23 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="space-y-8" aria-live="polite">
-        <div className="rounded-[24px] border border-[#F24E1E]/40 bg-[#0A0A0A] p-7 sm:p-9 space-y-4">
+        <div className="rounded-[24px] border border-[#F24E1E]/40 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-7 sm:p-9 space-y-4">
           <div className="flex items-center gap-3">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F24E1E]/15 text-[#F24E1E]">
               <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
             </span>
             <div>
-              <h2 className="text-xl font-semibold text-[#F5F5F5]">
+              <h2 className="text-xl font-semibold text-[#111111] dark:text-[#F5F5F5]">
                 Brief captured — next, pick your 15-minute slot
               </h2>
-              <p className="text-xs text-[#A0A0A0]">
+              <p className="text-xs text-[#52504C] dark:text-[#A0A0A0]">
                 Frontend preview state · Connect your form endpoint in src/components/contact/ContactForm.tsx for live email delivery
               </p>
             </div>
           </div>
 
-          <p className="text-sm leading-relaxed text-[#A0A0A0]">
-            Thank you, <strong className="text-[#F5F5F5]">{name}</strong>. Your project details are ready. Choose a discovery call time below, or continue to the confirmation summary.
+          <p className="text-sm leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">
+            Thank you, <strong className="text-[#111111] dark:text-[#F5F5F5]">{name}</strong>. Your project details are ready. Choose a discovery call time below, or continue to the confirmation summary.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-2">
@@ -87,7 +87,7 @@ export function ContactForm() {
             <button
               type="button"
               onClick={() => setSubmitted(false)}
-              className="inline-flex h-[44px] items-center rounded-[8px] border border-white/20 px-5 text-[15px] font-medium text-[#A0A0A0] hover:text-[#F5F5F5] hover:border-white/35 cursor-pointer"
+              className="inline-flex h-[44px] items-center rounded-[8px] border border-[#111111]/20 dark:border-white/20 px-5 text-[15px] font-medium text-[#52504C] dark:text-[#A0A0A0] hover:text-[#F5F5F5] hover:border-white/35 cursor-pointer"
             >
               Edit brief
             </button>
@@ -103,11 +103,11 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-[24px] border border-white/10 bg-[#0A0A0A] p-6 sm:p-8 space-y-6"
+      className="rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:p-8 space-y-6"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <label htmlFor="contact-name" className="block text-sm font-medium text-[#F5F5F5]">
+          <label htmlFor="contact-name" className="block text-sm font-medium text-[#111111] dark:text-[#F5F5F5]">
             Your name <span className="text-[#F24E1E]">*</span>
           </label>
           <input
@@ -122,17 +122,17 @@ export function ContactForm() {
             aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? "contact-name-error" : undefined}
             placeholder="Alex Rivera…"
-            className="w-full min-h-[48px] rounded-xl border border-white/15 bg-[#111111] px-4 py-3 text-sm text-[#F5F5F5] placeholder:text-[#737373] transition-colors focus:border-[#F24E1E]"
+            className="w-full min-h-[48px] rounded-xl border border-[#111111]/15 dark:border-white/15 bg-[#F7F4F1] dark:bg-[#111111] px-4 py-3 text-sm text-[#111111] dark:text-[#F5F5F5] placeholder:text-[#737373] transition-colors focus:border-[#F24E1E]"
           />
           {errors.name && (
-            <p id="contact-name-error" role="alert" className="text-xs text-[#FFD1C2]">
+            <p id="contact-name-error" role="alert" className="text-xs text-[#F24E1E] dark:text-[#FFD1C2]">
               {errors.name}
             </p>
           )}
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="contact-email" className="block text-sm font-medium text-[#F5F5F5]">
+          <label htmlFor="contact-email" className="block text-sm font-medium text-[#111111] dark:text-[#F5F5F5]">
             Work email <span className="text-[#F24E1E]">*</span>
           </label>
           <input
@@ -149,10 +149,10 @@ export function ContactForm() {
             aria-invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? "contact-email-error" : undefined}
             placeholder="alex@company.com…"
-            className="w-full min-h-[48px] rounded-xl border border-white/15 bg-[#111111] px-4 py-3 text-sm text-[#F5F5F5] placeholder:text-[#737373] transition-colors focus:border-[#F24E1E]"
+            className="w-full min-h-[48px] rounded-xl border border-[#111111]/15 dark:border-white/15 bg-[#F7F4F1] dark:bg-[#111111] px-4 py-3 text-sm text-[#111111] dark:text-[#F5F5F5] placeholder:text-[#737373] transition-colors focus:border-[#F24E1E]"
           />
           {errors.email && (
-            <p id="contact-email-error" role="alert" className="text-xs text-[#FFD1C2]">
+            <p id="contact-email-error" role="alert" className="text-xs text-[#F24E1E] dark:text-[#FFD1C2]">
               {errors.email}
             </p>
           )}
@@ -161,7 +161,7 @@ export function ContactForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <label htmlFor="contact-company" className="block text-sm font-medium text-[#F5F5F5]">
+          <label htmlFor="contact-company" className="block text-sm font-medium text-[#111111] dark:text-[#F5F5F5]">
             Company or brand URL
           </label>
           <input
@@ -172,12 +172,12 @@ export function ContactForm() {
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             placeholder="yourbrand.com…"
-            className="w-full min-h-[48px] rounded-xl border border-white/15 bg-[#111111] px-4 py-3 text-sm text-[#F5F5F5] placeholder:text-[#737373] transition-colors focus:border-[#F24E1E]"
+            className="w-full min-h-[48px] rounded-xl border border-[#111111]/15 dark:border-white/15 bg-[#F7F4F1] dark:bg-[#111111] px-4 py-3 text-sm text-[#111111] dark:text-[#F5F5F5] placeholder:text-[#737373] transition-colors focus:border-[#F24E1E]"
           />
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="contact-service" className="block text-sm font-medium text-[#F5F5F5]">
+          <label htmlFor="contact-service" className="block text-sm font-medium text-[#111111] dark:text-[#F5F5F5]">
             Primary focus
           </label>
           <select
@@ -185,7 +185,7 @@ export function ContactForm() {
             name="service"
             value={service}
             onChange={(e) => setService(e.target.value)}
-            className="w-full min-h-[48px] rounded-xl border border-white/15 bg-[#111111] px-4 py-3 text-sm text-[#F5F5F5] transition-colors focus:border-[#F24E1E]"
+            className="w-full min-h-[48px] rounded-xl border border-[#111111]/15 dark:border-white/15 bg-[#F7F4F1] dark:bg-[#111111] px-4 py-3 text-sm text-[#111111] dark:text-[#F5F5F5] transition-colors focus:border-[#F24E1E]"
           >
             {SERVICES.map((s) => (
               <option key={s.slug} value={s.slug}>
@@ -198,7 +198,7 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="contact-brief" className="block text-sm font-medium text-[#F5F5F5]">
+        <label htmlFor="contact-brief" className="block text-sm font-medium text-[#111111] dark:text-[#F5F5F5]">
           What are you looking to build or improve? <span className="text-[#F24E1E]">*</span>
         </label>
         <textarea
@@ -212,10 +212,10 @@ export function ContactForm() {
           aria-invalid={Boolean(errors.brief)}
           aria-describedby={errors.brief ? "contact-brief-error" : undefined}
           placeholder="Tell us about your business, timeline, and the main problem you want to solve…"
-          className="w-full rounded-xl border border-white/15 bg-[#111111] px-4 py-3 text-sm text-[#F5F5F5] placeholder:text-[#737373] transition-colors focus:border-[#F24E1E]"
+          className="w-full rounded-xl border border-[#111111]/15 dark:border-white/15 bg-[#F7F4F1] dark:bg-[#111111] px-4 py-3 text-sm text-[#111111] dark:text-[#F5F5F5] placeholder:text-[#737373] transition-colors focus:border-[#F24E1E]"
         />
         {errors.brief && (
-          <p id="contact-brief-error" role="alert" className="text-xs text-[#FFD1C2]">
+          <p id="contact-brief-error" role="alert" className="text-xs text-[#F24E1E] dark:text-[#FFD1C2]">
             {errors.brief}
           </p>
         )}
@@ -225,7 +225,7 @@ export function ContactForm() {
         <Button type="submit" variant="primary" size="lg" showArrow>
           Send brief &amp; pick a call slot
         </Button>
-        <p className="text-xs text-[#A0A0A0]">
+        <p className="text-xs text-[#52504C] dark:text-[#A0A0A0]">
           We reply within one business day. No spam, ever.
         </p>
       </div>

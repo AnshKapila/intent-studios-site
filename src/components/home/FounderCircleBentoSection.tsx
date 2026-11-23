@@ -12,18 +12,18 @@ export function FounderCircleBentoSection() {
   const studioPhoto = PHOTOS.scatteredCard;
 
   return (
-    <section className="relative bg-[#F7F4F1] text-[#111111] py-20 sm:py-24">
+    <section className="relative border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#F5F5F5] py-20 sm:py-24 transition-colors duration-200">
       <div className="intent-container relative z-10 space-y-12">
         {/* Wireframe Block 7 Header — controlled, balanced proportions */}
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-5 space-y-3">
-            <SectionEyebrow tone="light">Founder &amp; community</SectionEyebrow>
-            <h2 className="text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#111111]">
+            <SectionEyebrow>Founder &amp; community</SectionEyebrow>
+            <h2 className="text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
               Built by a founder, for founders.
             </h2>
           </div>
           <div className="lg:col-span-7">
-            <p className="max-w-xl text-base leading-[1.6] text-[#52504C] lg:ml-auto">
+            <p className="max-w-xl text-base leading-[1.6] text-[#52504C] dark:text-[#A0A0A0] lg:ml-auto">
               Direct creative leadership from Ansh Kapila — paired with Intent Circle, our curated space for builders who care how digital products actually work.
             </p>
           </div>
@@ -32,22 +32,22 @@ export function FounderCircleBentoSection() {
         {/* Wireframe Block 7: Asymmetric 3-column × 2-row 6-cell editorial bento */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {/* Cell 1: Founder Note */}
-          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 bg-white p-7">
+          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] p-7">
             <div className="space-y-3">
-              <span className="text-[13px] font-medium text-[#52504C]">
+              <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
                 Founder’s note
               </span>
-              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111]">
+              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
                 {SITE.founder.name}
               </h3>
-              <p className="text-[15px] leading-[1.6] text-[#52504C]">
+              <p className="text-[15px] leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
                 {SITE.founder.shortNote}
               </p>
             </div>
-            <div className="mt-6 border-t border-[#111111]/10 pt-4">
+            <div className="mt-6 border-t border-[#111111]/10 dark:border-white/10 pt-4">
               <Link
                 href="/about/"
-                className="group inline-flex min-h-[36px] items-center gap-2 text-[15px] font-medium text-[#111111] hover:text-[#F24E1E] transition-colors duration-150"
+                className="group inline-flex min-h-[36px] items-center gap-2 text-[15px] font-medium text-[#111111] dark:text-[#F5F5F5] hover:text-[#F24E1E] transition-colors duration-150"
               >
                 Read the full story
                 <ArrowRight
@@ -135,24 +135,24 @@ export function FounderCircleBentoSection() {
             </div>
           </div>
 
-          {/* Cell 4: Studio Standard Light Card */}
-          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 bg-white p-7">
-            <span className="text-[13px] font-medium text-[#52504C]">
+          {/* Cell 4: Studio Standard Card */}
+          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] p-7">
+            <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
               Design philosophy
             </span>
             <div className="my-6 space-y-2">
-              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111]">
+              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
                 Craft earns trust.
               </h3>
-              <p className="text-[15px] leading-[1.6] text-[#52504C]">
+              <p className="text-[15px] leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
                 Spacing rhythm, typographic contrast, micro-interactions, and load speed are not polish — they are why visitors trust you.
               </p>
             </div>
             <div className="h-[2px] w-12 bg-[#F24E1E]" aria-hidden="true" />
           </div>
 
-          {/* Cell 5: High-Contrast Dark Card — Direct Partnership */}
-          <div className="relative overflow-hidden rounded-[16px] bg-[#0A0A0A] p-7 text-[#F5F5F5] flex flex-col justify-between">
+          {/* Cell 5: High-Contrast Card — Direct Partnership */}
+          <div className="relative overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-[#111111] dark:bg-[#161616] p-7 text-[#F5F5F5] flex flex-col justify-between">
             <span className="text-[13px] font-medium text-[#A0A0A0]">
               Direct access
             </span>
@@ -170,22 +170,22 @@ export function FounderCircleBentoSection() {
           </div>
 
           {/* Cell 6: Action Card */}
-          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 bg-white p-7">
+          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] p-7">
             <div className="space-y-2">
-              <span className="text-[13px] font-medium text-[#52504C]">
+              <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
                 Next step
               </span>
-              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111]">
+              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
                 Have a project in mind?
               </h3>
-              <p className="text-[15px] leading-[1.6] text-[#52504C]">
+              <p className="text-[15px] leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
                 Bring your current site, product idea, or launch goal to a 15-minute discovery call.
               </p>
             </div>
             <div className="mt-6">
               <Button
                 href={SITE.primaryCta.href}
-                variant="light-primary"
+                variant="primary"
                 size="md"
                 showArrow
                 className="w-full"

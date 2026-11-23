@@ -24,7 +24,7 @@ export function FaqSection({
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative bg-[#FFFFFF] text-[#111111] py-16 sm:py-20 lg:min-h-[780px] flex items-center">
+    <section className="relative border-t border-[#111111]/10 dark:border-white/10 bg-[#FFFFFF] dark:bg-[#000000] text-[#111111] dark:text-[#F5F5F5] py-16 sm:py-20 lg:min-h-[780px] flex items-center transition-colors duration-200">
       <div className="intent-container w-full">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Eyebrow, Heading, Intro & Quick Contact Card */}
@@ -33,27 +33,27 @@ export function FaqSection({
               {/* Orange 24px hairline dash + 13px label */}
               <div className="inline-flex items-center gap-3">
                 <span className="h-[1px] w-6 bg-[#F24E1E] shrink-0" aria-hidden="true" />
-                <span className="text-[13px] font-normal leading-[18px] text-[#52504C]">
+                <span className="text-[13px] font-normal leading-[18px] text-[#52504C] dark:text-[#A0A0A0]">
                   {eyebrow}
                 </span>
               </div>
 
-              <h2 className="whitespace-pre-line text-[clamp(2rem,3.1vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.035em] text-[#111111]">
+              <h2 className="whitespace-pre-line text-[clamp(2rem,3.1vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]">
                 {heading}
               </h2>
 
-              <p className="max-w-[440px] text-[16px] font-normal leading-[1.4] text-[#52504C]">
+              <p className="max-w-[440px] text-[16px] font-normal leading-[1.4] text-[#52504C] dark:text-[#A0A0A0]">
                 {intro}
               </p>
             </div>
 
-            {/* Quick Contact Card (#F7F4F1, 16px radius, 26px padding) */}
-            <div className="max-w-[465px] rounded-[16px] bg-[#F7F4F1] p-[26px] space-y-5">
+            {/* Quick Contact Card */}
+            <div className="max-w-[465px] rounded-[16px] border border-[#111111]/8 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] p-[26px] space-y-5">
               <div className="space-y-2.5">
-                <h3 className="text-[24px] font-medium leading-[1.4] tracking-[-0.02em] text-[#111111]">
+                <h3 className="text-[24px] font-medium leading-[1.4] tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
                   Still have a question?
                 </h3>
-                <p className="text-[15px] font-normal leading-[1.45] text-[#52504C]">
+                <p className="text-[15px] font-normal leading-[1.45] text-[#52504C] dark:text-[#A0A0A0]">
                   Let’s talk about what you’re building.
                   <br />A short conversation is a good place to start.
                 </p>
@@ -72,7 +72,7 @@ export function FaqSection({
 
           {/* Right Column: Hairline Accordion — opens on hover & snaps back on hover-out (+ click/keyboard accessible) */}
           <div
-            className="lg:col-span-7 border-y border-[#DCD9D5] divide-y divide-[#DCD9D5]"
+            className="lg:col-span-7 border-y border-[#DCD9D5] dark:border-white/12 divide-y divide-[#DCD9D5] dark:divide-white/12"
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {items.map((item, idx) => {
@@ -88,7 +88,7 @@ export function FaqSection({
                   onMouseLeave={() =>
                     setHoveredIndex((prev) => (prev === idx ? null : prev))
                   }
-                  className="bg-[#FFFFFF]"
+                  className="bg-[#FFFFFF] dark:bg-[#000000] transition-colors duration-200"
                 >
                   <h3>
                     <button
@@ -102,17 +102,17 @@ export function FaqSection({
                       className="flex w-full items-start justify-between gap-4 py-6 text-left cursor-pointer"
                     >
                       <span className="flex items-baseline gap-4 sm:gap-0 min-w-0">
-                        <span className="tabular-nums w-9 sm:w-[55px] shrink-0 text-[13px] font-normal leading-[18px] text-[#7C756D]">
+                        <span className="tabular-nums w-9 sm:w-[55px] shrink-0 text-[13px] font-normal leading-[18px] text-[#7C756D] dark:text-[#8A8A8A]">
                           {indexLabel}
                         </span>
-                        <span className="text-[18px] sm:text-[20px] font-medium leading-[1.3] tracking-[-0.015em] text-[#111111]">
+                        <span className="text-[18px] sm:text-[20px] font-medium leading-[1.3] tracking-[-0.015em] text-[#111111] dark:text-[#F5F5F5]">
                           {item.question}
                         </span>
                       </span>
 
                       <span
                         aria-hidden="true"
-                        className="shrink-0 w-[30px] text-right text-[25px] font-normal leading-[26px] text-[#111111] select-none transition-transform duration-200"
+                        className="shrink-0 w-[30px] text-right text-[25px] font-normal leading-[26px] text-[#111111] dark:text-[#F5F5F5] select-none transition-transform duration-200"
                       >
                         {isOpen ? "−" : "+"}
                       </span>
@@ -131,7 +131,7 @@ export function FaqSection({
                         transition={{ duration: 0.28, ease: INTENT_EASE }}
                         className="overflow-hidden"
                       >
-                        <div className="pl-9 sm:pl-[55px] pr-8 pb-7 pt-1 text-[16px] font-normal leading-[1.6] text-[#52504C]">
+                        <div className="pl-9 sm:pl-[55px] pr-8 pb-7 pt-1 text-[16px] font-normal leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
                           {item.answer}
                         </div>
                       </motion.div>

@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SITE } from "@/data/site";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn } from "@/lib/utils";
 import { INTENT_EASE } from "@/lib/motion";
 
@@ -34,14 +35,14 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 h-[72px] bg-[#0A0A0A] border-b border-white/10">
+      <header className="fixed inset-x-0 top-0 z-50 h-[72px] bg-white/90 dark:bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#111111]/10 dark:border-white/10 transition-colors duration-200">
         <div className="intent-container flex h-full items-center justify-between gap-4">
           <Link
             href="/"
             className="inline-flex min-h-[44px] items-center rounded-[6px] focus-visible:outline-2 focus-visible:outline-[#F24E1E]"
             aria-label="Intent Studios — Home"
           >
-            <BrandLogo size="md" />
+            <BrandLogo size="md" tone="auto" />
           </Link>
 
           {/* Desktop navigation */}
@@ -57,8 +58,8 @@ export function Header() {
                     "relative inline-flex h-[44px] items-center text-[15px] font-medium whitespace-nowrap",
                     "transition-colors duration-150 ease-[cubic-bezier(0.2,0.8,0.2,1)]",
                     isActive
-                      ? "text-[#F5F5F5]"
-                      : "text-[#A0A0A0] hover:text-[#F5F5F5]"
+                      ? "text-[#111111] dark:text-[#F5F5F5]"
+                      : "text-[#52504C] hover:text-[#111111] dark:text-[#A0A0A0] dark:hover:text-[#F5F5F5]"
                   )}
                 >
                   {item.label}
@@ -73,15 +74,17 @@ export function Header() {
             })}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center">
+          {/* Desktop Theme Toggle + CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle />
             <Button href={SITE.primaryCta.href} variant="primary" size="md" showArrow>
               {SITE.primaryCta.label}
             </Button>
           </div>
 
-          {/* Tablet CTA + Mobile menu button */}
-          <div className="flex lg:hidden items-center gap-2.5">
+          {/* Tablet / Mobile Theme Toggle + CTA + Menu button */}
+          <div className="flex lg:hidden items-center gap-2">
+            <ThemeToggle />
             <div className="hidden sm:block">
               <Button href={SITE.primaryCta.href} variant="primary" size="md">
                 Book a call
@@ -93,7 +96,7 @@ export function Header() {
               aria-expanded={menuOpen}
               aria-controls="mobile-nav-drawer"
               aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-              className="inline-flex h-[44px] w-[44px] items-center justify-center rounded-[8px] border border-white/20 bg-transparent text-[#F5F5F5] cursor-pointer transition-[background-color,border-color] duration-150 hover:bg-white/[0.06] hover:border-white/35"
+              className="inline-flex h-[44px] w-[44px] items-center justify-center rounded-[8px] border border-[#111111]/15 dark:border-white/20 bg-transparent text-[#111111] dark:text-[#F5F5F5] cursor-pointer transition-[background-color,border-color] duration-150 hover:bg-[#111111]/[0.04] dark:hover:bg-white/[0.06]"
             >
               {menuOpen ? (
                 <X className="h-5 w-5" aria-hidden="true" />
@@ -117,50 +120,43 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: INTENT_EASE }}
-            className="lg:hidden fixed inset-x-0 top-[72px] bottom-0 z-40 overflow-y-auto overscroll-contain bg-[#0A0A0A] border-t border-white/10"
+            className="lg:hidden fixed inset-x-0 top-[72px] bottom-0 z-40 overflow-y-auto overscroll-contain bg-white dark:bg-[#0A0A0A] border-t border-[#111111]/10 dark:border-white/10"
           >
-            <div className="intent-container flex min-h-full flex-col justify-between py-8">
-              <nav aria-label="Mobile navigation links" className="flex flex-col">
-                <Link
-                  href="/"
-                  className={cn(
-                    "flex h-[56px] items-center border-b border-white/10 text-xl font-medium tracking-[-0.02em]",
-                    pathname === "/" ? "text-[#F5F5F5]" : "text-[#A0A0A0] hover:text-[#F5F5F5]"
-                  )}
-                >
-                  Home
-                </Link>
+            <div className="intent-container py-8 flex flex-col justify-between min-h-full">
+              <nav aria-label="Mobile navigation" className="flex flex-col">
                 {SITE.navLinks.map((item) => {
                   const isActive = pathname.startsWith(item.href.replace(/\/$/, ""));
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
-                      aria-current={isActive ? "page" : undefined}
                       className={cn(
-                        "flex h-[56px] items-center border-b border-white/10 text-xl font-medium tracking-[-0.02em]",
-                        isActive ? "text-[#F5F5F5]" : "text-[#A0A0A0] hover:text-[#F5F5F5]"
+                        "flex h-[56px] items-center justify-between border-b border-[#111111]/10 dark:border-white/10 text-xl font-medium tracking-[-0.02em]",
+                        isActive
+                          ? "text-[#F24E1E]"
+                          : "text-[#111111] dark:text-[#F5F5F5]"
                       )}
                     >
-                      {item.label}
+                      <span>{item.label}</span>
+                      <span className="text-xs text-[#7C756D] dark:text-[#A0A0A0]">→</span>
                     </Link>
                   );
                 })}
                 <Link
                   href="/who-we-help/"
-                  className="flex h-[52px] items-center border-b border-white/10 text-base text-[#A0A0A0] hover:text-[#F5F5F5]"
+                  className="flex h-[52px] items-center border-b border-[#111111]/10 dark:border-white/10 text-base text-[#52504C] dark:text-[#A0A0A0] hover:text-[#111111] dark:hover:text-[#F5F5F5]"
                 >
                   Who We Help
                 </Link>
                 <Link
                   href="/intent-circle/"
-                  className="flex h-[52px] items-center text-base text-[#A0A0A0] hover:text-[#F5F5F5]"
+                  className="flex h-[52px] items-center text-base text-[#52504C] dark:text-[#A0A0A0] hover:text-[#111111] dark:hover:text-[#F5F5F5]"
                 >
                   Intent Circle
                 </Link>
               </nav>
 
-              <div className="mt-8 border-t border-white/10 pt-6">
+              <div className="mt-8 border-t border-[#111111]/10 dark:border-white/10 pt-6">
                 <Button
                   href={SITE.primaryCta.href}
                   variant="primary"

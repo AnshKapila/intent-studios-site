@@ -41,19 +41,19 @@ export default function ServicesOverviewPage() {
   return (
     <>
       {/* 1. Outcome Headline */}
-      <section className="relative overflow-hidden bg-[#000000] pt-36 pb-14 sm:pt-44 sm:pb-16">
+      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-36 pb-14 sm:pt-44 sm:pb-16">
         <div className="absolute inset-0 bg-grid-dark opacity-60" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
         <div className="intent-container relative z-10 max-w-4xl space-y-5">
           <SectionEyebrow>Services overview</SectionEyebrow>
-          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#F5F5F5]">
+          <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
             Design, engineering &amp; AI production built to{" "}
-            <span className="font-editorial font-normal text-[#FFD1C2]">
+            <span className="font-editorial font-normal text-[#F24E1E] dark:text-[#FFD1C2]">
               grow your business.
             </span>
           </h1>
-          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#A0A0A0]">
+          <p className="max-w-2xl text-base sm:text-[17px] leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
             Four focused services — each structured around clarity, speed, and measurable conversion rather than bloated deliverables.
           </p>
         </div>
@@ -79,11 +79,11 @@ export default function ServicesOverviewPage() {
       />
 
       {/* 6. Industry Links */}
-      <section className="border-t border-white/10 bg-[#000000] py-16 sm:py-20">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16 sm:py-20">
         <div className="intent-container space-y-8">
           <div className="space-y-2 max-w-2xl">
             <SectionEyebrow>Industries</SectionEyebrow>
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#F5F5F5]">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
               See how our services apply to your industry.
             </h2>
           </div>
@@ -93,13 +93,13 @@ export default function ServicesOverviewPage() {
               <Link
                 key={industry.slug}
                 href={industry.href}
-                className="group flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-[#0A0A0A] p-7 transition-[border-color,background-color] duration-200 hover:border-[#F24E1E]/45 hover:bg-[#111111]"
+                className="group flex flex-col justify-between gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-7 transition-[border-color,background-color] duration-200 hover:border-[#F24E1E]/45 hover:bg-[#111111]"
               >
                 <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-[#F5F5F5]">{industry.name}</h3>
-                  <p className="text-sm leading-relaxed text-[#A0A0A0]">{industry.shortDesc}</p>
+                  <h3 className="text-xl font-semibold text-[#111111] dark:text-[#F5F5F5]">{industry.name}</h3>
+                  <p className="text-sm leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">{industry.shortDesc}</p>
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#FFD1C2]">
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#F24E1E] dark:text-[#FFD1C2]">
                   Explore {industry.name}
                   <ArrowUpRight className="h-4 w-4 text-[#F24E1E]" aria-hidden="true" />
                 </span>

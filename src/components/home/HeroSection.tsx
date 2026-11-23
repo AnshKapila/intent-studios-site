@@ -9,11 +9,11 @@ import { INTENT_EASE } from "@/lib/motion";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[#FFFFFF] text-[#111111] pt-[72px]">
-      {/* Warm corner haze (top-right, exact Figma radial glow) */}
+    <section className="relative overflow-hidden bg-[#FFFFFF] dark:bg-[#000000] text-[#111111] dark:text-[#F5F5F5] pt-[72px] transition-colors duration-200">
+      {/* Warm corner haze (top-right, adapts softly in dark mode) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-[70px] right-[-80px] h-[580px] w-[560px]"
+        className="pointer-events-none absolute -top-[70px] right-[-80px] h-[580px] w-[560px] dark:opacity-35"
         style={{
           background:
             "radial-gradient(45% 45% at 50% 50%, rgba(255, 209, 194, 0.45) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -29,7 +29,7 @@ export function HeroSection() {
           className="inline-flex items-center gap-3"
         >
           <span className="h-[1px] w-[22px] bg-[#F24E1E] shrink-0" aria-hidden="true" />
-          <span className="text-[13px] font-normal leading-[18px] text-[#52504C]">
+          <span className="text-[13px] font-normal leading-[18px] text-[#52504C] dark:text-[#A0A0A0]">
             Independent by design.
           </span>
         </motion.div>
@@ -39,7 +39,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.06, ease: INTENT_EASE }}
-          className="mt-6 max-w-[920px] text-center text-[clamp(2.25rem,4.6vw,4rem)] font-medium leading-[1.06] tracking-[-0.035em] text-[#111111]"
+          className="mt-6 max-w-[920px] text-center text-[clamp(2.25rem,4.6vw,4rem)] font-medium leading-[1.06] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]"
         >
           Websites &amp; digital products
           <br className="hidden sm:inline" /> designed for{" "}
@@ -52,7 +52,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.14, ease: INTENT_EASE }}
-          className="mt-6 max-w-[660px] text-center text-[16px] sm:text-[17px] font-normal leading-[1.45] text-[#52504C]"
+          className="mt-6 max-w-[660px] text-center text-[16px] sm:text-[17px] font-normal leading-[1.45] text-[#52504C] dark:text-[#A0A0A0]"
         >
           Strategy, design and AI-powered execution.
           <br className="hidden sm:inline" /> Built around your business. Focused on what happens next.
@@ -73,7 +73,7 @@ export function HeroSection() {
           </Link>
           <Link
             href={SITE.secondaryCta.href}
-            className="group inline-flex h-[48px] w-full sm:w-auto items-center justify-center gap-2 rounded-[24px] border border-[#E4E1DD] bg-[#FFFFFF] px-7 text-[14px] font-medium text-[#111111] transition-[border-color,background-color,transform] duration-150 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:border-[#111111]/35 hover:bg-[#FAFAF8] hover:-translate-y-[1px] active:translate-y-[1px] active:scale-[0.985]"
+            className="group inline-flex h-[48px] w-full sm:w-auto items-center justify-center gap-2 rounded-[24px] border border-[#E4E1DD] dark:border-white/20 bg-[#FFFFFF] dark:bg-[#111111] px-7 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5] transition-[border-color,background-color,transform] duration-150 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:border-[#111111]/35 dark:hover:border-white/40 hover:bg-[#FAFAF8] dark:hover:bg-[#1A1A1A] hover:-translate-y-[1px] active:translate-y-[1px] active:scale-[0.985]"
           >
             <span>{SITE.secondaryCta.label}</span>
             <ArrowUpRight
@@ -88,7 +88,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.45, delay: 0.26, ease: INTENT_EASE }}
-          className="mt-6 text-center text-[13px] font-normal leading-[18px] text-[#52504C]"
+          className="mt-6 text-center text-[13px] font-normal leading-[18px] text-[#52504C] dark:text-[#A0A0A0]"
         >
           A considered approach. From first impression to next action.
         </motion.p>
@@ -219,7 +219,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Bottom Hero Caption Row */}
-        <div className="mt-4 flex w-full items-center justify-between gap-4 text-[11px] font-normal text-[#52504C]">
+        <div className="mt-4 flex w-full items-center justify-between gap-4 text-[11px] font-normal text-[#52504C] dark:text-[#A0A0A0]">
           <span>Selected concept directions — not client projects</span>
           <span className="inline-flex items-center gap-1 shrink-0">
             Scroll to explore
@@ -228,22 +228,22 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Sitemap Section 3: Light Proof Bar anchored cleanly between Hero and Problem */}
-      <div className="border-y border-[#E4E1DD] bg-[#FFFFFF]">
+      {/* Sitemap Section 3: Theme-Consistent Proof Bar */}
+      <div className="border-y border-[#E4E1DD] dark:border-white/10 bg-[#FFFFFF] dark:bg-[#0A0A0A] transition-colors duration-200">
         <div className="intent-container">
           <dl className="grid gap-6 py-6 sm:grid-cols-2 lg:grid-cols-4">
             {HOME_PROOF_BAR.map((item) => (
               <div
                 key={item.label}
-                className="flex flex-col gap-1 border-l border-[#E4E1DD] pl-4 first:border-l-0 first:pl-0 sm:first:border-l sm:first:pl-4"
+                className="flex flex-col gap-1 border-l border-[#E4E1DD] dark:border-white/10 pl-4 first:border-l-0 first:pl-0 sm:first:border-l sm:first:pl-4"
               >
-                <dt className="text-[13px] font-medium text-[#52504C]">
+                <dt className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
                   {item.label}
                 </dt>
-                <dd className="tabular-nums text-2xl font-medium tracking-[-0.03em] text-[#111111]">
+                <dd className="tabular-nums text-2xl font-medium tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
                   {item.value}
                 </dd>
-                <p className="text-[14px] leading-snug text-[#52504C]">
+                <p className="text-[14px] leading-snug text-[#52504C] dark:text-[#A0A0A0]">
                   {item.context}
                 </p>
               </div>

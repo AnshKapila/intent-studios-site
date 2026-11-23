@@ -163,7 +163,7 @@ function BareLogoItem({ item }: { item: ClientLogoItem }) {
           ) : (
             <>
               <BrandMarkSvg mark={item.mark} color={item.accentColor} />
-              <span className="text-[17px] font-semibold tracking-[-0.025em] text-[#111111] whitespace-nowrap">
+              <span className="text-[17px] font-semibold tracking-[-0.025em] text-[#111111] dark:text-[#F5F5F5] whitespace-nowrap">
                 {item.name}
               </span>
             </>
@@ -212,7 +212,7 @@ export function LogoMarqueeSection() {
   return (
     <section
       aria-label="Brands we partner with"
-      className="relative overflow-x-clip bg-[#FFFFFF] px-4 pt-10 pb-20 sm:px-10 sm:pt-10 sm:pb-24"
+      className="relative overflow-x-clip bg-[#FFFFFF] dark:bg-[#000000] px-4 pt-10 pb-20 sm:px-10 sm:pt-10 sm:pb-24 transition-colors duration-200"
     >
       <div className="mx-auto flex w-full max-w-[1520px] flex-col items-center gap-0">
         <MarqueeRow items={LOGO_ROW_ONE} direction="left" />

@@ -1,7 +1,8 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ==========================================================================
-   INTENT STUDIOS — THREE-LAYER DESIGN TOKEN SYSTEM
+   INTENT STUDIOS — THREE-LAYER DESIGN TOKEN SYSTEM (LIGHT & DARK MODES)
    Layer 1: Primitives -> Layer 2: Semantic -> Layer 3: Component
    ========================================================================== */
 
@@ -51,11 +52,11 @@
   --duration-base: 280ms;
   --duration-slow: 520ms;
 
-  /* Layer 2 — Semantic Tokens */
-  --color-bg-global: var(--primitive-black);
-  --color-bg-section: var(--primitive-charcoal);
-  --color-bg-card: var(--primitive-obsidian);
-  --color-bg-elevated: var(--primitive-graphite);
+  /* Layer 2 — Semantic Tokens (Light Mode Default) */
+  --color-bg-global: #ffffff;
+  --color-bg-section: var(--primitive-alabaster);
+  --color-bg-card: #ffffff;
+  --color-bg-elevated: #faf9f7;
   --color-bg-light: var(--primitive-alabaster);
   --color-bg-light-card: var(--primitive-alabaster-card);
 
@@ -64,12 +65,14 @@
   --color-accent-soft: var(--primitive-peach-200);
   --color-accent-tint: rgba(242, 78, 30, 0.1);
 
-  --color-text-primary: var(--primitive-offwhite);
-  --color-text-secondary: var(--primitive-stone-400);
-  --color-text-muted: var(--primitive-stone-500);
+  --color-text-primary: var(--primitive-charcoal);
+  --color-text-secondary: var(--primitive-ink-secondary);
+  --color-text-muted: #7c756d;
   --color-text-on-light: var(--primitive-charcoal);
   --color-text-on-light-secondary: var(--primitive-ink-secondary);
 
+  --color-border-subtle: rgba(17, 17, 17, 0.1);
+  --color-border-strong: rgba(17, 17, 17, 0.2);
   --color-border-dark: rgba(255, 255, 255, 0.09);
   --color-border-dark-strong: rgba(255, 255, 255, 0.18);
   --color-border-light: rgba(17, 17, 17, 0.1);
@@ -81,13 +84,33 @@
   --btn-primary-bg: var(--color-accent);
   --btn-primary-fg: #ffffff;
   --btn-primary-hover: var(--color-accent-hover);
-  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
-  --btn-secondary-fg: var(--color-text-primary);
-  --btn-secondary-border: var(--color-border-dark-strong);
+  --btn-secondary-bg: #ffffff;
+  --btn-secondary-fg: var(--primitive-charcoal);
+  --btn-secondary-border: rgba(17, 17, 17, 0.16);
   --btn-radius: var(--radius-pill);
 
   --container-max: 1280px;
-  --header-height: 76px;
+  --header-height: 72px;
+}
+
+/* Dark Mode Semantic Overrides */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg-global: var(--primitive-black);
+  --color-bg-section: var(--primitive-obsidian);
+  --color-bg-card: var(--primitive-charcoal);
+  --color-bg-elevated: var(--primitive-graphite);
+
+  --color-text-primary: var(--primitive-offwhite);
+  --color-text-secondary: var(--primitive-stone-400);
+  --color-text-muted: var(--primitive-stone-500);
+
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
+
+  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+  --btn-secondary-fg: var(--primitive-offwhite);
+  --btn-secondary-border: var(--color-border-dark-strong);
 }
 
 @theme inline {
@@ -114,7 +137,7 @@
    ========================================================================== */
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   background-color: var(--color-bg-global);
   color: var(--color-text-primary);
   scroll-padding-top: calc(var(--header-height) + 1.5rem);
@@ -177,12 +200,18 @@ h4 {
   }
 }
 
-/* Architectural surfaces & textures */
+/* Architectural surfaces & textures (theme-aware) */
 .bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(17, 17, 17, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 17, 17, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+html[data-theme="dark"] .bg-grid-dark {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
 }
 
 .bg-grid-light {
@@ -193,6 +222,10 @@ h4 {
 }
 
 .bg-warm-dark {
+  background: linear-gradient(155deg, #ffffff 0%, #f7f4f1 55%, #ffffff 100%);
+}
+
+html[data-theme="dark"] .bg-warm-dark {
   background: linear-gradient(155deg, var(--primitive-warm-dark-0) 0%, var(--primitive-warm-dark-1) 52%, var(--primitive-black) 100%);
 }
 

@@ -28,10 +28,10 @@ export function WorkShowcaseSection() {
           </Button>
         </div>
 
-        {/* Wireframe Block 3 + Taste Skill dealt moment: picture-develops */}
+        {/* Featured Project Card — 80vh height on desktop */}
         <Link
           href={`/work/${featured.slug}/`}
-          className="group relative block overflow-hidden rounded-[16px] border border-white/10 bg-[#0A0A0A] p-6 sm:p-10 transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-white/25"
+          className="group relative flex flex-col overflow-hidden rounded-[16px] border border-white/10 bg-[#0A0A0A] p-6 sm:p-8 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-white/25"
         >
           {/* Subtle architectural watermark behind featured photograph */}
           <div
@@ -43,20 +43,24 @@ export function WorkShowcaseSection() {
             </span>
           </div>
 
-          <div className="relative z-10 mx-auto max-w-4xl">
-            {/* Taste Skill dealt moment: picture-develops (film develop settle once on view) */}
+          <div className="relative z-10 mx-auto flex h-full w-full max-w-4xl flex-col justify-between gap-5">
+            {/* Taste Skill dealt moment: picture-develops */}
             <motion.div
               initial={{ opacity: 0.72, scale: 1.03, filter: "grayscale(65%) contrast(95%)" }}
               whileInView={{ opacity: 1, scale: 1, filter: "grayscale(0%) contrast(100%)" }}
               viewport={VIEWPORT_CONFIG}
               transition={{ duration: 1.15, ease: INTENT_EASE }}
-              className="overflow-hidden rounded-[12px]"
+              className="flex-1 min-h-0 overflow-hidden rounded-[12px]"
             >
-              <ProjectVisualFrame project={featured} aspect="wide" />
+              <ProjectVisualFrame
+                project={featured}
+                aspect="wide"
+                className="h-full aspect-auto"
+              />
             </motion.div>
 
-            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div className="space-y-1.5 max-w-xl">
+            <div className="shrink-0 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="space-y-1 max-w-xl">
                 <div className="flex flex-wrap items-center gap-2 text-[13px] text-[#A0A0A0]">
                   <span className="text-[#FFD1C2] font-medium">{featured.serviceName}</span>
                   <span className="text-white/25">·</span>
@@ -81,17 +85,23 @@ export function WorkShowcaseSection() {
           </div>
         </Link>
 
-        {/* Two Smaller Featured Projects */}
+        {/* Two Smaller Featured Projects — each individual card 80vh height on desktop */}
         <div className="grid gap-6 md:grid-cols-2">
           {secondary.map((project) => (
             <Link
               key={project.slug}
               href={`/work/${project.slug}/`}
-              className="group flex flex-col overflow-hidden rounded-[16px] border border-white/10 bg-[#0A0A0A] p-5 transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-white/25"
+              className="group flex flex-col justify-between gap-5 overflow-hidden rounded-[16px] border border-white/10 bg-[#0A0A0A] p-5 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-white/25"
             >
-              <ProjectVisualFrame project={project} aspect="wide" />
+              <div className="flex-1 min-h-0 overflow-hidden rounded-[12px]">
+                <ProjectVisualFrame
+                  project={project}
+                  aspect="wide"
+                  className="h-full aspect-auto"
+                />
+              </div>
 
-              <div className="mt-5 flex flex-1 flex-col justify-between gap-4">
+              <div className="shrink-0 flex flex-col justify-between gap-4">
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between gap-2 text-[13px] text-[#A0A0A0]">
                     <span>{project.industryLabel}</span>

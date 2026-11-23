@@ -176,38 +176,38 @@ function StickyServiceCard({
               }
         }
         className={cn(
-          "w-full rounded-[24px] bg-[#111111] p-4 sm:p-6 will-change-transform",
+          "w-full rounded-[24px] bg-[#111111] p-4 sm:p-5 will-change-transform lg:h-[calc(100svh-248px)] lg:max-h-[calc(100svh-248px)]",
           isHighlighted ? "ring-1 ring-[#F24E1E]/60" : ""
         )}
       >
-        <div className="grid gap-4 lg:grid-cols-2 lg:min-h-[640px]">
+        <div className="grid h-full gap-4 lg:grid-cols-2">
           {/* Left Column: Index pinned top-left, content + tags + CTA anchored bottom-left */}
-          <div className="flex flex-col justify-between gap-14 p-4 sm:p-8 lg:p-10">
+          <div className="flex flex-col justify-between gap-6 p-4 sm:p-6 lg:p-8">
             <div className="flex items-start justify-between gap-4">
-              <span className="tabular-nums text-[36px] sm:text-[48px] font-medium leading-[1.1] tracking-[-0.03em] text-white">
+              <span className="tabular-nums text-[32px] sm:text-[42px] font-medium leading-none tracking-[-0.03em] text-white">
                 {service.index}
               </span>
-              <span className="text-[13px] font-medium text-white/50 pt-2">
+              <span className="text-[13px] font-medium text-white/50 pt-1">
                 {service.timeline}
               </span>
             </div>
 
-            <div className="space-y-10 sm:space-y-12">
-              <div className="space-y-3">
-                <h3 className="text-[26px] sm:text-[32px] font-medium leading-[1.15] tracking-[-0.025em] text-white">
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-[24px] sm:text-[28px] font-medium leading-[1.15] tracking-[-0.025em] text-white">
                   {service.name}
                 </h3>
-                <p className="max-w-lg text-[16px] sm:text-[19px] leading-[1.45] tracking-[-0.01em] text-white/50">
+                <p className="max-w-lg text-[15px] sm:text-[17px] leading-[1.45] tracking-[-0.01em] text-white/55">
                   {service.outcomeLine}
                 </p>
               </div>
 
               {/* 8 Tag Pills (Forma structure) */}
-              <div className="flex max-w-[512px] flex-wrap gap-2">
+              <div className="flex max-w-[512px] flex-wrap gap-1.5">
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center rounded-full bg-white/[0.14] px-3 py-2 text-[12px] font-medium leading-none text-white"
+                    className="inline-flex items-center rounded-full bg-white/[0.14] px-3 py-1.5 text-[12px] font-medium leading-none text-white"
                   >
                     {tag}
                   </span>
@@ -215,7 +215,7 @@ function StickyServiceCard({
               </div>
 
               {/* Card CTA + Website Type sub-links */}
-              <div className="flex flex-wrap items-center gap-4 pt-1">
+              <div className="flex flex-wrap items-center gap-4">
                 <FormaSwapPillButton
                   href={service.href}
                   label={`Explore ${service.shortName}`}
@@ -241,7 +241,7 @@ function StickyServiceCard({
           </div>
 
           {/* Right Column: Full-height rounded photograph */}
-          <div className="relative min-h-[300px] sm:min-h-[420px] lg:min-h-full w-full overflow-hidden rounded-[16px] bg-[#0A0A0A]">
+          <div className="relative min-h-[260px] sm:min-h-[340px] lg:min-h-0 lg:h-full w-full overflow-hidden rounded-[16px] bg-[#0A0A0A]">
             <img
               src={photo.src}
               srcSet={photo.srcSet}
@@ -272,16 +272,16 @@ export function ServicesDeckSection() {
   });
 
   return (
-    <section className="relative overflow-visible border-t border-white/10 bg-[#000000] py-20 sm:py-28">
-      <div className="intent-container space-y-12 sm:space-y-16">
-        {/* Forma 3-part Header Row: (Services) left | Services we offer. center | See All Services right */}
-        <div className="space-y-8">
-          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+    <section className="relative overflow-visible border-t border-white/10 bg-[#000000] py-10 sm:py-12">
+      <div className="intent-container space-y-6 sm:space-y-8">
+        {/* Forma 3-part Header Row + Goal Chips — compact so Header + each individual card fit cleanly within 100vh */}
+        <div className="space-y-4">
+          <div className="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
             <span className="text-[15px] font-medium text-white/85">
               (Services)
             </span>
 
-            <h2 className="text-[clamp(2.25rem,4.4vw,3.85rem)] font-medium leading-[1.08] tracking-[-0.03em] text-white lg:text-center">
+            <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-medium leading-[1.06] tracking-[-0.03em] text-white lg:text-center">
               Services{" "}
               <span className="font-editorial font-normal">we offer.</span>
             </h2>
@@ -289,7 +289,7 @@ export function ServicesDeckSection() {
             <FormaSeeAllButton href="/services/" />
           </div>
 
-          {/* Interactive Goal Chips (Sitemap Section 7 requirement) */}
+          {/* Interactive Goal Chips */}
           <div
             role="group"
             aria-label="Filter services by business goal"
@@ -300,7 +300,7 @@ export function ServicesDeckSection() {
               onClick={() => setSelectedGoal("all")}
               aria-pressed={selectedGoal === "all"}
               className={cn(
-                "h-[40px] rounded-full px-4 text-[13px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
+                "h-[36px] rounded-full px-3.5 text-[13px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
                 selectedGoal === "all"
                   ? "border-[#F24E1E] bg-[#F24E1E] text-white"
                   : "border-white/15 bg-[#111111] text-white/65 hover:border-white/30 hover:text-white"
@@ -317,7 +317,7 @@ export function ServicesDeckSection() {
                   onClick={() => setSelectedGoal(active ? "all" : service.slug)}
                   aria-pressed={active}
                   className={cn(
-                    "h-[40px] rounded-full px-4 text-[13px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
+                    "h-[36px] rounded-full px-3.5 text-[13px] font-medium border cursor-pointer transition-[background-color,border-color,color] duration-150",
                     active
                       ? "border-[#F24E1E] bg-[#F24E1E] text-white"
                       : "border-white/15 bg-[#111111] text-white/65 hover:border-white/30 hover:text-white"
@@ -330,8 +330,8 @@ export function ServicesDeckSection() {
           </div>
         </div>
 
-        {/* Sticky 3D Perspective Stacking Card Deck (Forma structure) */}
-        <div ref={stackRef} className="relative flex flex-col gap-8">
+        {/* Sticky 3D Perspective Stacking Card Deck (each card + heading fits within 100vh) */}
+        <div ref={stackRef} className="relative flex flex-col gap-6">
           {SERVICES.map((service, idx) => (
             <StickyServiceCard
               key={service.slug}
@@ -344,8 +344,10 @@ export function ServicesDeckSection() {
             />
           ))}
         </div>
+      </div>
 
-        {/* Industry Line (Sitemap Section 7 requirement) */}
+      {/* Dedicated Industry Playbooks container placed below the 100vh Services deck */}
+      <div className="intent-container mt-8">
         <div className="flex flex-col gap-4 rounded-[16px] border border-white/10 bg-[#111111] px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
             <p className="text-[13px] font-medium text-[#A0A0A0]">

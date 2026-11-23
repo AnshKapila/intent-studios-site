@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Play, Pause, Check } from "lucide-react";
 import { PHOTOS } from "@/data/media";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { cn } from "@/lib/utils";
 
 const ORBIT_NODES = [
@@ -34,26 +33,19 @@ export function ClientQuoteOrbitSection() {
   const photo = PHOTOS.stackedBooks;
 
   return (
-    <section className="relative overflow-hidden border-t border-white/10 bg-[#0A0A0A] py-20 sm:py-24">
-      <div className="intent-container relative z-10">
-        <div className="mx-auto max-w-2xl text-center">
-          <SectionEyebrow>Client perspective</SectionEyebrow>
-          <h2 className="mt-4 text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#F5F5F5]">
-            Built to earn trust from the first interaction.
-          </h2>
-          <p className="mt-3 text-base leading-relaxed text-[#A0A0A0]">
-            Real founder stories and project walkthroughs lead our proof — never invented quotes or borrowed numbers.
-          </p>
-        </div>
-
-        {/* Wireframe Block 5 radial orbital geometry framing the video-first testimonial */}
-        <div className="relative mx-auto mt-12 max-w-6xl py-4 lg:py-14">
+    <section
+      aria-label="Client perspective"
+      className="relative flex items-center overflow-hidden border-t border-white/10 bg-[#0A0A0A] py-12 lg:h-[100svh] lg:max-h-[100svh] lg:py-0"
+    >
+      <div className="intent-container relative z-10 w-full">
+        {/* Radial orbital container sized cleanly within 100vh (heading/subheading/description removed) */}
+        <div className="relative mx-auto max-w-6xl py-4 lg:py-10">
           <div
             aria-hidden="true"
             className="pointer-events-none hidden lg:flex absolute inset-0 items-center justify-center"
           >
-            <div className="h-[460px] w-[460px] rounded-full border border-dashed border-white/10" />
-            <div className="absolute h-[680px] w-[680px] rounded-full border border-white/[0.06]" />
+            <div className="h-[440px] w-[440px] rounded-full border border-dashed border-white/10" />
+            <div className="absolute h-[640px] w-[640px] rounded-full border border-white/[0.06]" />
           </div>
 
           {/* Centerpiece Video-First Card */}
@@ -62,7 +54,7 @@ export function ClientQuoteOrbitSection() {
               <img
                 src={photo.src}
                 srcSet={photo.srcSet}
-                sizes="(max-width: 767px) 100vw, 576px"
+                sizes="(max-width: 767px) 100vw, 520px"
                 width={photo.width}
                 height={photo.height}
                 alt={photo.alt}
@@ -102,11 +94,11 @@ export function ClientQuoteOrbitSection() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 p-6 sm:p-7 space-y-4">
+            <div className="border-t border-white/10 p-6 space-y-4">
               <blockquote className="text-base sm:text-[17px] font-medium leading-[1.55] text-[#F5F5F5]">
                 “There’s a new problem in digital media — and if design, engineering, and AI can solve it, we’ll find the way. That’s what we’re built for.”
               </blockquote>
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-t border-white/10 pt-4 text-[14px]">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-t border-white/10 pt-3.5 text-[14px]">
                 <span className="font-medium text-[#F5F5F5]">Intent Studios</span>
                 <span className="text-[#A0A0A0]">Video testimonial reel · Updating with client footage</span>
               </div>

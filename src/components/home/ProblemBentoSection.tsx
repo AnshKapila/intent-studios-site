@@ -85,113 +85,113 @@ function HighlightWord({
 
 export function ProblemBentoSection() {
   return (
-    <section className="relative bg-[#F7F4F1] text-[#111111] py-20 sm:py-24">
+    <section className="relative bg-[#F7F4F1] text-[#111111] py-14 sm:py-16">
       <div className="intent-container relative z-10">
-        {/* Clean editorial header + Taste Skill dealt word-highlight statement */}
+        {/* Heading, eyebrow, and subheading sit above the 100vh bento grid container */}
         <div className="mx-auto max-w-3xl text-center">
           <SectionEyebrow tone="light">The problem</SectionEyebrow>
-          <h2 className="mt-4 text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#111111]">
+          <h2 className="mt-3 text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#111111]">
             Why growing teams outgrow templates and skip slow agencies.
           </h2>
           <WordHighlightStatement />
         </div>
 
-        {/* Flattened 2x2 Architectural Bento Grid — single-level surfaces, zero box-in-box nesting */}
-        <div className="mt-14 grid gap-5 lg:grid-cols-12">
+        {/* All 4 individual Bento Grid blocks together = 100vh on desktop */}
+        <div className="mt-10 grid gap-4 lg:grid-cols-12 lg:grid-rows-2 lg:h-[100svh] lg:max-h-[100svh]">
           {/* Card 1 (7 cols): Verbatim Buyer Frustrations */}
-          <div className="lg:col-span-7 flex flex-col justify-between rounded-[16px] border border-[#111111]/10 bg-white p-7 sm:p-8">
-            <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+          <div className="lg:col-span-7 flex flex-col justify-between overflow-hidden rounded-[16px] border border-[#111111]/10 bg-white p-5 sm:p-6">
+            <div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
               {BUYER_FRUSTRATIONS.map((item) => (
                 <div
                   key={item.quote}
-                  className="border-t border-[#111111]/10 pt-4 space-y-1.5"
+                  className="border-t border-[#111111]/10 pt-2.5 space-y-1"
                 >
-                  <p className="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-[#111111]">
+                  <p className="text-[14px] font-semibold leading-snug tracking-[-0.01em] text-[#111111]">
                     {item.quote}
                   </p>
-                  <p className="text-[14px] leading-relaxed text-[#52504C]">
+                  <p className="text-[13px] leading-snug text-[#52504C]">
                     {item.context}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 border-t border-[#111111]/10 pt-5">
-              <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-[#111111]">
+            <div className="mt-4 border-t border-[#111111]/10 pt-3.5">
+              <h3 className="text-[16px] font-semibold tracking-[-0.02em] text-[#111111]">
                 What founders tell us on day one
               </h3>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-[#52504C]">
+              <p className="mt-1 text-[14px] leading-snug text-[#52504C]">
                 Underneath every website, app, or visual request is one goal: your brand needs to be taken seriously the moment someone lands on it.
               </p>
             </div>
           </div>
 
           {/* Card 2 (5 cols): Market Positioning */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-[16px] border border-[#111111]/10 bg-white p-7 sm:p-8">
-            <div className="space-y-4">
+          <div className="lg:col-span-5 flex flex-col justify-between overflow-hidden rounded-[16px] border border-[#111111]/10 bg-white p-5 sm:p-6">
+            <div className="space-y-2.5">
               <div className="flex items-center justify-between text-[13px] font-medium text-[#52504C]">
                 <span>Market positioning</span>
                 <span className="text-[#F24E1E]">Where we sit</span>
               </div>
 
               <div className="divide-y divide-[#111111]/10 border-y border-[#111111]/10">
-                <div className="flex items-center justify-between py-3.5 text-[14px]">
+                <div className="flex items-center justify-between py-2.5 text-[13px]">
                   <span className="font-medium text-[#52504C]">Generic freelancers</span>
                   <span className="text-[#52504C]">Low cost · High hand-holding</span>
                 </div>
-                <div className="flex items-center justify-between -mx-3 rounded-[10px] bg-[#111111] px-3 py-3.5 text-[14px] text-[#F5F5F5]">
+                <div className="flex items-center justify-between -mx-3 rounded-[10px] bg-[#111111] px-3 py-2.5 text-[13px] text-[#F5F5F5]">
                   <span className="font-semibold flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#F24E1E]" aria-hidden="true" />
                     Intent Studios
                   </span>
                   <span className="text-[#FFD1C2]">Senior craft · Practical AI</span>
                 </div>
-                <div className="flex items-center justify-between py-3.5 text-[14px]">
+                <div className="flex items-center justify-between py-2.5 text-[13px]">
                   <span className="font-medium text-[#52504C]">Traditional agencies</span>
                   <span className="text-[#52504C]">Slow timelines · Overhead</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 border-t border-[#111111]/10 pt-5">
-              <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-[#111111]">
+            <div className="mt-4 border-t border-[#111111]/10 pt-3.5">
+              <h3 className="text-[16px] font-semibold tracking-[-0.02em] text-[#111111]">
                 Built for speed without compromise
               </h3>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-[#52504C]">
+              <p className="mt-1 text-[14px] leading-snug text-[#52504C]">
                 Direct access to creative direction and engineering — zero account-manager relay or padded timelines.
               </p>
             </div>
           </div>
 
           {/* Card 3 (5 cols): What We Refuse To Be */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-[16px] border border-[#111111]/10 bg-white p-7 sm:p-8">
+          <div className="lg:col-span-5 flex flex-col justify-between overflow-hidden rounded-[16px] border border-[#111111]/10 bg-white p-5 sm:p-6">
             <ul className="divide-y divide-[#111111]/10">
               {WHAT_WE_ARE_NOT.map((item) => (
                 <li
                   key={item.title}
-                  className="py-4 first:pt-0 last:pb-0 flex items-start gap-3"
+                  className="py-2.5 first:pt-0 last:pb-0 flex items-start gap-2.5"
                 >
-                  <X className="mt-1 h-4 w-4 shrink-0 text-[#52504C]" aria-hidden="true" />
+                  <X className="mt-0.5 h-4 w-4 shrink-0 text-[#52504C]" aria-hidden="true" />
                   <div>
-                    <div className="text-[15px] font-semibold text-[#111111]">{item.title}</div>
-                    <p className="mt-0.5 text-[14px] leading-relaxed text-[#52504C]">{item.body}</p>
+                    <div className="text-[14px] font-semibold text-[#111111]">{item.title}</div>
+                    <p className="mt-0.5 text-[13px] leading-snug text-[#52504C]">{item.body}</p>
                   </div>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-8 border-t border-[#111111]/10 pt-5">
-              <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-[#111111]">
+            <div className="mt-4 border-t border-[#111111]/10 pt-3.5">
+              <h3 className="text-[16px] font-semibold tracking-[-0.02em] text-[#111111]">
                 What we refuse to be
               </h3>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-[#52504C]">
+              <p className="mt-1 text-[14px] leading-snug text-[#52504C]">
                 We are a thinking partner, not an order-taking vendor.
               </p>
             </div>
           </div>
 
           {/* Card 4 (7 cols): How We Operate */}
-          <div className="lg:col-span-7 flex flex-col justify-between rounded-[16px] border border-[#111111]/10 bg-white p-7 sm:p-8">
+          <div className="lg:col-span-7 flex flex-col justify-between overflow-hidden rounded-[16px] border border-[#111111]/10 bg-white p-5 sm:p-6">
             <ul className="divide-y divide-[#111111]/10">
               {[
                 {
@@ -213,26 +213,26 @@ export function ProblemBentoSection() {
               ].map((row) => (
                 <li
                   key={row.label}
-                  className="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0"
+                  className="flex items-center justify-between gap-4 py-2.5 first:pt-0 last:pb-0"
                 >
-                  <div className="flex items-start gap-3 min-w-0">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-[#F24E1E]" aria-hidden="true" />
-                    <span className="text-[15px] font-medium text-[#111111]">
+                  <div className="flex items-start gap-2.5 min-w-0">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#F24E1E]" aria-hidden="true" />
+                    <span className="text-[14px] font-medium text-[#111111]">
                       {row.label}
                     </span>
                   </div>
-                  <span className="shrink-0 text-[13px] font-medium text-[#52504C]">
+                  <span className="shrink-0 text-[12px] font-medium text-[#52504C]">
                     {row.tag}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-8 border-t border-[#111111]/10 pt-5">
-              <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-[#111111]">
+            <div className="mt-4 border-t border-[#111111]/10 pt-3.5">
+              <h3 className="text-[16px] font-semibold tracking-[-0.02em] text-[#111111]">
                 Design, engineering &amp; practical AI working together
               </h3>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-[#52504C]">
+              <p className="mt-1 text-[14px] leading-snug text-[#52504C]">
                 Every website, product interface, identity, and visual campaign is structured around measurable credibility and conversion.
               </p>
             </div>

@@ -106,33 +106,35 @@ export const WHAT_WE_ARE_NOT = [
 export const PROCESS_STAGES = [
   {
     step: "01",
-    title: "Discovery",
-    summary: "Audit your current positioning, buyer objections, offer clarity, and technical baseline.",
+    title: "Discovery & audit",
+    summary:
+      "We audit your positioning, buyer objections, offer clarity, and technical baseline so nothing is built on guesswork.",
     timeline: "Days 1–3",
+    milestone: "Scope & positioning locked",
   },
   {
     step: "02",
-    title: "Strategy",
-    summary: "Lock the site architecture, conversion flow, messaging hierarchy, and visual direction before pixels move.",
+    title: "Strategy & architecture",
+    summary:
+      "We lock site structure, conversion hierarchy, messaging flow, and visual direction before a single pixel moves.",
     timeline: "Week 1",
+    milestone: "Wireframes & conversion map",
   },
   {
     step: "03",
-    title: "Design",
-    summary: "Craft the visual system, interactive prototypes, and high-contrast compositions built for desktop and mobile.",
+    title: "Design & craft",
+    summary:
+      "We craft high-contrast interfaces, interactive prototypes, brand systems, and art-directed AI visuals built for desktop and mobile.",
     timeline: "Weeks 1–3",
+    milestone: "Interactive design system",
   },
   {
     step: "04",
-    title: "Execution",
-    summary: "Build production code, refine motion and responsiveness, optimize performance, and produce supporting brand assets.",
+    title: "Build & launch",
+    summary:
+      "We engineer production code, refine motion and performance, configure SEO, and hand over a system your team can grow.",
     timeline: "Weeks 3–5",
-  },
-  {
-    step: "05",
-    title: "Launch",
-    summary: "QA across viewports, configure SEO metadata and redirects, deploy cleanly, and hand over a system your team can grow.",
-    timeline: "Final week",
+    milestone: "Live production launch",
   },
 ] as const;
 

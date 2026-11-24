@@ -41,7 +41,7 @@ export function HeroSection() {
           transition={{ duration: 0.55, delay: 0.06, ease: INTENT_EASE }}
           className="mt-6 max-w-[920px] text-center text-[clamp(2.25rem,4.6vw,4rem)] font-medium leading-[1.06] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]"
         >
-          Websites &amp; digital products
+          Website &amp; online product
           <br className="hidden sm:inline" /> designed for{" "}
           <span className="font-editorial font-normal">conversion,</span>
           <br className="hidden sm:inline" /> not just looks.

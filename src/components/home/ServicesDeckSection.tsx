@@ -2,7 +2,6 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import {
   motion,
   useScroll,
@@ -14,6 +13,7 @@ import { SERVICES, type ServiceItem, type ServiceSlug } from "@/data/services";
 import { SERVICE_PHOTOS } from "@/data/media";
 import { INDUSTRIES } from "@/data/industries";
 import { Button } from "@/components/ui/Button";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { cn } from "@/lib/utils";
 
 const SERVICE_TAGS: Record<ServiceSlug, string[]> = {
@@ -58,68 +58,6 @@ const SERVICE_TAGS: Record<ServiceSlug, string[]> = {
     "Color Grading",
   ],
 };
-
-/**
- * Forma-style header pill button:
- * White pill at rest with a dark 44x44 left circular badge;
- * On hover, pill fills with Intent Studios Orange (#F24E1E), text turns white,
- * and dual right-arrows slide horizontally inside the clipped circle.
- */
-function FormaSeeAllButton({ href }: { href: string }) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "group inline-flex items-center gap-4 rounded-full border border-[#111111]/12 dark:border-transparent bg-white py-[3px] pl-[3px] pr-6 text-[15px] font-medium text-[#0D0D0D]",
-        "transition-[background-color,color,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        "hover:bg-[#F24E1E] hover:border-[#F24E1E] hover:text-white"
-      )}
-    >
-      <span
-        aria-hidden="true"
-        className="relative flex h-[44px] w-[44px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#0D0D0D] text-white"
-      >
-        <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-7" />
-        <ArrowRight className="absolute h-4 w-4 -translate-x-7 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
-      </span>
-      <span>See All Services</span>
-    </Link>
-  );
-}
-
-/**
- * Forma-style card CTA pill:
- * White pill with vertical text-swap marquee on hover.
- */
-function FormaSwapPillButton({
-  href,
-  label,
-}: {
-  href: string;
-  label: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "group relative inline-flex h-[44px] items-center justify-center overflow-hidden rounded-full bg-[#111111] dark:bg-white px-5 text-[15px] font-medium text-white dark:text-[#0D0D0D]",
-        "transition-[background-color,color] duration-200 hover:bg-[#F24E1E] dark:hover:bg-[#F5F5F5]"
-      )}
-    >
-      <span className="relative block h-[20px] overflow-hidden leading-[20px]">
-        <span className="block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
-          {label}
-        </span>
-        <span
-          aria-hidden="true"
-          className="block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full"
-        >
-          {label}
-        </span>
-      </span>
-    </Link>
-  );
-}
 
 function StickyServiceCard({
   service,
@@ -176,7 +114,7 @@ function StickyServiceCard({
               }
         }
         className={cn(
-          "w-full overflow-hidden rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] p-4 sm:p-5 will-change-transform lg:h-[600px] shadow-[0_12px_36px_rgba(17,17,17,0.06)] dark:shadow-none",
+          "w-full overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#1F1E1C] p-4 sm:p-5 will-change-transform lg:h-[600px] shadow-[0_12px_36px_rgba(17,17,17,0.06)] dark:shadow-none",
           isHighlighted ? "ring-1 ring-[#F24E1E]/60" : ""
         )}
       >
@@ -187,41 +125,40 @@ function StickyServiceCard({
               <span className="tabular-nums text-[32px] sm:text-[40px] font-medium leading-none tracking-[-0.03em] text-[#111111] dark:text-white">
                 {service.index}
               </span>
-              <span className="pt-1 text-[13px] font-medium text-[#52504C] dark:text-white/50">
+              <span className="type-p3 pt-1 text-[#52504C] dark:text-[#A3A09A]">
                 {service.timeline}
               </span>
             </div>
 
             <div className="space-y-5">
               <div className="space-y-2">
-                <h3 className="text-[24px] sm:text-[28px] font-medium leading-[1.15] tracking-[-0.025em] text-[#111111] dark:text-white">
+                <h3 className="type-h3 text-[#111111] dark:text-white">
                   {service.name}
                 </h3>
-                <p className="max-w-lg text-[15px] sm:text-[16px] leading-[1.45] tracking-[-0.01em] text-[#52504C] dark:text-white/55">
+                <p className="type-p2 max-w-lg text-[#52504C] dark:text-[#A3A09A]">
                   {service.outcomeLine}
                 </p>
               </div>
 
-              {/* 8 Tag Pills (Forma structure) */}
+              {/* 8 Tag Pills */}
               <div className="flex max-w-[512px] flex-wrap gap-1.5">
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center rounded-full bg-[#111111]/[0.07] dark:bg-white/[0.14] px-3 py-1.5 text-[12px] font-medium leading-none text-[#111111] dark:text-white"
+                    className="inline-flex items-center rounded-full bg-[#111111]/[0.07] dark:bg-white/[0.12] px-3 py-1.5 text-[12px] font-medium leading-none text-[#111111] dark:text-white"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              {/* Card CTA + Website Type sub-links */}
+              {/* Unified Card CTA + Website Type sub-links */}
               <div className="flex flex-wrap items-center gap-4 pt-1">
-                <FormaSwapPillButton
-                  href={service.href}
-                  label={`Explore ${service.shortName}`}
-                />
+                <Button href={service.href} variant="secondary" size="md">
+                  {`Explore ${service.shortName}`}
+                </Button>
                 {service.hasTypePages && (
-                  <div className="flex flex-wrap items-center gap-4 text-[14px] text-[#52504C] dark:text-white/55">
+                  <div className="flex flex-wrap items-center gap-4 text-[14px] text-[#52504C] dark:text-[#A3A09A]">
                     <Link
                       href="/services/website-design/ecommerce/"
                       className="underline decoration-[#111111]/25 dark:decoration-white/20 underline-offset-4 hover:text-[#111111] dark:hover:text-white hover:decoration-[#F24E1E] transition-colors"
@@ -241,7 +178,7 @@ function StickyServiceCard({
           </div>
 
           {/* Right Column: Equal-height rounded photograph */}
-          <div className="relative h-[260px] sm:h-[340px] lg:h-full w-full overflow-hidden rounded-[16px] bg-[#0A0A0A]">
+          <div className="relative h-[260px] sm:h-[340px] lg:h-full w-full overflow-hidden rounded-[12px] bg-[#111111]">
             <img
               src={photo.src}
               srcSet={photo.srcSet}
@@ -274,22 +211,22 @@ export function ServicesDeckSection() {
   return (
     <section
       id="services-deck"
-      className="relative overflow-visible border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#000000] py-16 sm:py-20 transition-colors duration-200"
+      className="relative overflow-visible border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] py-16 lg:py-24 transition-colors duration-200"
     >
-      <div className="intent-container space-y-8 sm:space-y-10">
-        {/* Forma 3-part Header Row + Goal Chips */}
-        <div className="space-y-4">
+      <div className="intent-container space-y-8 sm:space-y-12">
+        {/* Unified 3-part Header Row + Goal Chips */}
+        <div className="space-y-6">
           <div className="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
-            <span className="text-[15px] font-medium text-[#52504C] dark:text-white/85">
-              (Services)
-            </span>
+            <SectionEyebrow>Services</SectionEyebrow>
 
-            <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-medium leading-[1.06] tracking-[-0.03em] text-[#111111] dark:text-white lg:text-center">
+            <h2 className="type-h2 text-[#111111] dark:text-white lg:text-center">
               Services{" "}
               <span className="font-editorial font-normal">we offer.</span>
             </h2>
 
-            <FormaSeeAllButton href="/services/" />
+            <Button href="/services/" variant="primary" size="md" showArrow>
+              See All Services
+            </Button>
           </div>
 
           {/* Interactive Goal Chips */}

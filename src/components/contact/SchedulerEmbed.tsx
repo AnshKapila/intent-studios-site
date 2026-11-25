@@ -8,7 +8,7 @@ export function SchedulerEmbed({ id = "scheduler" }: { id?: string }) {
   return (
     <div
       id={id}
-      className="scroll-mt-28 rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:p-8 space-y-6"
+      className="scroll-mt-28 rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 sm:p-8 space-y-6"
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-[#111111]/10 dark:border-white/10 pb-5">
         <div className="space-y-1">

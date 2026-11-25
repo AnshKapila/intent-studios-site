@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
-    <section className="relative flex min-h-[75vh] items-center overflow-hidden bg-white dark:bg-[#000000] pt-32 pb-20">
+    <section className="relative flex min-h-[75vh] items-center overflow-hidden bg-white dark:bg-[#111111] pt-32 pb-20">
       <div className="absolute inset-0 bg-grid-dark opacity-55" aria-hidden="true" />
       <div className="absolute inset-0 glow-edge-bottom-right opacity-70" aria-hidden="true" />
 

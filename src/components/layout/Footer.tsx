@@ -6,7 +6,7 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#F7F4F1] dark:bg-[#000000] border-t border-[#111111]/10 dark:border-white/10 pt-16 sm:pt-20 transition-colors duration-200">
+    <footer className="relative overflow-hidden bg-[#F7F4F1] dark:bg-[#111111] border-t border-[#111111]/10 dark:border-white/10 pt-16 lg:pt-24 transition-colors duration-200">
       <div className="intent-container relative z-10">
         {/* Top multi-column sitemap directory */}
         <div className="grid grid-cols-2 gap-10 pb-12 md:grid-cols-12">
@@ -117,7 +117,7 @@ export function Footer() {
           <div className="grid gap-4 md:grid-cols-2">
             <Link
               href={SITE.primaryCta.href}
-              className="group flex items-start justify-between gap-4 rounded-[12px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] p-6 transition-[border-color,transform,background-color] duration-150 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25 dark:hover:bg-[#111111]"
+              className="group flex items-start justify-between gap-4 rounded-[12px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#181817] p-6 transition-[border-color,transform,background-color] duration-150 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25 dark:hover:bg-[#1F1E1C]"
             >
               <div className="space-y-1.5">
                 <span className="inline-flex items-center gap-2 text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
@@ -139,7 +139,7 @@ export function Footer() {
 
             <a
               href={`mailto:${SITE.contact.email}`}
-              className="group flex items-start justify-between gap-4 rounded-[12px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] p-6 transition-[border-color,transform,background-color] duration-150 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25 dark:hover:bg-[#111111]"
+              className="group flex items-start justify-between gap-4 rounded-[12px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#181817] p-6 transition-[border-color,transform,background-color] duration-150 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25 dark:hover:bg-[#1F1E1C]"
             >
               <div className="space-y-1.5 min-w-0">
                 <span className="inline-flex items-center gap-2 text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">

@@ -53,7 +53,7 @@ export default async function IndustryDetailPage({
   return (
     <>
       {/* 1. H1 for the industry */}
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-32 pb-16 sm:pt-40 sm:pb-20">
         <div className="absolute inset-0 bg-grid-dark opacity-55" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-bottom-right opacity-70" aria-hidden="true" />
 
@@ -119,7 +119,7 @@ export default async function IndustryDetailPage({
       />
 
       {/* 5. Client Quote */}
-      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] py-16">
         <div className="intent-container max-w-4xl">
           <ClientQuoteCard {...industry.clientQuote} />
         </div>
@@ -139,7 +139,7 @@ export default async function IndustryDetailPage({
               <Link
                 key={service.slug}
                 href={service.href}
-                className="group flex flex-col justify-between gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 transition-[border-color] duration-200 hover:border-[#F24E1E]/45"
+                className="group flex flex-col justify-between gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 transition-[border-color] duration-200 hover:border-[#F24E1E]/45"
               >
                 <div className="space-y-2">
                   <span className="tabular-nums text-xs font-semibold text-[#F24E1E]">

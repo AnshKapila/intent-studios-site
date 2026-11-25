@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play, Plus, ArrowUpRight, Sparkles } from "lucide-react";
+import { Pause, Play, Plus, Sparkles } from "lucide-react";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 interface ProblemMessage {
@@ -28,13 +30,13 @@ const PROBLEM_MESSAGES: ProblemMessage[] = [
     id: "website-conversion",
     align: "left",
     initials: "B2",
-    avatarBg: "#E6EEF7",
-    avatarText: "#1E3A5F",
+    avatarBg: "#E4EDF4",
+    avatarText: "#151F28",
     role: "Founder, B2B SaaS",
     topic: "Website & Conversion",
     quotePrefix: "“People only get what we do once they get on a call. Our site looks fine, ",
     highlight: "it just doesn’t turn visitors into booked demos.",
-    highlightBg: "#DDEEFF",
+    highlightBg: "#E4EDF4",
     quoteSuffix: "”",
     reactions: [
       { id: "r1", symbol: "+", count: 14 },
@@ -45,13 +47,13 @@ const PROBLEM_MESSAGES: ProblemMessage[] = [
     id: "funnel-architecture",
     align: "right",
     initials: "D2",
-    avatarBg: "#FCEBE5",
-    avatarText: "#8C2B0E",
+    avatarBg: "#FCE6D4",
+    avatarText: "#281C14",
     role: "Growth Lead, D2C Brand",
     topic: "Funnel Architecture",
     quotePrefix: "“We’re paying for traffic that lands, scrolls five seconds, and bounces. ",
     highlight: "There’s no clear story guiding them from click to checkout.",
-    highlightBg: "#FFD8CB",
+    highlightBg: "#FCE6D4",
     quoteSuffix: "”",
     reactions: [
       { id: "r3", symbol: "+", count: 11 },
@@ -62,13 +64,13 @@ const PROBLEM_MESSAGES: ProblemMessage[] = [
     id: "product-app",
     align: "left",
     initials: "PA",
-    avatarBg: "#EBF4E2",
-    avatarText: "#2D4F18",
+    avatarBg: "#E5EFE9",
+    avatarText: "#16221C",
     role: "Product Lead, Wellness App",
     topic: "Product & App Design",
     quotePrefix: "“Users sign up, poke around onboarding, and ",
     highlight: "drop off before they ever see what the product can do.",
-    highlightBg: "#DFF0C8",
+    highlightBg: "#E5EFE9",
     quoteSuffix: "”",
     reactions: [
       { id: "r5", symbol: "+", count: 12 },
@@ -79,13 +81,13 @@ const PROBLEM_MESSAGES: ProblemMessage[] = [
     id: "brand-identity",
     align: "right",
     initials: "BR",
-    avatarBg: "#FAF2DA",
-    avatarText: "#6B4E0B",
+    avatarBg: "#EAE6F5",
+    avatarText: "#1E1A2A",
     role: "Co-founder, Consumer Brand",
     topic: "Brand Identity",
     quotePrefix: "“Put us next to five competitors and you couldn’t tell us apart. Our logo, site, and decks ",
     highlight: "feel like three completely different companies.",
-    highlightBg: "#FFF0BA",
+    highlightBg: "#EAE6F5",
     quoteSuffix: "”",
     reactions: [
       { id: "r7", symbol: "+", count: 10 },
@@ -96,13 +98,13 @@ const PROBLEM_MESSAGES: ProblemMessage[] = [
     id: "ai-content",
     align: "left",
     initials: "AI",
-    avatarBg: "#EFE9FB",
-    avatarText: "#472A7A",
+    avatarBg: "#FCE6D4",
+    avatarText: "#281C14",
     role: "Marketing Head, Fitness Brand",
     topic: "AI Content & Visuals",
     quotePrefix: "“Studio shoots take six weeks and five figures — but ",
     highlight: "generic AI visuals look synthetic and hurt our credibility.",
-    highlightBg: "#EAE2FF",
+    highlightBg: "#FCE6D4",
     quoteSuffix: "”",
     reactions: [
       { id: "r9", symbol: "+", count: 13 },
@@ -113,13 +115,13 @@ const PROBLEM_MESSAGES: ProblemMessage[] = [
     id: "social-content",
     align: "right",
     initials: "SM",
-    avatarBg: "#E5F3F1",
-    avatarText: "#165049",
+    avatarBg: "#E5EFE9",
+    avatarText: "#16221C",
     role: "Founder, Coaching & Media",
     topic: "Social & Content Systems",
     quotePrefix: "“We post every week, yet ",
     highlight: "nothing connects our social attention back to our actual offer.",
-    highlightBg: "#D6F2EE",
+    highlightBg: "#E5EFE9",
     quoteSuffix: "”",
     reactions: [
       { id: "r11", symbol: "+", count: 9 },
@@ -130,13 +132,13 @@ const PROBLEM_MESSAGES: ProblemMessage[] = [
     id: "studio-execution",
     align: "left",
     initials: "EX",
-    avatarBg: "#F3EFEA",
-    avatarText: "#3D3832",
+    avatarBg: "#E4EDF4",
+    avatarText: "#151F28",
     role: "COO, Series A Startup",
     topic: "Design Studio vs. Agencies",
     quotePrefix: "“Freelancers need constant hand-holding and agencies take three months to ship a page. We need ",
     highlight: "senior craft and strategy at startup speed.",
-    highlightBg: "#FFD8CB",
+    highlightBg: "#E4EDF4",
     quoteSuffix: "”",
     reactions: [
       { id: "r13", symbol: "+", count: 15 },
@@ -179,7 +181,7 @@ function MessageRow({
           isRight ? "items-end" : "items-start"
         )}
       >
-        <div className="w-full rounded-[4px] border border-[#111111]/12 dark:border-white/12 bg-white dark:bg-[#111111] px-5 py-4 transition-colors duration-200 hover:border-[#111111]/25 dark:hover:border-white/25">
+        <div className="w-full rounded-[12px] border border-[#111111]/12 dark:border-white/12 bg-white dark:bg-[#1F1E1C] px-5 py-4 transition-colors duration-200 hover:border-[#111111]/25 dark:hover:border-white/25">
           {/* Top metadata line (Studio Maydit exact square-dot separator) */}
           <div className="flex flex-wrap items-center gap-2 text-[12.5px] leading-none tracking-[-0.01em]">
             <span className="font-medium text-[#52504C] dark:text-[#A0A0A0]">{item.role}</span>
@@ -249,7 +251,7 @@ function StudioReplyRow() {
       </div>
 
       {/* High-contrast studio wrap-up card */}
-      <div className="w-full max-w-[360px] rounded-[4px] border border-[#111111] dark:border-white/30 bg-white dark:bg-[#161616] px-5 py-4">
+      <div className="w-full max-w-[360px] rounded-[12px] border border-[#111111] dark:border-white/30 bg-white dark:bg-[#1F1E1C] px-5 py-4">
         <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#52504C] dark:text-[#A0A0A0]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#F24E1E]" aria-hidden="true" />
           Intent Studios
@@ -378,25 +380,17 @@ export function ProblemBentoSection() {
     <section
       ref={sectionRef}
       aria-labelledby="problem-section-heading"
-      className="relative border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] text-[#111111] dark:text-[#F5F5F5] py-12 lg:py-0 lg:h-[100svh] lg:max-h-[100svh] lg:flex lg:items-center transition-colors duration-200"
+      className="relative border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#181817] text-[#111111] dark:text-white py-16 lg:py-0 lg:h-[100svh] lg:max-h-[100svh] lg:flex lg:items-center transition-colors duration-200"
     >
       <div className="intent-container w-full">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           {/* Left Column (5 cols): Editorial Header */}
           <div className="lg:col-span-5 flex flex-col items-start">
-            <div className="flex items-center gap-3">
-              <span
-                aria-hidden="true"
-                className="inline-block h-[1px] w-6 bg-[#F24E1E]"
-              />
-              <span className="text-[13px] font-medium tracking-[0.01em] text-[#52504C] dark:text-[#A0A0A0]">
-                Sound familiar?
-              </span>
-            </div>
+            <SectionEyebrow>Sound familiar?</SectionEyebrow>
 
             <h2
               id="problem-section-heading"
-              className="mt-5 max-w-[440px] text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]"
+              className="type-h2 mt-5 max-w-[440px] text-[#111111] dark:text-white"
             >
               Hard to trust
               <br />
@@ -404,7 +398,7 @@ export function ProblemBentoSection() {
               <span className="font-editorial font-normal">buy.</span>
             </h2>
 
-            <p className="mt-5 max-w-[430px] text-[16px] leading-[1.5] text-[#52504C] dark:text-[#A0A0A0]">
+            <p className="type-p2 mt-5 max-w-[430px] text-[#52504C] dark:text-[#A3A09A]">
               Buyers judge in seconds. If your website, app, brand identity, or
               content doesn’t signal quality on sight, most never make it to a
               conversation.
@@ -415,7 +409,7 @@ export function ProblemBentoSection() {
               <button
                 type="button"
                 onClick={() => setIsManuallyPaused((p) => !p)}
-                className="inline-flex h-[36px] cursor-pointer items-center gap-2 rounded-full border border-[#111111]/15 dark:border-white/15 bg-[#FAF9F7] dark:bg-[#141414] px-3.5 text-[12.5px] font-medium text-[#111111] dark:text-[#F5F5F5] transition-colors hover:border-[#111111]/35 dark:hover:border-white/35"
+                className="inline-flex h-[36px] cursor-pointer items-center gap-2 rounded-full border border-[#111111]/15 dark:border-white/15 bg-[#F7F4F1] dark:bg-[#1F1E1C] px-3.5 text-[12.5px] font-medium text-[#111111] dark:text-white transition-colors hover:border-[#111111]/35 dark:hover:border-white/35"
               >
                 {isManuallyPaused ? (
                   <Play className="h-3.5 w-3.5 text-[#F24E1E]" aria-hidden="true" />
@@ -425,7 +419,7 @@ export function ProblemBentoSection() {
                 <span>{isManuallyPaused ? "Resume feed" : "Pause feed"}</span>
               </button>
 
-              <span className="inline-flex items-center gap-2 text-[12.5px] text-[#7C756D] dark:text-[#A0A0A0]">
+              <span className="type-p3 inline-flex items-center gap-2 text-[#7C756D] dark:text-[#A3A09A]">
                 <span
                   aria-hidden="true"
                   className={cn(
@@ -437,13 +431,11 @@ export function ProblemBentoSection() {
               </span>
             </div>
 
-            <a
-              href="#services-deck"
-              className="mt-8 inline-flex items-center gap-1.5 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5] underline decoration-[#111111]/30 dark:decoration-white/30 underline-offset-4 transition-colors hover:text-[#F24E1E] hover:decoration-[#F24E1E]"
-            >
-              See how we solve all four
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            <div className="mt-8">
+              <Button href="#services-deck" variant="tertiary" showArrow>
+                See how we solve all four
+              </Button>
+            </div>
           </div>
 
           {/* Right Column (7 cols): Video-style auto-scrolling + manually scrollable problem thread */}
@@ -455,12 +447,12 @@ export function ProblemBentoSection() {
             {/* Top fade mask */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-white via-white/85 dark:from-[#0A0A0A] dark:via-[#0A0A0A]/85 to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-white via-white/85 dark:from-[#181817] dark:via-[#181817]/85 to-transparent"
             />
             {/* Bottom fade mask */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-14 bg-gradient-to-t from-white via-white/90 dark:from-[#0A0A0A] dark:via-[#0A0A0A]/90 to-transparent"
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-14 bg-gradient-to-t from-white via-white/90 dark:from-[#181817] dark:via-[#181817]/90 to-transparent"
             />
 
             <div

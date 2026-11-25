@@ -2,63 +2,62 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ==========================================================================
-   INTENT STUDIOS — THREE-LAYER DESIGN TOKEN SYSTEM (LIGHT & DARK MODES)
-   Layer 1: Primitives -> Layer 2: Semantic -> Layer 3: Component
+   INTENT STUDIOS — LOCKED THREE-LAYER DESIGN SYSTEM
+   Primary Light: #FFFFFF | Primary Dark: #111111 | Accent: #F24E1E + #FFD1C2
+   Tints: Muted Multi-Hue | Buttons: Forma Kinetic Pill | Radii: 8 / 12 / 16px
+   Typography: 8px Grid x Golden Ratio (1.618)
    ========================================================================== */
 
 :root {
   /* Layer 1 — Primitives */
-  --primitive-black: #000000;
-  --primitive-obsidian: #0a0a0a;
   --primitive-charcoal: #111111;
-  --primitive-graphite: #1a1a1a;
-  --primitive-warm-dark-0: #080504;
-  --primitive-warm-dark-1: #1f100b;
+  --primitive-charcoal-surface: #181817;
+  --primitive-charcoal-elevated: #1f1e1c;
+  --primitive-charcoal-deep: #0c0c0b;
   --primitive-orange-500: #f24e1e;
   --primitive-orange-600: #d94114;
   --primitive-peach-200: #ffd1c2;
+  --primitive-white: #ffffff;
   --primitive-offwhite: #f5f5f5;
-  --primitive-stone-400: #a0a0a0;
-  --primitive-stone-500: #737373;
   --primitive-alabaster: #f7f4f1;
-  --primitive-alabaster-card: #ffffff;
   --primitive-ink-secondary: #52504c;
+  --primitive-ink-muted: #7c756d;
+  --primitive-stone-400: #a3a09a;
+  --primitive-stone-500: #7a7772;
 
-  /* Spacing (4px base) */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
+  /* Muted Multi-Hue Editorial Tints (Light) */
+  --tint-sage: #e5efe9;
+  --tint-peach: #fce6d4;
+  --tint-slate: #e4edf4;
+  --tint-mist: #eae6f5;
 
-  /* Radius */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.875rem;
-  --radius-lg: 1.25rem;
-  --radius-xl: 1.75rem;
+  /* Spacing Scale (strict 8px multiple rhythm) */
+  --space-1: 0.5rem;   /* 8px */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-6: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  --space-10: 5rem;    /* 80px */
+  --space-12: 6rem;    /* 96px */
+
+  /* Balanced Modern Radius Scale (8 / 12 / 16px + pill) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
   --radius-pill: 9999px;
 
   /* Motion */
   --ease-intent: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-fast: 180ms;
+  --duration-fast: 150ms;
   --duration-base: 280ms;
-  --duration-slow: 520ms;
+  --duration-slow: 500ms;
 
   /* Layer 2 — Semantic Tokens (Light Mode Default) */
-  --color-bg-global: #ffffff;
+  --color-bg-global: var(--primitive-white);
   --color-bg-section: var(--primitive-alabaster);
-  --color-bg-card: #ffffff;
-  --color-bg-elevated: #faf9f7;
-  --color-bg-light: var(--primitive-alabaster);
-  --color-bg-light-card: var(--primitive-alabaster-card);
+  --color-bg-card: var(--primitive-white);
+  --color-bg-elevated: var(--primitive-alabaster);
 
   --color-accent: var(--primitive-orange-500);
   --color-accent-hover: var(--primitive-orange-600);
@@ -67,24 +66,24 @@
 
   --color-text-primary: var(--primitive-charcoal);
   --color-text-secondary: var(--primitive-ink-secondary);
-  --color-text-muted: #7c756d;
-  --color-text-on-light: var(--primitive-charcoal);
-  --color-text-on-light-secondary: var(--primitive-ink-secondary);
+  --color-text-muted: var(--primitive-ink-muted);
 
   --color-border-subtle: rgba(17, 17, 17, 0.1);
-  --color-border-strong: rgba(17, 17, 17, 0.2);
-  --color-border-dark: rgba(255, 255, 255, 0.09);
-  --color-border-dark-strong: rgba(255, 255, 255, 0.18);
-  --color-border-light: rgba(17, 17, 17, 0.1);
+  --color-border-strong: rgba(17, 17, 17, 0.22);
   --color-border-accent: rgba(242, 78, 30, 0.35);
-
   --color-focus-ring: var(--primitive-orange-500);
+
+  /* Editorial 4-Step Tints (Light Mode) */
+  --editorial-1: var(--tint-sage);
+  --editorial-2: var(--tint-peach);
+  --editorial-3: var(--tint-slate);
+  --editorial-4: var(--tint-mist);
 
   /* Layer 3 — Component Tokens */
   --btn-primary-bg: var(--color-accent);
-  --btn-primary-fg: #ffffff;
+  --btn-primary-fg: var(--primitive-white);
   --btn-primary-hover: var(--color-accent-hover);
-  --btn-secondary-bg: #ffffff;
+  --btn-secondary-bg: var(--primitive-white);
   --btn-secondary-fg: var(--primitive-charcoal);
   --btn-secondary-border: rgba(17, 17, 17, 0.16);
   --btn-radius: var(--radius-pill);
@@ -93,24 +92,30 @@
   --header-height: 72px;
 }
 
-/* Dark Mode Semantic Overrides */
+/* Dark Mode Semantic Overrides — Primary Dark: #111111 Charcoal */
 html[data-theme="dark"] {
   color-scheme: dark;
-  --color-bg-global: var(--primitive-black);
-  --color-bg-section: var(--primitive-obsidian);
-  --color-bg-card: var(--primitive-charcoal);
-  --color-bg-elevated: var(--primitive-graphite);
+  --color-bg-global: var(--primitive-charcoal);
+  --color-bg-section: var(--primitive-charcoal-surface);
+  --color-bg-card: var(--primitive-charcoal-elevated);
+  --color-bg-elevated: #262523;
 
-  --color-text-primary: var(--primitive-offwhite);
+  --color-text-primary: var(--primitive-white);
   --color-text-secondary: var(--primitive-stone-400);
   --color-text-muted: var(--primitive-stone-500);
 
-  --color-border-subtle: rgba(255, 255, 255, 0.1);
-  --color-border-strong: rgba(255, 255, 255, 0.2);
+  --color-border-subtle: rgba(255, 255, 255, 0.11);
+  --color-border-strong: rgba(255, 255, 255, 0.22);
 
-  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
-  --btn-secondary-fg: var(--primitive-offwhite);
-  --btn-secondary-border: var(--color-border-dark-strong);
+  /* Editorial 4-Step Tints (Dark Mode — Muted Multi-Hue) */
+  --editorial-1: #16221c;
+  --editorial-2: #281c14;
+  --editorial-3: #151f28;
+  --editorial-4: #1e1a2a;
+
+  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  --btn-secondary-fg: var(--primitive-white);
+  --btn-secondary-border: rgba(255, 255, 255, 0.18);
 }
 
 @theme inline {
@@ -121,15 +126,11 @@ html[data-theme="dark"] {
   --color-bg-section: var(--color-bg-section);
   --color-bg-card: var(--color-bg-card);
   --color-bg-elevated: var(--color-bg-elevated);
-  --color-bg-light: var(--color-bg-light);
-  --color-bg-light-card: var(--color-bg-light-card);
   --color-accent: var(--color-accent);
   --color-accent-hover: var(--color-accent-hover);
   --color-accent-soft: var(--color-accent-soft);
   --color-text-primary: var(--color-text-primary);
   --color-text-secondary: var(--color-text-secondary);
-  --color-text-on-light: var(--color-text-on-light);
-  --color-text-on-light-secondary: var(--color-text-on-light-secondary);
 }
 
 /* ==========================================================================
@@ -155,18 +156,95 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.5rem;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography utilities */
+/* ==========================================================================
+   LOCKED TYPOGRAPHY SCALE (8px Grid x Golden Ratio 1.618)
+   Desktop: H1 64/72 | H2 40/48 | H3 24/32 | P1 20/32 | P2 16/24 | P3 13/20
+   Mobile:  H1 40/48 | H2 32/40 | H3 20/28 | P1 18/28 | P2 16/24 | P3 12/16
+   ========================================================================== */
+
 h1,
 h2,
 h3,
 h4 {
   text-wrap: balance;
+}
+
+.type-h1 {
+  font-size: 2.5rem;      /* 40px mobile */
+  line-height: 3rem;      /* 48px */
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+@media (min-width: 1024px) {
+  .type-h1 {
+    font-size: 4rem;      /* 64px desktop (40 x 1.618) */
+    line-height: 4.5rem;  /* 72px */
+  }
+}
+
+.type-h2 {
+  font-size: 2rem;        /* 32px mobile */
+  line-height: 2.5rem;    /* 40px */
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+@media (min-width: 1024px) {
+  .type-h2 {
+    font-size: 2.5rem;    /* 40px desktop (24 x 1.618) */
+    line-height: 3rem;    /* 48px */
+  }
+}
+
+.type-h3 {
+  font-size: 1.25rem;     /* 20px mobile */
+  line-height: 1.75rem;   /* 28px */
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 1024px) {
+  .type-h3 {
+    font-size: 1.5rem;    /* 24px desktop (16 x 1.5) */
+    line-height: 2rem;    /* 32px */
+  }
+}
+
+.type-p1 {
+  font-size: 1.125rem;    /* 18px mobile */
+  line-height: 1.75rem;   /* 28px */
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 1024px) {
+  .type-p1 {
+    font-size: 1.25rem;   /* 20px desktop */
+    line-height: 2rem;    /* 32px */
+  }
+}
+
+.type-p2 {
+  font-size: 1rem;        /* 16px */
+  line-height: 1.5rem;    /* 24px */
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.type-p3 {
+  font-size: 0.75rem;     /* 12px mobile */
+  line-height: 1rem;      /* 16px */
+  font-weight: 500;
+  letter-spacing: 0;
+}
+@media (min-width: 1024px) {
+  .type-p3 {
+    font-size: 0.8125rem; /* 13px desktop */
+    line-height: 1.25rem; /* 20px */
+  }
 }
 
 .font-editorial {
@@ -180,27 +258,27 @@ h4 {
   font-variant-numeric: tabular-nums;
 }
 
-/* Container — equal horizontal edges sitewide */
+/* Container — strict 8px multiple outer margins (24px / 32px / 48px) */
 .intent-container {
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: 1.25rem;
+  padding-inline: 1.5rem; /* 24px mobile */
 }
 
 @media (min-width: 768px) {
   .intent-container {
-    padding-inline: 2rem;
+    padding-inline: 2rem; /* 32px tablet */
   }
 }
 
 @media (min-width: 1280px) {
   .intent-container {
-    padding-inline: 3rem;
+    padding-inline: 3rem; /* 48px desktop */
   }
 }
 
-/* Architectural surfaces & textures (theme-aware) */
+/* Architectural surfaces & textures (theme-aware, anchored on #FFFFFF / #111111) */
 .bg-grid-dark {
   background-image:
     linear-gradient(to right, rgba(17, 17, 17, 0.04) 1px, transparent 1px),
@@ -226,15 +304,15 @@ html[data-theme="dark"] .bg-grid-dark {
 }
 
 html[data-theme="dark"] .bg-warm-dark {
-  background: linear-gradient(155deg, var(--primitive-warm-dark-0) 0%, var(--primitive-warm-dark-1) 52%, var(--primitive-black) 100%);
+  background: linear-gradient(155deg, #111111 0%, #1c1512 52%, #111111 100%);
 }
 
-/* Restrained corner & edge orange radial glows (never centered full-bleed) */
+/* Restrained corner & edge orange radial glows */
 .glow-edge-bottom-right {
   background: radial-gradient(
     52% 48% at 92% 96%,
-    rgba(242, 78, 30, 0.24) 0%,
-    rgba(242, 78, 30, 0.08) 42%,
+    rgba(242, 78, 30, 0.22) 0%,
+    rgba(242, 78, 30, 0.06) 42%,
     rgba(0, 0, 0, 0) 76%
   );
 }
@@ -242,8 +320,8 @@ html[data-theme="dark"] .bg-warm-dark {
 .glow-edge-top-right {
   background: radial-gradient(
     46% 42% at 96% 4%,
-    rgba(242, 78, 30, 0.2) 0%,
-    rgba(242, 78, 30, 0.05) 45%,
+    rgba(242, 78, 30, 0.18) 0%,
+    rgba(242, 78, 30, 0.04) 45%,
     rgba(0, 0, 0, 0) 75%
   );
 }
@@ -251,16 +329,10 @@ html[data-theme="dark"] .bg-warm-dark {
 .glow-edge-bottom-left {
   background: radial-gradient(
     48% 45% at 6% 96%,
-    rgba(242, 78, 30, 0.22) 0%,
-    rgba(242, 78, 30, 0.06) 44%,
+    rgba(242, 78, 30, 0.2) 0%,
+    rgba(242, 78, 30, 0.05) 44%,
     rgba(0, 0, 0, 0) 76%
   );
-}
-
-/* Subtle film grain layer */
-.film-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.03;
 }
 
 /* Touch & interactive polish */
@@ -272,7 +344,6 @@ textarea {
   touch-action: manipulation;
 }
 
-/* Native select dark-mode legibility on Windows */
 select {
   background-color: var(--color-bg-card);
   color: var(--color-text-primary);
@@ -303,7 +374,7 @@ select {
   top: 1rem;
 }
 
-/* Dual-row logo marquee animations (Taffy-style, pauses on row hover & reduced-motion) */
+/* Dual-row logo marquee animations */
 @keyframes intent-marquee-left {
   0% {
     transform: translate3d(0, 0, 0);

@@ -7,7 +7,8 @@ interface SectionEyebrowProps {
 }
 
 /**
- * Quiet, architectural sentence-case label (adapts automatically to Light & Dark mode).
+ * Universal Intent Studios Section Eyebrow:
+ * 24px x 1px #F24E1E hairline dash + .type-p3 sentence-case label.
  */
 export function SectionEyebrow({
   children,
@@ -16,21 +17,21 @@ export function SectionEyebrow({
 }: SectionEyebrowProps) {
   const toneClass =
     tone === "dark"
-      ? "text-[#A0A0A0]"
+      ? "text-[#A3A09A]"
       : tone === "light"
         ? "text-[#52504C]"
-        : "text-[#52504C] dark:text-[#A0A0A0]";
+        : "text-[#52504C] dark:text-[#A3A09A]";
 
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2.5 text-[13px] font-medium tracking-normal",
+        "type-p3 inline-flex items-center gap-3",
         toneClass,
         className
       )}
     >
       <span
-        className="h-[1.5px] w-4 bg-[#F24E1E] shrink-0"
+        className="h-[1px] w-6 bg-[#F24E1E] shrink-0"
         aria-hidden="true"
       />
       <span>{children}</span>

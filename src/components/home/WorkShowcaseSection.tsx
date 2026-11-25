@@ -13,13 +13,13 @@ export function WorkShowcaseSection() {
   const [featured, ...secondary] = getFeaturedProjects();
 
   return (
-    <section className="relative overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] py-20 sm:py-24 transition-colors duration-200">
-      <div className="intent-container space-y-10">
+    <section className="relative overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] py-16 lg:py-24 transition-colors duration-200">
+      <div className="intent-container space-y-12">
         {/* Clean, proportional section header */}
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div className="space-y-3 max-w-2xl">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="space-y-4 max-w-2xl">
             <SectionEyebrow>Selected work</SectionEyebrow>
-            <h2 className="text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
+            <h2 className="type-h2 text-[#111111] dark:text-white">
               Featured studio work across fitness, D2C, and software.
             </h2>
           </div>
@@ -28,10 +28,10 @@ export function WorkShowcaseSection() {
           </Button>
         </div>
 
-        {/* Featured Project Card — 80vh height on desktop */}
+        {/* Featured Project Card — 80vh height on desktop, 16px Balanced Modern radius */}
         <Link
           href={`/work/${featured.slug}/`}
-          className="group relative flex flex-col overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] p-6 sm:p-8 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25"
+          className="group relative flex flex-col overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#1F1E1C] p-6 sm:p-8 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25"
         >
           {/* Subtle architectural watermark behind featured photograph */}
           <div
@@ -91,7 +91,7 @@ export function WorkShowcaseSection() {
             <Link
               key={project.slug}
               href={`/work/${project.slug}/`}
-              className="group flex flex-col justify-between gap-5 overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] p-5 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25"
+              className="group flex flex-col justify-between gap-5 overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#1F1E1C] p-6 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25"
             >
               <div className="flex-1 min-h-0 overflow-hidden rounded-[12px]">
                 <ProjectVisualFrame

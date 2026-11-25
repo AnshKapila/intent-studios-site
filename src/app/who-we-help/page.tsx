@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function WhoWeHelpPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-36 pb-16 sm:pt-44 sm:pb-20">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-36 pb-16 sm:pt-44 sm:pb-20">
         <div className="absolute inset-0 bg-grid-dark opacity-55" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
@@ -43,7 +43,7 @@ export default function WhoWeHelpPage() {
               <Link
                 key={industry.slug}
                 href={industry.href}
-                className="group flex flex-col justify-between gap-6 rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-8 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F24E1E]/50"
+                className="group flex flex-col justify-between gap-6 rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-8 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[#F24E1E]/50"
               >
                 <div className="space-y-3">
                   <span className="tabular-nums text-xs font-semibold text-[#F24E1E]">

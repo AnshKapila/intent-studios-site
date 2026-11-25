@@ -32,9 +32,9 @@ interface StepVisualTheme {
 
 const STEP_THEMES: StepVisualTheme[] = [
   {
-    lightBg: "linear-gradient(170deg, #E1F0E7 0%, #F7FBF8 100%)",
-    darkBg: "linear-gradient(170deg, #16261E 0%, #0E1511 100%)",
-    rhythmPillClass: "bg-[#E1F0E7] dark:bg-[#16261E]",
+    lightBg: "linear-gradient(170deg, #E5EFE9 0%, #F7FBF8 100%)",
+    darkBg: "linear-gradient(170deg, #16221C 0%, #121A16 100%)",
+    rhythmPillClass: "bg-[#E5EFE9] dark:bg-[#16221C]",
     heightClass: "lg:min-h-[296px]",
     arrowBgClass: "bg-[#B5D49A] text-[#1E2A14]",
     photo: PHOTOS.studioNotebook,
@@ -45,8 +45,8 @@ const STEP_THEMES: StepVisualTheme[] = [
   },
   {
     lightBg: "linear-gradient(170deg, #FCE6D4 0%, #FFF8F2 100%)",
-    darkBg: "linear-gradient(170deg, #2B1C12 0%, #16100C 100%)",
-    rhythmPillClass: "bg-[#FCE6D4] dark:bg-[#2B1C12]",
+    darkBg: "linear-gradient(170deg, #281C14 0%, #1B1511 100%)",
+    rhythmPillClass: "bg-[#FCE6D4] dark:bg-[#281C14]",
     heightClass: "lg:min-h-[356px]",
     arrowBgClass: "bg-[#F4B98A] text-[#3A1E0A]",
     photo: PHOTOS.stackedBooks,
@@ -56,9 +56,9 @@ const STEP_THEMES: StepVisualTheme[] = [
     initialOffsetY: 96,
   },
   {
-    lightBg: "linear-gradient(170deg, #DEECF5 0%, #F7FAFD 100%)",
-    darkBg: "linear-gradient(170deg, #13212C 0%, #0D1318 100%)",
-    rhythmPillClass: "bg-[#DEECF5] dark:bg-[#13212C]",
+    lightBg: "linear-gradient(170deg, #E4EDF4 0%, #F7FAFD 100%)",
+    darkBg: "linear-gradient(170deg, #151F28 0%, #12181E 100%)",
+    rhythmPillClass: "bg-[#E4EDF4] dark:bg-[#151F28]",
     heightClass: "lg:min-h-[416px]",
     arrowBgClass: "bg-[#9EC7E3] text-[#102636]",
     photo: PHOTOS.sunlitLamp,
@@ -68,9 +68,9 @@ const STEP_THEMES: StepVisualTheme[] = [
     initialOffsetY: 120,
   },
   {
-    lightBg: "linear-gradient(170deg, #E6E1F7 0%, #F9F8FD 100%)",
-    darkBg: "linear-gradient(170deg, #211B30 0%, #120F1A 100%)",
-    rhythmPillClass: "bg-[#E6E1F7] dark:bg-[#211B30]",
+    lightBg: "linear-gradient(170deg, #EAE6F5 0%, #F9F8FD 100%)",
+    darkBg: "linear-gradient(170deg, #1E1A2A 0%, #16141F 100%)",
+    rhythmPillClass: "bg-[#EAE6F5] dark:bg-[#1E1A2A]",
     heightClass: "lg:min-h-[476px]",
     arrowBgClass: "bg-[#111111] text-white dark:bg-[#F24E1E] dark:text-white",
     photo: PHOTOS.darkLightTunnel,
@@ -114,8 +114,8 @@ function StaircaseProcessCard({
     <motion.article
       style={prefersReducedMotion ? undefined : { y, opacity }}
       className={cn(
-        "group relative flex w-full flex-col justify-between overflow-hidden rounded-[24px]",
-        "border border-[#111111]/[0.07] dark:border-white/10",
+        "group relative flex w-full flex-col justify-between overflow-hidden rounded-[16px]",
+        "border border-[#111111]/[0.08] dark:border-white/10",
         "p-6 will-change-transform cursor-default",
         "transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
         "hover:-translate-y-1.5 hover:border-[#111111]/20 dark:hover:border-white/25 hover:shadow-[0_24px_48px_-16px_rgba(17,17,17,0.22)]",
@@ -229,13 +229,13 @@ export function HowWeWorkSection({
   });
 
   return (
-    <section className="relative overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] py-20 sm:py-24 transition-colors duration-200">
+    <section className="relative overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#181817] py-16 lg:py-24 transition-colors duration-200">
       <div className="intent-container relative z-10">
         {/* Taffy-inspired Centered Header */}
         <div className="mx-auto flex max-w-[780px] flex-col items-center text-center">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
 
-          <h2 className="mt-5 text-[clamp(2.1rem,3.8vw,3.1rem)] font-medium leading-[1.06] tracking-[-0.04em] text-[#111111] dark:text-[#F5F5F5]">
+          <h2 className="type-h2 mt-5 text-[#111111] dark:text-white">
             {heading ? (
               heading
             ) : (
@@ -249,25 +249,23 @@ export function HowWeWorkSection({
             )}
           </h2>
 
-          <p className="mt-5 max-w-[500px] text-[16px] sm:text-[17px] leading-[1.55] text-[#52504C] dark:text-[#A0A0A0]">
+          <p className="type-p1 mt-5 max-w-[520px] text-[#52504C] dark:text-[#A3A09A]">
             {intro}
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button
               href={SITE.primaryCta.href}
               variant="primary"
-              size="md"
+              size="lg"
               showArrow
-              className="rounded-full px-6"
             >
               {SITE.primaryCta.label}
             </Button>
             <Button
               href="/services/"
               variant="secondary"
-              size="md"
-              className="rounded-full px-6"
+              size="lg"
             >
               View services
             </Button>
@@ -302,7 +300,7 @@ export function HowWeWorkSection({
             <span
               key={item.rhythmLabel}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-[14px] border border-[#111111]/[0.06] dark:border-white/10 px-4 py-2 text-[13.5px] font-medium",
+                "inline-flex items-center gap-1.5 rounded-[12px] border border-[#111111]/[0.06] dark:border-white/10 px-4 py-2 text-[13.5px] font-medium",
                 item.rhythmPillClass
               )}
             >

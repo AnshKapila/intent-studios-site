@@ -25,7 +25,7 @@ export default function WorkPage() {
   return (
     <>
       {/* 1. Intro: H1 and one line */}
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-36 pb-16 sm:pt-44 sm:pb-20">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-36 pb-16 sm:pt-44 sm:pb-20">
         <div className="absolute inset-0 bg-grid-dark opacity-60" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
@@ -57,7 +57,7 @@ export default function WorkPage() {
               <Link
                 key={project.slug}
                 href={`/work/${project.slug}/`}
-                className="group flex flex-col overflow-hidden rounded-[16px] border border-white/12 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-4 transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-white/25"
+                className="group flex flex-col overflow-hidden rounded-[16px] border border-white/12 bg-[#FAF9F7] dark:bg-[#181817] p-4 transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-white/25"
               >
                 <ProjectVisualFrame project={project} aspect="square" />
                 <div className="mt-5 flex flex-1 flex-col justify-between gap-3 px-1 pb-1">
@@ -83,12 +83,12 @@ export default function WorkPage() {
       </section>
 
       {/* 3. Filters & Full 11-Project Grid */}
-      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16 sm:py-24">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] py-16 sm:py-24">
         <div className="intent-container space-y-8">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
             All projects
           </h2>
-          <Suspense fallback={<div className="h-48 rounded-2xl bg-[#FAF9F7] dark:bg-[#0A0A0A] border border-[#111111]/10 dark:border-white/10" />}>
+          <Suspense fallback={<div className="h-48 rounded-2xl bg-[#FAF9F7] dark:bg-[#181817] border border-[#111111]/10 dark:border-white/10" />}>
             <WorkFilterGrid />
           </Suspense>
         </div>
@@ -97,7 +97,7 @@ export default function WorkPage() {
       {/* 4. Need something specific? */}
       <section className="border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] py-14">
         <div className="intent-container">
-          <div className="flex flex-col gap-5 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-7 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-5 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-7 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1.5 max-w-xl">
               <h2 className="text-xl font-semibold text-[#111111] dark:text-[#F5F5F5]">
                 Need to see something specific to your category?

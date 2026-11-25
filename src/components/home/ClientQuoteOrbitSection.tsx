@@ -35,7 +35,7 @@ export function ClientQuoteOrbitSection() {
   return (
     <section
       aria-label="Client perspective"
-      className="relative flex items-center overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#0A0A0A] py-12 lg:h-[100svh] lg:max-h-[100svh] lg:py-0 transition-colors duration-200"
+      className="relative flex items-center overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#181817] py-16 lg:h-[100svh] lg:max-h-[100svh] lg:py-0 transition-colors duration-200"
     >
       <div className="intent-container relative z-10 w-full">
         {/* Radial orbital container sized cleanly within 100vh (heading/subheading/description removed) */}

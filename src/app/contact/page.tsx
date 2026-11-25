@@ -38,7 +38,7 @@ export default function ContactPage() {
   return (
     <>
       {/* 1. Heading & skip-the-form link */}
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-32 pb-14 sm:pt-40 sm:pb-16">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-32 pb-14 sm:pt-40 sm:pb-16">
         <div className="absolute inset-0 bg-grid-dark opacity-55" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
 
           <aside className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
             {/* What happens next */}
-            <div className="rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:p-7 space-y-4">
+            <div className="rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 sm:p-7 space-y-4">
               <h2 className="text-lg font-semibold text-[#111111] dark:text-[#F5F5F5]">What happens next</h2>
               <ol className="space-y-3.5 text-sm text-[#52504C] dark:text-[#A0A0A0]">
                 <li className="flex gap-3">
@@ -92,7 +92,7 @@ export default function ContactPage() {
             </div>
 
             {/* Other ways: WhatsApp & Email */}
-            <div className="rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:p-7 space-y-4">
+            <div className="rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 sm:p-7 space-y-4">
               <h2 className="text-lg font-semibold text-[#111111] dark:text-[#F5F5F5]">Other ways to reach us</h2>
               <div className="space-y-3">
                 <a

@@ -12,18 +12,18 @@ export function FounderCircleBentoSection() {
   const studioPhoto = PHOTOS.scatteredCard;
 
   return (
-    <section className="relative border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#F5F5F5] py-20 sm:py-24 transition-colors duration-200">
+    <section className="relative border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] text-[#111111] dark:text-white py-16 lg:py-24 transition-colors duration-200">
       <div className="intent-container relative z-10 space-y-12">
         {/* Wireframe Block 7 Header — controlled, balanced proportions */}
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-5 space-y-3">
+          <div className="lg:col-span-5 space-y-4">
             <SectionEyebrow>Founder &amp; community</SectionEyebrow>
-            <h2 className="text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
+            <h2 className="type-h2 text-[#111111] dark:text-white">
               Built by a founder, for founders.
             </h2>
           </div>
           <div className="lg:col-span-7">
-            <p className="max-w-xl text-base leading-[1.6] text-[#52504C] dark:text-[#A0A0A0] lg:ml-auto">
+            <p className="type-p2 max-w-xl text-[#52504C] dark:text-[#A3A09A] lg:ml-auto">
               Direct creative leadership from Ansh Kapila — paired with Intent Circle, our curated space for builders who care how digital products actually work.
             </p>
           </div>
@@ -32,7 +32,7 @@ export function FounderCircleBentoSection() {
         {/* Wireframe Block 7: Asymmetric 3-column × 2-row 6-cell editorial bento */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {/* Cell 1: Founder Note */}
-          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] p-7">
+          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#1F1E1C] p-6 sm:p-7">
             <div className="space-y-3">
               <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
                 Founder’s note

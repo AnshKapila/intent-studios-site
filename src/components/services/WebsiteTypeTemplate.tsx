@@ -16,7 +16,7 @@ export function WebsiteTypeTemplate({ data }: { data: WebsiteTypePageData }) {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-32 pb-16 sm:pt-40 sm:pb-20">
         <div className="absolute inset-0 bg-grid-dark opacity-55" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
@@ -61,7 +61,7 @@ export function WebsiteTypeTemplate({ data }: { data: WebsiteTypePageData }) {
             {data.whatsDifferent.map((item, idx) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 space-y-2.5"
+                className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 space-y-2.5"
               >
                 <span className="tabular-nums text-xs font-semibold text-[#F24E1E]">
                   0{idx + 1}
@@ -83,7 +83,7 @@ export function WebsiteTypeTemplate({ data }: { data: WebsiteTypePageData }) {
       />
 
       {/* Process & Timeline */}
-      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] py-16 sm:py-20">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] py-16 sm:py-20">
         <div className="intent-container grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4 space-y-2">
             <SectionEyebrow>Process &amp; Timeline</SectionEyebrow>

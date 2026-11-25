@@ -24,14 +24,14 @@ export function ClosingBand({
         <div className="mx-auto max-w-2xl text-center">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
 
-          <h2 className="mt-5 text-[clamp(1.9rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
+          <h2 className="type-h2 mt-5 text-[#111111] dark:text-white">
             {headline}{" "}
             <span className="font-editorial font-normal text-[#F24E1E] dark:text-[#FFD1C2]">
               {italicAccent}
             </span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-base leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
+          <p className="type-p1 mx-auto mt-4 max-w-xl text-[#52504C] dark:text-[#A3A09A]">
             {subline}
           </p>
 

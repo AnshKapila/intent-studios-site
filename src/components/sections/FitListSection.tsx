@@ -27,7 +27,7 @@ export function FitListSection({
 
       <div className="grid gap-5 md:grid-cols-2">
         {/* Best fit */}
-        <div className="rounded-2xl border border-[#F24E1E]/25 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:p-8">
+        <div className="rounded-2xl border border-[#F24E1E]/25 bg-[#FAF9F7] dark:bg-[#181817] p-6 sm:p-8">
           <div className="flex items-center gap-2.5">
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#F24E1E]/15 text-[#F24E1E]">
               <Check className="h-4 w-4" aria-hidden="true" />
@@ -45,7 +45,7 @@ export function FitListSection({
         </div>
 
         {/* Not a fit */}
-        <div className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A]/70 p-6 sm:p-8">
+        <div className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817]/70 p-6 sm:p-8">
           <div className="flex items-center gap-2.5">
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#111111]/[0.06] dark:bg-white/[0.06] text-[#52504C] dark:text-[#A0A0A0]">
               <X className="h-4 w-4" aria-hidden="true" />

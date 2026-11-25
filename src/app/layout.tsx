@@ -25,7 +25,7 @@ const instrumentSerif = Instrument_Serif({
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: dark)", color: "#111111" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -81,7 +81,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="min-h-screen bg-white text-[#111111] dark:bg-[#000000] dark:text-[#F5F5F5] antialiased selection:bg-[#F24E1E] selection:text-white transition-colors duration-200">
+      <body className="min-h-screen bg-white text-[#111111] dark:bg-[#111111] dark:text-white antialiased selection:bg-[#F24E1E] selection:text-white transition-colors duration-200">
         <ThemeProvider>
           <MotionProvider>
             <a href="#main-content" className="skip-link">

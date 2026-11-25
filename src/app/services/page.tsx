@@ -41,7 +41,7 @@ export default function ServicesOverviewPage() {
   return (
     <>
       {/* 1. Outcome Headline */}
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-36 pb-14 sm:pt-44 sm:pb-16">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-36 pb-14 sm:pt-44 sm:pb-16">
         <div className="absolute inset-0 bg-grid-dark opacity-60" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-top-right opacity-70" aria-hidden="true" />
 
@@ -79,7 +79,7 @@ export default function ServicesOverviewPage() {
       />
 
       {/* 6. Industry Links */}
-      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16 sm:py-20">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] py-16 sm:py-20">
         <div className="intent-container space-y-8">
           <div className="space-y-2 max-w-2xl">
             <SectionEyebrow>Industries</SectionEyebrow>
@@ -93,7 +93,7 @@ export default function ServicesOverviewPage() {
               <Link
                 key={industry.slug}
                 href={industry.href}
-                className="group flex flex-col justify-between gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-7 transition-[border-color,background-color] duration-200 hover:border-[#F24E1E]/45 hover:bg-[#111111]"
+                className="group flex flex-col justify-between gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-7 transition-[border-color,background-color] duration-200 hover:border-[#F24E1E]/45 hover:bg-[#111111]"
               >
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold text-[#111111] dark:text-[#F5F5F5]">{industry.name}</h3>

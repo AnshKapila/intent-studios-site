@@ -44,7 +44,7 @@ export function WorkFilterGrid() {
   return (
     <div className="space-y-10">
       {/* Filter Controls (URL-synced) */}
-      <div className="rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-5 sm:p-6 space-y-5">
+      <div className="rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-5 sm:p-6 space-y-5">
         <div className="space-y-2.5">
           <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
             Filter by service
@@ -138,7 +138,7 @@ export function WorkFilterGrid() {
 
       {/* Filtered Grid */}
       {filteredProjects.length === 0 ? (
-        <div className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-12 text-center space-y-3">
+        <div className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-12 text-center space-y-3">
           <p className="text-base font-semibold text-[#111111] dark:text-[#F5F5F5]">
             No projects match that exact combination yet.
           </p>
@@ -152,7 +152,7 @@ export function WorkFilterGrid() {
             <Link
               key={project.slug}
               href={`/work/${project.slug}/`}
-              className="group flex flex-col overflow-hidden rounded-[22px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-4 transition-[border-color,transform,background-color] duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-[#101010]"
+              className="group flex flex-col overflow-hidden rounded-[22px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-4 transition-[border-color,transform,background-color] duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-[#101010]"
             >
               <div className="overflow-hidden rounded-[16px]">
                 <ProjectVisualFrame

@@ -52,7 +52,7 @@ export default async function ServiceDetailPage({
   return (
     <>
       {/* 1. H1 & Intro */}
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-32 pb-16 sm:pt-40 sm:pb-20">
         <div className="absolute inset-0 bg-grid-dark opacity-55" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-bottom-right opacity-70" aria-hidden="true" />
 
@@ -109,7 +109,7 @@ export default async function ServiceDetailPage({
               {service.deliverables.map((item, idx) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:p-7 space-y-2.5"
+                  className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 sm:p-7 space-y-2.5"
                 >
                   <span className="tabular-nums text-xs font-semibold text-[#F24E1E]">
                     0{idx + 1}
@@ -134,7 +134,7 @@ export default async function ServiceDetailPage({
               {service.whoItIsFor.map((item) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3.5 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-5 text-sm sm:text-base text-[#111111] dark:text-[#F5F5F5]/90"
+                  className="flex items-start gap-3.5 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-5 text-sm sm:text-base text-[#111111] dark:text-[#F5F5F5]/90"
                 >
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#F24E1E]" aria-hidden="true" />
                   <span>{item}</span>
@@ -147,7 +147,7 @@ export default async function ServiceDetailPage({
 
       {/* Type Pages (Websites Only — Sitemap requirement) */}
       {service.hasTypePages && (
-        <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16 sm:py-20">
+        <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] py-16 sm:py-20">
           <div className="intent-container space-y-8">
             <div className="space-y-2 max-w-2xl">
               <SectionEyebrow>Specialized Builds</SectionEyebrow>
@@ -161,7 +161,7 @@ export default async function ServiceDetailPage({
                 <Link
                   key={typePage.slug}
                   href={typePage.href}
-                  className="group flex flex-col justify-between gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-7 transition-[border-color,background-color] duration-200 hover:border-[#F24E1E]/45 hover:bg-[#111111]"
+                  className="group flex flex-col justify-between gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-7 transition-[border-color,background-color] duration-200 hover:border-[#F24E1E]/45 hover:bg-[#111111]"
                 >
                   <div className="space-y-2">
                     <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#F24E1E] dark:text-[#FFD1C2]">
@@ -199,7 +199,7 @@ export default async function ServiceDetailPage({
       />
 
       {/* 6. What Changes the Price */}
-      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] py-16 sm:py-20">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] py-16 sm:py-20">
         <div className="intent-container grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4 space-y-2">
             <SectionEyebrow>Scope &amp; Investment</SectionEyebrow>
@@ -233,7 +233,7 @@ export default async function ServiceDetailPage({
       />
 
       {/* 8. Related Services */}
-      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] py-16">
         <div className="intent-container space-y-6">
           <h2 className="text-xl font-semibold text-[#111111] dark:text-[#F5F5F5]">Related services</h2>
           <div className="grid gap-4 md:grid-cols-3">
@@ -241,7 +241,7 @@ export default async function ServiceDetailPage({
               <Link
                 key={rel.slug}
                 href={rel.href}
-                className="group flex flex-col justify-between gap-3 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 transition-[border-color] duration-200 hover:border-[#F24E1E]/40"
+                className="group flex flex-col justify-between gap-3 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 transition-[border-color] duration-200 hover:border-[#F24E1E]/40"
               >
                 <div className="space-y-1.5">
                   <h3 className="text-base font-semibold text-[#111111] dark:text-[#F5F5F5]">{rel.name}</h3>

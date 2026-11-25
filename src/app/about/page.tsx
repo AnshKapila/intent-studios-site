@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <>
       {/* 1. Opening: H1, studio frame, CTA */}
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-36 pb-16 sm:pt-44 sm:pb-24">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-36 pb-16 sm:pt-44 sm:pb-24">
         <div className="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-top-right opacity-65" aria-hidden="true" />
 
@@ -51,7 +51,7 @@ export default function AboutPage() {
 
           {/* Editorial Founder & Studio Frame (real photography, zero AI face, zero debug label) */}
           <div className="lg:col-span-5">
-            <div className="relative overflow-hidden rounded-[16px] border border-white/12 bg-[#FAF9F7] dark:bg-[#0A0A0A] min-h-[380px] flex flex-col justify-between">
+            <div className="relative overflow-hidden rounded-[16px] border border-white/12 bg-[#FAF9F7] dark:bg-[#181817] min-h-[380px] flex flex-col justify-between">
               <img
                 src={studioPhoto.src}
                 srcSet={studioPhoto.srcSet}

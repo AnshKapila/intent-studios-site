@@ -52,7 +52,7 @@ export default async function ProjectDetailPage({
   return (
     <>
       {/* 1. Project Header */}
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-32 pb-14 sm:pt-40 sm:pb-16">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-32 pb-14 sm:pt-40 sm:pb-16">
         <div className="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-top-right opacity-65" aria-hidden="true" />
 
@@ -105,7 +105,7 @@ export default async function ProjectDetailPage({
         <div className="intent-container space-y-10">
           <ProjectVisualFrame project={project} aspect="wide" />
 
-          <dl className="grid gap-5 rounded-[22px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:grid-cols-2 lg:grid-cols-4 sm:p-8">
+          <dl className="grid gap-5 rounded-[22px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 sm:grid-cols-2 lg:grid-cols-4 sm:p-8">
             <div className="space-y-1">
               <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-[#52504C] dark:text-[#A0A0A0]">
                 Client
@@ -135,7 +135,7 @@ export default async function ProjectDetailPage({
       </section>
 
       {/* 4. The Situation + 5. The Decisions + 6. What We Made + 7. The Result */}
-      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#000000] py-16 sm:py-24">
+      <section className="border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] py-16 sm:py-24">
         <div className="intent-container max-w-4xl space-y-14">
           <div className="space-y-3">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
@@ -154,7 +154,7 @@ export default async function ProjectDetailPage({
               {project.decisions.map((decision, i) => (
                 <li
                   key={decision}
-                  className="flex items-start gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-5"
+                  className="flex items-start gap-4 rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-5"
                 >
                   <span className="tabular-nums text-xs font-semibold text-[#F24E1E] pt-1">
                     0{i + 1}
@@ -175,7 +175,7 @@ export default async function ProjectDetailPage({
               {project.whatWeMade.map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 space-y-2"
+                  className="rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 space-y-2"
                 >
                   <h3 className="text-base font-semibold text-[#111111] dark:text-[#F5F5F5]">{item.label}</h3>
                   <p className="text-sm leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">{item.description}</p>
@@ -184,7 +184,7 @@ export default async function ProjectDetailPage({
             </div>
           </div>
 
-          <div className="space-y-3 rounded-2xl border border-[#F24E1E]/25 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-7">
+          <div className="space-y-3 rounded-2xl border border-[#F24E1E]/25 bg-[#FAF9F7] dark:bg-[#181817] p-7">
             <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
               The result
             </h2>
@@ -197,7 +197,7 @@ export default async function ProjectDetailPage({
           <ClientQuoteCard {...project.clientQuote} />
 
           {/* 9. Under the Hood (Collapsible) */}
-          <details className="group rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A]">
+          <details className="group rounded-2xl border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817]">
             <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between px-6 py-4 text-base font-semibold text-[#111111] dark:text-[#F5F5F5]">
               <span>Under the hood — technical details</span>
               <ChevronDown

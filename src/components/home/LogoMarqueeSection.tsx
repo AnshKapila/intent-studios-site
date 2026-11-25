@@ -212,7 +212,7 @@ export function LogoMarqueeSection() {
   return (
     <section
       aria-label="Brands we partner with"
-      className="relative overflow-x-clip bg-[#FFFFFF] dark:bg-[#000000] px-4 pt-10 pb-20 sm:px-10 sm:pt-10 sm:pb-24 transition-colors duration-200"
+      className="relative overflow-x-clip bg-white dark:bg-[#111111] px-6 pt-12 pb-20 sm:px-8 lg:px-12 lg:pb-24 transition-colors duration-200"
     >
       <div className="mx-auto flex w-full max-w-[1520px] flex-col items-center gap-0">
         <MarqueeRow items={LOGO_ROW_ONE} direction="left" />

@@ -57,7 +57,7 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="space-y-8" aria-live="polite">
-        <div className="rounded-[24px] border border-[#F24E1E]/40 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-7 sm:p-9 space-y-4">
+        <div className="rounded-[24px] border border-[#F24E1E]/40 bg-[#FAF9F7] dark:bg-[#181817] p-7 sm:p-9 space-y-4">
           <div className="flex items-center gap-3">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F24E1E]/15 text-[#F24E1E]">
               <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
@@ -103,7 +103,7 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#0A0A0A] p-6 sm:p-8 space-y-6"
+      className="rounded-[24px] border border-[#111111]/10 dark:border-white/10 bg-[#FAF9F7] dark:bg-[#181817] p-6 sm:p-8 space-y-6"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">

@@ -35,7 +35,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 h-[72px] bg-white/90 dark:bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#111111]/10 dark:border-white/10 transition-colors duration-200">
+      <header className="fixed inset-x-0 top-0 z-50 h-[72px] bg-white/90 dark:bg-[#111111]/90 backdrop-blur-md border-b border-[#111111]/10 dark:border-white/10 transition-colors duration-200">
         <div className="intent-container flex h-full items-center justify-between gap-4">
           <Link
             href="/"
@@ -120,7 +120,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: INTENT_EASE }}
-            className="lg:hidden fixed inset-x-0 top-[72px] bottom-0 z-40 overflow-y-auto overscroll-contain bg-white dark:bg-[#0A0A0A] border-t border-[#111111]/10 dark:border-white/10"
+            className="lg:hidden fixed inset-x-0 top-[72px] bottom-0 z-40 overflow-y-auto overscroll-contain bg-white dark:bg-[#181817] border-t border-[#111111]/10 dark:border-white/10"
           >
             <div className="intent-container py-8 flex flex-col justify-between min-h-full">
               <nav aria-label="Mobile navigation" className="flex flex-col">

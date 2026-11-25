@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <section className="bg-white dark:bg-[#000000] pt-36 pb-24 sm:pt-44">
+    <section className="bg-white dark:bg-[#111111] pt-36 pb-24 sm:pt-44">
       <div className="intent-container max-w-3xl space-y-8">
         <div className="space-y-4">
           <SectionEyebrow>Legal</SectionEyebrow>

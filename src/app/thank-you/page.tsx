@@ -24,7 +24,7 @@ export default function ThankYouPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-white dark:bg-[#000000] pt-36 pb-16 sm:pt-44 sm:pb-20">
+      <section className="relative overflow-hidden bg-white dark:bg-[#111111] pt-36 pb-16 sm:pt-44 sm:pb-20">
         <div className="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true" />
         <div className="absolute inset-0 glow-edge-bottom-right opacity-65" aria-hidden="true" />
 

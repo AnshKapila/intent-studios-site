@@ -1,45 +1,42 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowUpRight, ArrowDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE, HOME_PROOF_BAR } from "@/data/site";
 import { PHOTOS } from "@/data/media";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { Button } from "@/components/ui/Button";
 import { INTENT_EASE } from "@/lib/motion";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[#FFFFFF] dark:bg-[#000000] text-[#111111] dark:text-[#F5F5F5] pt-[72px] transition-colors duration-200">
+    <section className="relative overflow-hidden bg-white dark:bg-[#111111] text-[#111111] dark:text-white pt-[72px] transition-colors duration-200">
       {/* Warm corner haze (top-right, adapts softly in dark mode) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-[70px] right-[-80px] h-[580px] w-[560px] dark:opacity-35"
+        className="pointer-events-none absolute -top-[70px] right-[-80px] h-[580px] w-[560px] dark:opacity-30"
         style={{
           background:
             "radial-gradient(45% 45% at 50% 50%, rgba(255, 209, 194, 0.45) 0%, rgba(255, 255, 255, 0) 100%)",
         }}
       />
 
-      <div className="intent-container relative z-10 flex flex-col items-center pt-10 pb-8 sm:pt-14 sm:pb-10">
-        {/* Eyebrow: 22px orange dash + Independent by design. */}
+      <div className="intent-container relative z-10 flex flex-col items-center pt-12 pb-8 sm:pt-16 sm:pb-12">
+        {/* Universal Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: INTENT_EASE }}
-          className="inline-flex items-center gap-3"
         >
-          <span className="h-[1px] w-[22px] bg-[#F24E1E] shrink-0" aria-hidden="true" />
-          <span className="text-[13px] font-normal leading-[18px] text-[#52504C] dark:text-[#A0A0A0]">
-            Independent by design.
-          </span>
+          <SectionEyebrow>Independent by design.</SectionEyebrow>
         </motion.div>
 
-        {/* Display H1: Inter Medium 64px + Instrument Serif Italic on conversion, */}
+        {/* Display H1: Locked .type-h1 (64/72 desktop, 40/48 mobile) */}
         <motion.h1
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.06, ease: INTENT_EASE }}
-          className="mt-6 max-w-[920px] text-center text-[clamp(2.25rem,4.6vw,4rem)] font-medium leading-[1.06] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]"
+          className="type-h1 mt-6 max-w-[920px] text-center text-[#111111] dark:text-white"
         >
           Websites &amp; digital products
           <br className="hidden sm:inline" /> designed for{" "}
@@ -47,48 +44,50 @@ export function HeroSection() {
           <br className="hidden sm:inline" /> not just looks.
         </motion.h1>
 
-        {/* Subcopy */}
+        {/* Subcopy: Locked .type-p1 */}
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.14, ease: INTENT_EASE }}
-          className="mt-6 max-w-[660px] text-center text-[16px] sm:text-[17px] font-normal leading-[1.45] text-[#52504C] dark:text-[#A0A0A0]"
+          className="type-p1 mt-6 max-w-[660px] text-center text-[#52504C] dark:text-[#A3A09A]"
         >
           Strategy, design and AI-powered execution.
           <br className="hidden sm:inline" /> Built around your business. Focused on what happens next.
         </motion.p>
 
-        {/* Pill CTA Buttons matching Figma spec */}
+        {/* Unified Forma Kinetic Pill Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.2, ease: INTENT_EASE }}
-          className="mt-8 flex w-full flex-col items-center justify-center gap-3.5 sm:w-auto sm:flex-row"
+          className="mt-8 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row"
         >
-          <Link
+          <Button
             href={SITE.primaryCta.href}
-            className="inline-flex h-[48px] w-full sm:w-auto items-center justify-center rounded-[24px] bg-[#F24E1E] px-8 text-[14px] font-medium text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:bg-[#D94114] hover:-translate-y-[1px] active:translate-y-[1px] active:scale-[0.985]"
+            variant="primary"
+            size="lg"
+            showArrow
+            className="w-full sm:w-auto"
           >
             {SITE.primaryCta.label}
-          </Link>
-          <Link
+          </Button>
+          <Button
             href={SITE.secondaryCta.href}
-            className="group inline-flex h-[48px] w-full sm:w-auto items-center justify-center gap-2 rounded-[24px] border border-[#E4E1DD] dark:border-white/20 bg-[#FFFFFF] dark:bg-[#111111] px-7 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5] transition-[border-color,background-color,transform] duration-150 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:border-[#111111]/35 dark:hover:border-white/40 hover:bg-[#FAFAF8] dark:hover:bg-[#1A1A1A] hover:-translate-y-[1px] active:translate-y-[1px] active:scale-[0.985]"
+            variant="secondary"
+            size="lg"
+            showArrow
+            className="w-full sm:w-auto"
           >
-            <span>{SITE.secondaryCta.label}</span>
-            <ArrowUpRight
-              className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              aria-hidden="true"
-            />
-          </Link>
+            {SITE.secondaryCta.label}
+          </Button>
         </motion.div>
 
-        {/* Micro-line */}
+        {/* Micro-line: Locked .type-p3 */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.45, delay: 0.26, ease: INTENT_EASE }}
-          className="mt-6 text-center text-[13px] font-normal leading-[18px] text-[#52504C] dark:text-[#A0A0A0]"
+          className="type-p3 mt-6 text-center text-[#7C756D] dark:text-[#A3A09A]"
         >
           A considered approach. From first impression to next action.
         </motion.p>
@@ -229,21 +228,21 @@ export function HeroSection() {
       </div>
 
       {/* Sitemap Section 3: Theme-Consistent Proof Bar */}
-      <div className="border-y border-[#E4E1DD] dark:border-white/10 bg-[#FFFFFF] dark:bg-[#0A0A0A] transition-colors duration-200">
+      <div className="border-y border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#181817] transition-colors duration-200">
         <div className="intent-container">
           <dl className="grid gap-6 py-6 sm:grid-cols-2 lg:grid-cols-4">
             {HOME_PROOF_BAR.map((item) => (
               <div
                 key={item.label}
-                className="flex flex-col gap-1 border-l border-[#E4E1DD] dark:border-white/10 pl-4 first:border-l-0 first:pl-0 sm:first:border-l sm:first:pl-4"
+                className="flex flex-col gap-1 border-l border-[#111111]/10 dark:border-white/10 pl-4 first:border-l-0 first:pl-0 sm:first:border-l sm:first:pl-4"
               >
-                <dt className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
+                <dt className="type-p3 text-[#52504C] dark:text-[#A3A09A]">
                   {item.label}
                 </dt>
-                <dd className="tabular-nums text-2xl font-medium tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
+                <dd className="type-h3 tabular-nums text-[#111111] dark:text-white">
                   {item.value}
                 </dd>
-                <p className="text-[14px] leading-snug text-[#52504C] dark:text-[#A0A0A0]">
+                <p className="text-[14px] leading-[22px] text-[#52504C] dark:text-[#A3A09A]">
                   {item.context}
                 </p>
               </div>

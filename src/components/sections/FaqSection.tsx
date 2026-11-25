@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { SITE, type FaqItem } from "@/data/site";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { Button } from "@/components/ui/Button";
 import { INTENT_EASE } from "@/lib/motion";
 
 interface FaqSectionProps {
@@ -24,48 +25,39 @@ export function FaqSection({
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative border-t border-[#111111]/10 dark:border-white/10 bg-[#FFFFFF] dark:bg-[#000000] text-[#111111] dark:text-[#F5F5F5] py-16 sm:py-20 lg:min-h-[780px] flex items-center transition-colors duration-200">
+    <section className="relative border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#181817] text-[#111111] dark:text-white py-16 lg:py-24 lg:min-h-[780px] flex items-center transition-colors duration-200">
       <div className="intent-container w-full">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Eyebrow, Heading, Intro & Quick Contact Card */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-10">
             <div className="space-y-6">
-              {/* Orange 24px hairline dash + 13px label */}
-              <div className="inline-flex items-center gap-3">
-                <span className="h-[1px] w-6 bg-[#F24E1E] shrink-0" aria-hidden="true" />
-                <span className="text-[13px] font-normal leading-[18px] text-[#52504C] dark:text-[#A0A0A0]">
-                  {eyebrow}
-                </span>
-              </div>
+              <SectionEyebrow>{eyebrow}</SectionEyebrow>
 
-              <h2 className="whitespace-pre-line text-[clamp(2rem,3.1vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]">
+              <h2 className="type-h2 whitespace-pre-line text-[#111111] dark:text-white">
                 {heading}
               </h2>
 
-              <p className="max-w-[440px] text-[16px] font-normal leading-[1.4] text-[#52504C] dark:text-[#A0A0A0]">
+              <p className="type-p2 max-w-[440px] text-[#52504C] dark:text-[#A3A09A]">
                 {intro}
               </p>
             </div>
 
-            {/* Quick Contact Card */}
-            <div className="max-w-[465px] rounded-[16px] border border-[#111111]/8 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] p-[26px] space-y-5">
+            {/* Quick Contact Card (16px Balanced Modern radius) */}
+            <div className="max-w-[465px] rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#1F1E1C] p-6 space-y-5">
               <div className="space-y-2.5">
-                <h3 className="text-[24px] font-medium leading-[1.4] tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
+                <h3 className="type-h3 text-[#111111] dark:text-white">
                   Still have a question?
                 </h3>
-                <p className="text-[15px] font-normal leading-[1.45] text-[#52504C] dark:text-[#A0A0A0]">
+                <p className="type-p2 text-[#52504C] dark:text-[#A3A09A]">
                   Let’s talk about what you’re building.
                   <br />A short conversation is a good place to start.
                 </p>
               </div>
 
               <div className="pt-2">
-                <Link
-                  href={SITE.primaryCta.href}
-                  className="inline-flex h-[48px] items-center justify-center rounded-[24px] bg-[#F24E1E] px-7 text-[14px] font-medium text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:bg-[#D94114] hover:-translate-y-[1px] active:translate-y-[1px] active:scale-[0.985]"
-                >
+                <Button href={SITE.primaryCta.href} variant="primary" size="lg" showArrow>
                   {SITE.primaryCta.label}
-                </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -88,7 +80,7 @@ export function FaqSection({
                   onMouseLeave={() =>
                     setHoveredIndex((prev) => (prev === idx ? null : prev))
                   }
-                  className="bg-[#FFFFFF] dark:bg-[#000000] transition-colors duration-200"
+                  className="bg-white dark:bg-[#181817] transition-colors duration-200"
                 >
                   <h3>
                     <button

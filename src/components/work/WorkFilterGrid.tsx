@@ -174,7 +174,7 @@ export function WorkFilterGrid() {
                     {project.outcomeTitle}
                   </p>
                 </div>
-                <div className="flex items-center justify-between border-t border-[#111111]/10 dark:border-white/10 pt-3 text-xs font-semibold text-[#111111] dark:text-[#F5F5F5]">
+                <div className="flex items-center justify-end gap-2 border-t border-[#111111]/10 dark:border-white/10 pt-3 text-xs font-semibold text-[#111111] dark:text-[#F5F5F5]">
                   <span>View case study</span>
                   <ArrowUpRight className="h-4 w-4 text-[#F24E1E]" aria-hidden="true" />
                 </div>

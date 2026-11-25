@@ -78,7 +78,7 @@ function StaircaseProcessCard({
   step: string;
   title: string;
   summary: string;
-  timeline: string;
+  timeline?: string;
   milestone: string;
   theme: StepVisualTheme;
   scrollProgress: MotionValue<number>;
@@ -140,14 +140,16 @@ function StaircaseProcessCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/60 to-black/38" />
       </div>
 
-      {/* Top Row: Step Number + Instrument Serif Italic Timeline */}
+      {/* Top Row */}
       <div className="relative z-10 flex items-start justify-between gap-3">
         <span className="tabular-nums text-[40px] font-medium leading-none tracking-[-0.045em] text-[#111111] dark:text-[#F5F5F5] transition-colors duration-300 group-hover:text-white">
           {step}
         </span>
-        <span className="font-editorial pt-1 text-[20px] font-normal leading-[1.2] tracking-[-0.01em] text-[#6F6F6F] dark:text-[#A0A0A0] transition-colors duration-300 group-hover:text-white/85">
-          {timeline}
-        </span>
+        {timeline && (
+          <span className="font-editorial pt-1 text-[20px] font-normal leading-[1.2] tracking-[-0.01em] text-[#6F6F6F] dark:text-[#A0A0A0] transition-colors duration-300 group-hover:text-white/85">
+            {timeline}
+          </span>
+        )}
       </div>
 
       {/* Bottom Content Stack: Title + Description + Milestone Pill */}
@@ -192,15 +194,17 @@ function StaircaseProcessCard({
 
 interface HowWeWorkSectionProps {
   eyebrow?: string;
+  showEyebrow?: boolean;
   heading?: string;
   intro?: string;
-  stageTimelines?: string[];
+  stageTimelines?: readonly string[];
   fitList?: { bestFit: readonly string[]; notAFit: readonly string[] };
   fitHeading?: string;
 }
 
 export function HowWeWorkSection({
   eyebrow = "How we work",
+  showEyebrow = true,
   heading,
   intro = "Four focused steps, each one building on the last. Direct senior execution from strategy through launch.",
   stageTimelines,
@@ -218,9 +222,14 @@ export function HowWeWorkSection({
       <div className="intent-container relative z-10">
         {/* Taffy-inspired Centered Header */}
         <div className="mx-auto flex max-w-[780px] flex-col items-center text-center">
-          <SectionEyebrow>{eyebrow}</SectionEyebrow>
+          {showEyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
 
-          <h2 className="mt-5 text-[clamp(2.1rem,3.8vw,3.1rem)] font-medium leading-[1.06] tracking-[-0.04em] text-[#111111] dark:text-[#F5F5F5]">
+          <h2
+            className={cn(
+              showEyebrow ? "mt-5" : "mt-0",
+              "text-[clamp(2.1rem,3.8vw,3.1rem)] font-medium leading-[1.06] tracking-[-0.04em] text-[#111111] dark:text-[#F5F5F5]"
+            )}
+          >
             {heading ? (
               heading
             ) : (
@@ -270,7 +279,7 @@ export function HowWeWorkSection({
               step={stage.step}
               title={stage.title}
               summary={stage.summary}
-              timeline={stageTimelines?.[idx] ?? stage.timeline}
+              timeline={stageTimelines?.[idx]}
               milestone={stage.milestone}
               theme={STEP_THEMES[idx]}
               scrollProgress={scrollYProgress}

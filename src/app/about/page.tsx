@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
-import { SITE, STUDIO_PRINCIPLES, HOME_FIT_LIST } from "@/data/site";
+import {
+  SITE,
+  STUDIO_PRINCIPLES,
+  HOME_FIT_LIST,
+  PROCESS_STAGE_TIMELINES,
+} from "@/data/site";
 import { getFeaturedProjects } from "@/data/projects";
 import { PHOTOS } from "@/data/media";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
@@ -154,7 +159,10 @@ export default function AboutPage() {
       </section>
 
       {/* 4. How We Work + Best Fit / Not a Fit */}
-      <HowWeWorkSection fitList={HOME_FIT_LIST} />
+      <HowWeWorkSection
+        fitList={HOME_FIT_LIST}
+        stageTimelines={PROCESS_STAGE_TIMELINES}
+      />
 
       {/* 5. Related Work */}
       <RelatedWorkSection

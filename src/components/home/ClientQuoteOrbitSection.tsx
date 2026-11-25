@@ -2,7 +2,6 @@
 
 import { Newsreader } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
-import { Check, Quote, X } from "lucide-react";
 import styles from "./ClientQuoteOrbitSection.module.css";
 
 const newsreader = Newsreader({
@@ -18,7 +17,7 @@ const TESTIMONIALS = [
     quote:
       "There's a new problem in digital media. If design, engineering, and AI can solve it, we'll find the way.",
     name: "Intent Studios",
-    role: "Video testimonial",
+    role: "",
     company: "Intent Studios",
     avatar: "",
     isPlaceholder: false,
@@ -72,25 +71,6 @@ const AVATAR_PROFILES = [
   ...EXTRA_AVATARS,
 ];
 
-const TRUST_POINTS = [
-  {
-    label: "Direct founder communication",
-    sub: "Zero account-manager relay",
-  },
-  {
-    label: "Verified outcomes only",
-    sub: "No inflated agency numbers",
-  },
-  {
-    label: "Conversion-first UX",
-    sub: "Every screen earns the next click",
-  },
-  {
-    label: "Production code included",
-    sub: "No Figma-to-dev handoff drift",
-  },
-] as const;
-
 function getInitials(name: string) {
   const placeholderNumber = name.match(/(\d+)$/);
   if (name.toLowerCase().includes("placeholder")) {
@@ -112,10 +92,8 @@ export function ClientQuoteOrbitSection() {
   const quoteListRef = useRef<HTMLUListElement>(null);
   const quoteRefs = useRef<Array<HTMLLIElement | null>>([]);
   const avatarRefs = useRef<Array<HTMLSpanElement | null>>([]);
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const pausedRef = useRef(false);
   const [hasEntered, setHasEntered] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
   const [activeQuote, setActiveQuote] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -145,13 +123,6 @@ export function ClientQuoteOrbitSection() {
     mediaQuery.addEventListener("change", updatePreference);
     return () => mediaQuery.removeEventListener("change", updatePreference);
   }, []);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (dialogOpen && dialog && !dialog.open) {
-      dialog.showModal();
-    }
-  }, [dialogOpen]);
 
   useEffect(() => {
     const orbit = orbitRef.current;
@@ -264,11 +235,6 @@ export function ClientQuoteOrbitSection() {
     if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
       pausedRef.current = false;
     }
-  };
-
-  const closeDialog = () => {
-    dialogRef.current?.close();
-    setDialogOpen(false);
   };
 
   const showQuote = (index: number) => {
@@ -412,8 +378,20 @@ export function ClientQuoteOrbitSection() {
                     <span className={styles.authorAvatar} aria-hidden="true">
                       {getInitials(testimonial.name)}
                     </span>
-                    <cite aria-label={`${testimonial.name}, ${testimonial.role}, ${testimonial.company}`}>
-                      {testimonial.name} · {testimonial.role}
+                    <cite
+                      aria-label={[
+                        testimonial.name,
+                        testimonial.role,
+                        testimonial.company === testimonial.name
+                          ? ""
+                          : testimonial.company,
+                      ]
+                        .filter(Boolean)
+                        .join(", ")}
+                    >
+                      {testimonial.role
+                        ? `${testimonial.name} · ${testimonial.role}`
+                        : testimonial.name}
                     </cite>
                   </figcaption>
                 </figure>
@@ -434,67 +412,7 @@ export function ClientQuoteOrbitSection() {
             ))}
           </div>
         </div>
-
-        <button
-          type="button"
-          className={styles.testimonialButton}
-          onClick={() => setDialogOpen(true)}
-          aria-haspopup="dialog"
-          onFocus={pauseOrbit}
-          onBlur={() => {
-            pausedRef.current = false;
-          }}
-        >
-          <Quote aria-hidden="true" />
-          <span>Read the testimonial</span>
-        </button>
-
-        <ul className={styles.trustPoints} aria-label="How we work">
-          {TRUST_POINTS.map((point) => (
-            <li key={point.label} className={styles.trustPoint}>
-              <Check aria-hidden="true" className={styles.trustIcon} />
-              <div>
-                <p className={styles.trustLabel}>{point.label}</p>
-                <p className={styles.trustDescription}>{point.sub}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
       </div>
-
-      <dialog
-        ref={dialogRef}
-        className={styles.dialog}
-        aria-labelledby="client-testimonial-dialog-title"
-        onClose={() => setDialogOpen(false)}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) closeDialog();
-        }}
-      >
-        <div className={styles.dialogContent}>
-          <button
-            type="button"
-            className={styles.dialogClose}
-            aria-label="Close testimonial"
-            onClick={closeDialog}
-          >
-            <X aria-hidden="true" />
-          </button>
-          <p className={styles.dialogEyebrow}>Client testimonial</p>
-          <h3
-            id="client-testimonial-dialog-title"
-            className={`${styles.dialogTitle} ${newsreader.className}`}
-          >
-            Intent Studios
-          </h3>
-          <blockquote className={`${styles.dialogQuote} ${newsreader.className}`}>
-            “{TESTIMONIALS[0].quote}”
-          </blockquote>
-          <p className={styles.dialogNote}>
-            Video is not included. This is the written testimonial.
-          </p>
-        </div>
-      </dialog>
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { SITE, HOME_FIT_LIST } from "@/data/site";
+import { SITE, HOME_FIT_LIST, PROCESS_STAGE_TIMELINES } from "@/data/site";
 import { SERVICES } from "@/data/services";
 import { INDUSTRIES } from "@/data/industries";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
@@ -66,6 +66,7 @@ export default function ServicesOverviewPage() {
       <HowWeWorkSection
         eyebrow="Delivery Process"
         heading="Structured execution across every service."
+        stageTimelines={PROCESS_STAGE_TIMELINES}
         fitList={{
           bestFit: [
             ...HOME_FIT_LIST.bestFit.slice(0, 3),

@@ -7,6 +7,7 @@ import { WorkShowcaseSection } from "@/components/home/WorkShowcaseSection";
 import { ClientQuoteOrbitSection } from "@/components/home/ClientQuoteOrbitSection";
 import { ServicesDeckSection } from "@/components/home/ServicesDeckSection";
 import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
+import { FounderIslandSection } from "@/components/home/FounderIslandSection";
 import { FounderCircleBentoSection } from "@/components/home/FounderCircleBentoSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { ClosingBand } from "@/components/sections/ClosingBand";
@@ -41,10 +42,13 @@ export default function HomePage() {
       {/* 7. Service Cards, Goal Chips & Industry Line (Wireframe Block 4 Stacked Deck) */}
       <ServicesDeckSection />
 
-      {/* 8. How We Work + Best Fit / Not a Fit Lists (Wireframe Block 6 Split) */}
+      {/* 8. How We Work + Best Fit / Not a Fit Lists */}
       <HowWeWorkSection showEyebrow={false} fitList={HOME_FIT_LIST} />
 
-      {/* 9. Founder Block + 10. Intent Circle Teaser (Wireframe Block 7 Editorial Bento) */}
+      {/* 9. About the Founder Full-Width Island */}
+      <FounderIslandSection />
+
+      {/* 10. Intent Circle Community Bento Grid */}
       <FounderCircleBentoSection />
 
       {/* 11. Homepage FAQ */}

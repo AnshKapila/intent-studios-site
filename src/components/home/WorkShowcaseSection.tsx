@@ -2,127 +2,101 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
-import { getFeaturedProjects } from "@/data/projects";
-import { ProjectVisualFrame } from "@/components/ui/ProjectVisualFrame";
+import { PROJECTS } from "@/data/projects";
+import { getProjectPhoto } from "@/data/media";
 import { Button } from "@/components/ui/Button";
-import { INTENT_EASE, VIEWPORT_CONFIG } from "@/lib/motion";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 export function WorkShowcaseSection() {
-  const [featured, ...secondary] = getFeaturedProjects();
+  // 2x2 symmetric Scarlet-style editorial grid (4 distinct studio case studies)
+  const showcaseProjects = PROJECTS.slice(0, 4);
 
   return (
-    <section className="relative overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] py-16 lg:py-24 transition-colors duration-200">
+    <section
+      aria-labelledby="selected-work-heading"
+      className="relative overflow-hidden border-t border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] py-16 lg:py-24 transition-colors duration-200"
+    >
       <div className="intent-container space-y-12">
-        {/* Clean, proportional section header */}
+        {/* Header Row: Left heading + subheading, Right single CTA */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="space-y-4 max-w-2xl">
-            <h2 className="type-h2 text-[#111111] dark:text-white">
-              Featured studio work across fitness, D2C, and software.
+          <div className="space-y-4 max-w-xl">
+            <SectionEyebrow>Selected work</SectionEyebrow>
+            <h2
+              id="selected-work-heading"
+              className="type-h2 text-[#111111] dark:text-white"
+            >
+              Selected{" "}
+              <span className="font-editorial font-normal text-[#52504C] dark:text-[#A3A09A]">
+                Work.
+              </span>
             </h2>
+            <p className="type-p2 text-[#52504C] dark:text-[#A3A09A]">
+              Explore how Intent Studios helps ambitious brands turn digital
+              presence into measurable conversion.
+            </p>
           </div>
+
           <Button href="/work/" variant="secondary" size="md" showArrow>
-            See all work
+            View all work
           </Button>
         </div>
 
-        {/* Featured Project Card — 80vh height on desktop */}
-        <Link
-          href={`/work/${featured.slug}/`}
-          className="group relative flex flex-col overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#1F1E1C] p-6 sm:p-8 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25"
-        >
-          {/* Subtle architectural watermark behind featured photograph */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-[42%] -translate-y-1/2 select-none overflow-hidden text-center"
-          >
-            <span className="whitespace-nowrap font-editorial text-[clamp(4rem,12vw,10rem)] leading-none text-[#111111]/[0.04] dark:text-white/[0.04]">
-              {featured.title} · {featured.title}
-            </span>
-          </div>
+        {/* Scarlet-Style 2-Column Symmetric 4:3 Full-Bleed Grid */}
+        <div className="grid gap-3 md:grid-cols-2">
+          {showcaseProjects.map((project) => {
+            const photo = getProjectPhoto(project.slug);
+            return (
+              <Link
+                key={project.slug}
+                href={`/work/${project.slug}/`}
+                className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[16px] bg-[#181817] focus-visible:outline-2 focus-visible:outline-[#F24E1E]"
+              >
+                {/* Full-bleed photograph with Scarlet 1.07x smooth hover zoom */}
+                <img
+                  src={photo.src}
+                  srcSet={photo.srcSet}
+                  sizes="(max-width: 767px) 100vw, 48vw"
+                  width={photo.width}
+                  height={photo.height}
+                  alt={photo.alt}
+                  loading="lazy"
+                  decoding="async"
+                  data-source={photo.source}
+                  data-subject={photo.subject}
+                  style={{ objectPosition: photo.objectPosition || "50% 50%" }}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
+                />
 
-          <div className="relative z-10 mx-auto flex h-full w-full max-w-4xl flex-col justify-between gap-5">
-            {/* Taste Skill dealt moment: picture-develops */}
-            <motion.div
-              initial={{ opacity: 0.72, scale: 1.03, filter: "grayscale(65%) contrast(95%)" }}
-              whileInView={{ opacity: 1, scale: 1, filter: "grayscale(0%) contrast(100%)" }}
-              viewport={VIEWPORT_CONFIG}
-              transition={{ duration: 1.15, ease: INTENT_EASE }}
-              className="flex-1 min-h-0 overflow-hidden rounded-[12px]"
-            >
-              <ProjectVisualFrame
-                project={featured}
-                aspect="wide"
-                className="h-full aspect-auto"
-              />
-            </motion.div>
-
-            <div className="shrink-0 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div className="space-y-1 max-w-xl">
-                <div className="flex flex-wrap items-center gap-2 text-[13px] text-[#52504C] dark:text-[#A0A0A0]">
-                  <span className="text-[#F24E1E] dark:text-[#FFD1C2] font-medium">{featured.serviceName}</span>
-                  <span className="text-[#111111]/25 dark:text-white/25">·</span>
-                  <span>{featured.industryLabel}</span>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.025em] text-[#111111] dark:text-[#F5F5F5]">
-                  {featured.title}
-                </h3>
-                <p className="text-[15px] leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">
-                  {featured.outcomeTitle}
-                </p>
-              </div>
-
-              <span className="inline-flex h-[44px] shrink-0 items-center gap-2 text-[15px] font-medium text-[#111111] dark:text-[#F5F5F5] group-hover:text-[#F24E1E] dark:group-hover:text-[#FFD1C2] transition-colors duration-150">
-                View case study
-                <ArrowRight
-                  className="h-4 w-4 text-[#F24E1E] transition-transform duration-150 group-hover:translate-x-[3px]"
+                {/* Bottom-up contrast scrim (Scarlet lower-25% mask) */}
+                <div
                   aria-hidden="true"
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(0deg, rgba(17,17,17,0.78) 0%, rgba(17,17,17,0.28) 32%, rgba(17,17,17,0) 60%)",
+                  }}
                 />
-              </span>
-            </div>
-          </div>
-        </Link>
 
-        {/* Two Smaller Featured Projects — each individual card 80vh height on desktop */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {secondary.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/work/${project.slug}/`}
-              className="group flex flex-col justify-between gap-5 overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#1F1E1C] p-6 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25"
-            >
-              <div className="flex-1 min-h-0 overflow-hidden rounded-[12px]">
-                <ProjectVisualFrame
-                  project={project}
-                  aspect="wide"
-                  className="h-full aspect-auto"
-                />
-              </div>
+                {/* Bottom-left title + vertical meta -> "View project →" hover swap */}
+                <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-7">
+                  <h3 className="type-h3 text-white">{project.title}</h3>
 
-              <div className="shrink-0 flex flex-col justify-between gap-4">
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between gap-2 text-[13px] text-[#52504C] dark:text-[#A0A0A0]">
-                    <span>{project.industryLabel}</span>
-                    <span className="text-[#F24E1E] dark:text-[#FFD1C2] font-medium">{project.serviceName}</span>
+                  <div className="mt-1 h-[22px] overflow-hidden text-[14px] leading-[22px]">
+                    <span className="block text-white/75 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
+                      {project.industryLabel} · {project.serviceName}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="inline-flex items-center gap-1.5 font-medium text-white transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full"
+                    >
+                      View project
+                      <ArrowRight className="h-3.5 w-3.5 text-[#F24E1E]" />
+                    </span>
                   </div>
-                  <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
-                    {project.title}
-                  </h3>
-                  <p className="text-[15px] leading-relaxed text-[#52504C] dark:text-[#A0A0A0]">
-                    {project.outcomeTitle}
-                  </p>
                 </div>
-
-                <div className="flex items-center justify-end gap-2 border-t border-[#111111]/10 dark:border-white/10 pt-3.5 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5]">
-                  <span>View case study</span>
-                  <ArrowRight
-                    className="h-4 w-4 text-[#F24E1E] transition-transform duration-150 group-hover:translate-x-[3px]"
-                    aria-hidden="true"
-                  />
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

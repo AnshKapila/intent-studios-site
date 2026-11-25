@@ -113,7 +113,7 @@ export function WorkShowcaseSection() {
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#111111]/10 dark:border-white/10 pt-3.5 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5]">
+                <div className="flex items-center justify-end gap-2 border-t border-[#111111]/10 dark:border-white/10 pt-3.5 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5]">
                   <span>View case study</span>
                   <ArrowRight
                     className="h-4 w-4 text-[#F24E1E] transition-transform duration-150 group-hover:translate-x-[3px]"

@@ -37,6 +37,7 @@
 
 .orbit {
   position: relative;
+  overflow: visible;
   width: min(100%, 1200px);
   aspect-ratio: 16 / 10;
   margin-inline: auto;
@@ -166,6 +167,7 @@
   z-index: 2;
   margin: 0;
   padding: 0;
+  overflow: visible;
   pointer-events: none;
   list-style: none;
 }
@@ -175,30 +177,172 @@
   top: 0;
   left: 0;
   width: min(230px, calc(50vw - 32px));
+  height: 150px;
+  overflow: visible;
+  pointer-events: auto;
+  cursor: default;
+  will-change: transform;
+}
+
+.quoteCard[data-anchor-x="right"] {
+  --card-origin-x: 100%;
+}
+
+.quoteCard[data-anchor-x="left"] {
+  --card-origin-x: 0%;
+}
+
+.quoteCard[data-anchor-y="top"] {
+  --card-origin-y: 0%;
+}
+
+.quoteCard[data-anchor-y="bottom"] {
+  --card-origin-y: 100%;
+}
+
+.quotePanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
   padding: 14px 16px;
   border: 1px solid rgba(17, 17, 17, 0.04);
   border-radius: 16px;
   background: var(--surface);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   text-align: left;
-  cursor: default;
-  pointer-events: auto;
-  will-change: transform;
+  transform: scale(1);
+  transform-origin: var(--card-origin-x, 50%) var(--card-origin-y, 50%);
+  transition:
+    transform 220ms ease-out,
+    box-shadow 220ms ease-out;
 }
 
-.quoteCard:focus-visible,
+.quoteCard[data-anchor-y="bottom"] .quotePanel {
+  top: auto;
+  bottom: 0;
+}
+
+.quoteCard[data-active="true"] {
+  z-index: 5;
+}
+
+.quoteCard[data-active="true"] .quotePanel {
+  transform: scale(1.05);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.14);
+}
+
+.quoteCard:focus-visible {
+  outline: none;
+}
+
+.quoteCard:focus-visible .quotePanel,
+.quoteCard:focus-within .quotePanel {
+  outline: 2px solid var(--brand-orange);
+  outline-offset: 2px;
+}
+
 .carouselDot:focus-visible {
   outline: 2px solid var(--brand-orange);
   outline-offset: 3px;
 }
 
+.quoteDetails {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 220ms ease-out,
+    opacity 220ms ease-out;
+}
+
+.quoteCard[data-expanded="true"] .quoteDetails {
+  max-height: 96px;
+  opacity: 1;
+}
+
+.quoteDetailsInner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 10px;
+}
+
+.quoteDivider {
+  height: 1px;
+  margin-bottom: 3px;
+  background: var(--line);
+}
+
+.projectTag,
+.projectResult {
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 13px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTag {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.projectResult {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.projectLink {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 20px;
+  align-items: center;
+  gap: 3px;
+  color: var(--brand-orange);
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.projectLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.projectLink:focus-visible {
+  outline: 2px solid var(--brand-orange);
+  outline-offset: 2px;
+}
+
+.projectLink svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
 .quoteText {
-  display: block;
   margin: 0;
   color: var(--ink);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.35;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.quoteCard[data-active="true"] .quoteText {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
 }
 
 .quoteAuthor {
@@ -263,8 +407,21 @@
   color: var(--brand-light);
 }
 
-:global(html[data-theme="dark"]) .quoteCard {
+:global(html[data-theme="dark"]) .quotePanel {
   border-color: var(--line);
+  background: var(--surface);
+}
+
+:global(html[data-theme="dark"]) .projectTag {
+  color: var(--brand-light);
+}
+
+:global(html[data-theme="dark"]) .projectResult {
+  color: var(--muted);
+}
+
+:global(html[data-theme="dark"]) .quoteDivider {
+  background: var(--line);
 }
 
 :global(html[data-theme="dark"]) .avatar {
@@ -396,13 +553,26 @@
     width: 85%;
     min-width: 85%;
     min-height: 174px;
+    height: auto !important;
     flex: 0 0 85%;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 14px 16px;
     transform: none !important;
     scroll-snap-align: center;
     scroll-snap-stop: always;
+  }
+
+  .quotePanel {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    min-height: 174px;
+    justify-content: space-between;
+    transform: none;
+  }
+
+  .quoteCard[data-active="true"] .quotePanel {
+    transform: none;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   }
 
   .quoteText {
@@ -461,5 +631,14 @@
 
   .quoteList {
     scroll-behavior: auto;
+  }
+
+  .quotePanel,
+  .quoteDetails {
+    transition: none;
+  }
+
+  .quoteCard[data-active="true"] .quotePanel {
+    transform: none;
   }
 }

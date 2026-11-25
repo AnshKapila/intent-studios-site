@@ -1,10 +1,8 @@
 "use client";
 
-import { ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE, HOME_PROOF_BAR } from "@/data/site";
 import { PHOTOS } from "@/data/media";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { INTENT_EASE } from "@/lib/motion";
 
@@ -22,15 +20,6 @@ export function HeroSection() {
       />
 
       <div className="intent-container relative z-10 flex flex-col items-center pt-12 pb-8 sm:pt-16 sm:pb-12">
-        {/* Universal Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: INTENT_EASE }}
-        >
-          <SectionEyebrow>Independent by design.</SectionEyebrow>
-        </motion.div>
-
         {/* Display H1: Locked .type-h1 (64/72 desktop, 40/48 mobile) */}
         <motion.h1
           initial={{ opacity: 0, y: 14 }}
@@ -38,7 +27,7 @@ export function HeroSection() {
           transition={{ duration: 0.55, delay: 0.06, ease: INTENT_EASE }}
           className="type-h1 mt-6 max-w-[920px] text-center text-[#111111] dark:text-white"
         >
-          Websites &amp; digital products
+          Website &amp; online product
           <br className="hidden sm:inline" /> designed for{" "}
           <span className="font-editorial font-normal">conversion,</span>
           <br className="hidden sm:inline" /> not just looks.
@@ -81,16 +70,6 @@ export function HeroSection() {
             {SITE.secondaryCta.label}
           </Button>
         </motion.div>
-
-        {/* Micro-line: Locked .type-p3 */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.45, delay: 0.26, ease: INTENT_EASE }}
-          className="type-p3 mt-6 text-center text-[#7C756D] dark:text-[#A3A09A]"
-        >
-          A considered approach. From first impression to next action.
-        </motion.p>
 
         {/* 5 Fanned Concept Preview Cards (-7deg, -3deg, 0deg, +3deg, +7deg) */}
         <motion.div
@@ -217,14 +196,6 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Bottom Hero Caption Row */}
-        <div className="mt-4 flex w-full items-center justify-between gap-4 text-[11px] font-normal text-[#52504C] dark:text-[#A0A0A0]">
-          <span>Selected concept directions — not client projects</span>
-          <span className="inline-flex items-center gap-1 shrink-0">
-            Scroll to explore
-            <ArrowDown className="h-3 w-3" aria-hidden="true" />
-          </span>
-        </div>
       </div>
 
       {/* Sitemap Section 3: Theme-Consistent Proof Bar */}

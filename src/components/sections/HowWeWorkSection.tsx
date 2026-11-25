@@ -20,12 +20,9 @@ import { cn } from "@/lib/utils";
 interface StepVisualTheme {
   lightBg: string;
   darkBg: string;
-  rhythmPillClass: string;
   heightClass: string;
   arrowBgClass: string;
   photo: LocalPhotoAsset;
-  rhythmLabel: string;
-  rhythmDetail: string;
   scrollSlice: [number, number];
   initialOffsetY: number;
 }
@@ -34,48 +31,36 @@ const STEP_THEMES: StepVisualTheme[] = [
   {
     lightBg: "linear-gradient(170deg, #E5EFE9 0%, #F7FBF8 100%)",
     darkBg: "linear-gradient(170deg, #16221C 0%, #121A16 100%)",
-    rhythmPillClass: "bg-[#E5EFE9] dark:bg-[#16221C]",
     heightClass: "lg:min-h-[296px]",
     arrowBgClass: "bg-[#B5D49A] text-[#1E2A14]",
     photo: PHOTOS.studioNotebook,
-    rhythmLabel: "01",
-    rhythmDetail: "Audit",
     scrollSlice: [0.0, 0.38],
     initialOffsetY: 72,
   },
   {
     lightBg: "linear-gradient(170deg, #FCE6D4 0%, #FFF8F2 100%)",
     darkBg: "linear-gradient(170deg, #281C14 0%, #1B1511 100%)",
-    rhythmPillClass: "bg-[#FCE6D4] dark:bg-[#281C14]",
     heightClass: "lg:min-h-[356px]",
     arrowBgClass: "bg-[#F4B98A] text-[#3A1E0A]",
     photo: PHOTOS.stackedBooks,
-    rhythmLabel: "02",
-    rhythmDetail: "Strategy",
     scrollSlice: [0.16, 0.56],
     initialOffsetY: 96,
   },
   {
     lightBg: "linear-gradient(170deg, #E4EDF4 0%, #F7FAFD 100%)",
     darkBg: "linear-gradient(170deg, #151F28 0%, #12181E 100%)",
-    rhythmPillClass: "bg-[#E4EDF4] dark:bg-[#151F28]",
     heightClass: "lg:min-h-[416px]",
     arrowBgClass: "bg-[#9EC7E3] text-[#102636]",
     photo: PHOTOS.sunlitLamp,
-    rhythmLabel: "03",
-    rhythmDetail: "Craft",
     scrollSlice: [0.32, 0.74],
     initialOffsetY: 120,
   },
   {
     lightBg: "linear-gradient(170deg, #EAE6F5 0%, #F9F8FD 100%)",
     darkBg: "linear-gradient(170deg, #1E1A2A 0%, #16141F 100%)",
-    rhythmPillClass: "bg-[#EAE6F5] dark:bg-[#1E1A2A]",
     heightClass: "lg:min-h-[476px]",
     arrowBgClass: "bg-[#111111] text-white dark:bg-[#F24E1E] dark:text-white",
     photo: PHOTOS.darkLightTunnel,
-    rhythmLabel: "04",
-    rhythmDetail: "Launch",
     scrollSlice: [0.48, 0.92],
     initialOffsetY: 144,
   },
@@ -93,7 +78,7 @@ function StaircaseProcessCard({
   step: string;
   title: string;
   summary: string;
-  timeline: string;
+  timeline?: string;
   milestone: string;
   theme: StepVisualTheme;
   scrollProgress: MotionValue<number>;
@@ -155,14 +140,16 @@ function StaircaseProcessCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/60 to-black/38" />
       </div>
 
-      {/* Top Row: Step Number + Instrument Serif Italic Timeline */}
+      {/* Top Row */}
       <div className="relative z-10 flex items-start justify-between gap-3">
         <span className="tabular-nums text-[40px] font-medium leading-none tracking-[-0.045em] text-[#111111] dark:text-[#F5F5F5] transition-colors duration-300 group-hover:text-white">
           {step}
         </span>
-        <span className="font-editorial pt-1 text-[20px] font-normal leading-[1.2] tracking-[-0.01em] text-[#6F6F6F] dark:text-[#A0A0A0] transition-colors duration-300 group-hover:text-white/85">
-          {timeline}
-        </span>
+        {timeline && (
+          <span className="font-editorial pt-1 text-[20px] font-normal leading-[1.2] tracking-[-0.01em] text-[#6F6F6F] dark:text-[#A0A0A0] transition-colors duration-300 group-hover:text-white/85">
+            {timeline}
+          </span>
+        )}
       </div>
 
       {/* Bottom Content Stack: Title + Description + Milestone Pill */}
@@ -207,15 +194,17 @@ function StaircaseProcessCard({
 
 interface HowWeWorkSectionProps {
   eyebrow?: string;
+  showEyebrow?: boolean;
   heading?: string;
   intro?: string;
-  stageTimelines?: string[];
+  stageTimelines?: readonly string[];
   fitList?: { bestFit: readonly string[]; notAFit: readonly string[] };
   fitHeading?: string;
 }
 
 export function HowWeWorkSection({
   eyebrow = "How we work",
+  showEyebrow = true,
   heading,
   intro = "Four focused steps, each one building on the last. Direct senior execution from strategy through launch.",
   stageTimelines,
@@ -233,9 +222,14 @@ export function HowWeWorkSection({
       <div className="intent-container relative z-10">
         {/* Taffy-inspired Centered Header */}
         <div className="mx-auto flex max-w-[780px] flex-col items-center text-center">
-          <SectionEyebrow>{eyebrow}</SectionEyebrow>
+          {showEyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
 
-          <h2 className="type-h2 mt-5 text-[#111111] dark:text-white">
+          <h2
+            className={cn(
+              showEyebrow ? "mt-5" : "mt-0",
+              "type-h2 text-[#111111] dark:text-white"
+            )}
+          >
             {heading ? (
               heading
             ) : (
@@ -283,34 +277,11 @@ export function HowWeWorkSection({
               step={stage.step}
               title={stage.title}
               summary={stage.summary}
-              timeline={stageTimelines?.[idx] ?? stage.timeline}
+              timeline={stageTimelines?.[idx]}
               milestone={stage.milestone}
               theme={STEP_THEMES[idx]}
               scrollProgress={scrollYProgress}
             />
-          ))}
-        </div>
-
-        {/* Taffy-style Sprint Rhythm Strip */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-          <span className="font-editorial mr-1 text-[18px] text-[#52504C] dark:text-[#A0A0A0]">
-            Your rhythm:
-          </span>
-          {STEP_THEMES.map((item) => (
-            <span
-              key={item.rhythmLabel}
-              className={cn(
-                "inline-flex items-center gap-1.5 rounded-[12px] border border-[#111111]/[0.06] dark:border-white/10 px-4 py-2 text-[13.5px] font-medium",
-                item.rhythmPillClass
-              )}
-            >
-              <span className="tabular-nums font-semibold text-[#111111] dark:text-[#F5F5F5]">
-                {item.rhythmLabel}
-              </span>
-              <span className="text-[#52504C] dark:text-[#A0A0A0]">
-                {item.rhythmDetail}
-              </span>
-            </span>
           ))}
         </div>
 

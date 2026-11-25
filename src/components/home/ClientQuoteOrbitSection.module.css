@@ -1,0 +1,465 @@
+.section {
+  --brand-light: #f5f4f2;
+  --brand-dark: #0a0a0a;
+  --brand-orange: #ff4b20;
+  --ink: #111111;
+  --muted: #666666;
+  --line: #e5e5e5;
+  --surface: #ffffff;
+
+  position: relative;
+  overflow: hidden;
+  padding: clamp(72px, 8vw, 112px) 0 clamp(64px, 6.7vw, 96px);
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+  background: var(--brand-light);
+  color: var(--ink);
+}
+
+.container {
+  width: min(calc(100% - 40px), 1280px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.heading {
+  max-width: 1000px;
+  margin: 0 auto clamp(28px, 4vw, 52px);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.headingAccent {
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.orbit {
+  position: relative;
+  width: min(100%, 1200px);
+  aspect-ratio: 16 / 10;
+  margin-inline: auto;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.entered {
+  opacity: 1;
+}
+
+.orbitLines,
+.avatarOrbit,
+.quoteList {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.orbitLines {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.outerEllipse,
+.innerEllipse {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.outerEllipse {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.innerEllipse {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 1 5;
+  stroke-linecap: round;
+}
+
+.centerpiece {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: min(48%, 520px);
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+}
+
+.number {
+  position: relative;
+  z-index: 0;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(6rem, 16vw, 14rem);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+}
+
+.numberHighlight {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.numberHighlight::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: rgba(255, 75, 32, 0.14);
+  content: "";
+  clip-path: inset(0 100% 0 0);
+}
+
+.highlightEntered::before {
+  animation: highlight-sweep 700ms ease-out 300ms forwards;
+}
+
+.caption {
+  max-width: 34ch;
+  margin: 20px 0 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.avatarOrbit {
+  pointer-events: none;
+}
+
+.avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  overflow: hidden;
+  border: 3px solid var(--surface);
+  border-radius: 50%;
+  background: var(--brand-light);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.12);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 600;
+  will-change: transform;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.quoteList {
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  list-style: none;
+}
+
+.quoteCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: min(230px, calc(50vw - 32px));
+  padding: 14px 16px;
+  border: 1px solid rgba(17, 17, 17, 0.04);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  cursor: default;
+  pointer-events: auto;
+  will-change: transform;
+}
+
+.quoteCard:focus-visible,
+.carouselDot:focus-visible {
+  outline: 2px solid var(--brand-orange);
+  outline-offset: 3px;
+}
+
+.quoteText {
+  display: block;
+  margin: 0;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.quoteAuthor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+.quoteAuthor cite {
+  font-style: normal;
+}
+
+.authorAvatar {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--brand-light);
+  color: var(--ink);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.placeholderLabel {
+  display: inline-flex;
+  margin-bottom: 8px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(255, 75, 32, 0.12);
+  color: #8d260b;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.carouselDots {
+  display: none;
+}
+
+:global(html[data-theme="dark"]) .section {
+  --line: #222222;
+  --surface: #151515;
+  --muted: #b7b7b7;
+
+  border-top-color: rgba(245, 244, 242, 0.12);
+  background: var(--brand-dark);
+  color: var(--brand-light);
+}
+
+:global(html[data-theme="dark"]) .number,
+:global(html[data-theme="dark"]) .caption,
+:global(html[data-theme="dark"]) .quoteText {
+  color: var(--brand-light);
+}
+
+:global(html[data-theme="dark"]) .quoteCard {
+  border-color: var(--line);
+}
+
+:global(html[data-theme="dark"]) .avatar {
+  border-color: #ffffff;
+  background: var(--surface);
+  color: var(--brand-light);
+}
+
+:global(html[data-theme="dark"]) .authorAvatar {
+  background: #222222;
+  color: var(--brand-light);
+}
+
+:global(html[data-theme="dark"]) .placeholderLabel {
+  color: #ffb09d;
+}
+
+@media (max-width: 1023px) and (min-width: 640px) {
+  .container {
+    width: min(calc(100% - 32px), 900px);
+  }
+
+  .orbit {
+    aspect-ratio: 1 / 1;
+  }
+
+  .quoteCard {
+    width: min(190px, calc(45vw - 24px));
+  }
+
+  .quoteText {
+    font-size: 15px;
+  }
+
+  .quoteCard:nth-child(n + 5),
+  .avatar:nth-child(n + 6) {
+    display: none;
+  }
+
+  .centerpiece {
+    width: min(27%, 280px);
+  }
+
+  .number {
+    font-size: clamp(5rem, 15vw, 11rem);
+  }
+
+}
+
+@media (min-width: 1024px) and (max-width: 1100px) {
+  .centerpiece {
+    width: min(40%, 440px);
+  }
+}
+
+@media (max-width: 639px) {
+  .section {
+    padding: 64px 0;
+  }
+
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .heading {
+    margin-bottom: 28px;
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+    line-height: 1;
+  }
+
+  .orbit {
+    display: flex;
+    width: 100%;
+    aspect-ratio: auto;
+    flex-direction: column;
+    opacity: 1;
+    transition: none;
+  }
+
+  .orbitLines,
+  .avatarOrbit {
+    display: none;
+  }
+
+  .centerpiece {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin: 0 auto 34px;
+    transform: none;
+  }
+
+  .number {
+    font-size: clamp(6rem, 28vw, 9rem);
+  }
+
+  .caption {
+    max-width: 32ch;
+    margin-top: 14px;
+    font-size: 16px;
+  }
+
+  .quoteList {
+    position: relative;
+    inset: auto;
+    display: flex;
+    width: 100%;
+    height: auto;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 7.5% 16px;
+    pointer-events: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .quoteList::-webkit-scrollbar {
+    display: none;
+  }
+
+  .quoteCard,
+  .quoteCard:nth-child(n + 5) {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    width: 85%;
+    min-width: 85%;
+    min-height: 174px;
+    flex: 0 0 85%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px 16px;
+    transform: none !important;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .quoteText {
+    font-size: 17px;
+  }
+
+  .carouselDots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .carouselDot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #c9c7c4;
+    cursor: pointer;
+  }
+
+  .activeDot {
+    width: 24px;
+    border-radius: 999px;
+    background: var(--brand-orange);
+  }
+
+}
+
+@keyframes highlight-sweep {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit {
+    transition: none;
+  }
+
+  .orbit {
+    opacity: 1;
+  }
+
+  .numberHighlight::before,
+  .highlightEntered::before {
+    animation: none;
+    clip-path: none;
+  }
+
+  .quoteList {
+    scroll-behavior: auto;
+  }
+}

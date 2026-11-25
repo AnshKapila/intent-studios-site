@@ -13,7 +13,6 @@ import { SERVICES, type ServiceItem, type ServiceSlug } from "@/data/services";
 import { SERVICE_PHOTOS } from "@/data/media";
 import { INDUSTRIES } from "@/data/industries";
 import { Button } from "@/components/ui/Button";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { cn } from "@/lib/utils";
 
 const SERVICE_TAGS: Record<ServiceSlug, string[]> = {
@@ -152,7 +151,7 @@ function StickyServiceCard({
                 ))}
               </div>
 
-              {/* Unified Card CTA + Website Type sub-links */}
+              {/* Card CTA + Website Type sub-links */}
               <div className="flex flex-wrap items-center gap-4 pt-1">
                 <Button href={service.href} variant="secondary" size="md">
                   {`Explore ${service.shortName}`}
@@ -214,12 +213,10 @@ export function ServicesDeckSection() {
       className="relative overflow-visible border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] py-16 lg:py-24 transition-colors duration-200"
     >
       <div className="intent-container space-y-8 sm:space-y-12">
-        {/* Unified 3-part Header Row + Goal Chips */}
+        {/* Header Row + Goal Chips */}
         <div className="space-y-6">
           <div className="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
-            <SectionEyebrow>Services</SectionEyebrow>
-
-            <h2 className="type-h2 text-[#111111] dark:text-white lg:text-center">
+            <h2 className="type-h2 text-[#111111] dark:text-white">
               Services{" "}
               <span className="font-editorial font-normal">we offer.</span>
             </h2>

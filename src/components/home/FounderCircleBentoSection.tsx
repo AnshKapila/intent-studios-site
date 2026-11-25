@@ -1,199 +1,392 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Newsreader } from "next/font/google";
+import {
+  ArrowUpRight,
+  BookOpen,
+  CalendarDays,
+  MapPin,
+  MessagesSquare,
+  Users,
+} from "lucide-react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import { SITE } from "@/data/site";
 import { INTENT_CIRCLE } from "@/data/intent-circle";
-import { PHOTOS } from "@/data/media";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { Button } from "@/components/ui/Button";
+import styles from "./FounderCircleBentoSection.module.css";
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["italic"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const PLACEHOLDER_COMMUNITY_CONTENT = {
+  // Placeholder event dates and titles; replace them with a confirmed schedule.
+  events: [
+    { date: "2026-12-14", city: "Delhi", title: "Placeholder event" },
+    { date: "2026-12-22", city: "Bangalore", title: "Placeholder event" },
+    { date: "2027-01-08", city: "Delhi", title: "Placeholder event" },
+    { date: "2027-01-20", city: "Bangalore", title: "Placeholder event" },
+    { date: "2027-02-11", city: "Delhi", title: "Placeholder event" },
+  ],
+  resources: [
+    { label: "Playbooks", placement: "playbooksChip", size: "large" },
+    { label: "Event updates", placement: "eventUpdatesChip", size: "large" },
+    { label: "City references", placement: "cityReferencesChip", size: "medium" },
+    { label: "Templates", placement: "templatesChip", size: "medium" },
+    { label: "Teardowns", placement: "teardownsChip", size: "small" },
+    { label: "AI workflows", placement: "aiWorkflowsChip", size: "small" },
+    { label: "Members", placement: "membersChip", size: "featured" },
+  ],
+  steps: [
+    { number: "01", name: "Join", icon: Users },
+    { number: "02", name: "Attend", icon: CalendarDays },
+    { number: "03", name: "Learn", icon: BookOpen },
+    { number: "04", name: "Connect", icon: MessagesSquare },
+  ],
+} as const;
+
+const CALENDAR_MONTHS = [
+  { year: 2026, month: 11 },
+  { year: 2027, month: 0 },
+  { year: 2027, month: 1 },
+] as const;
+
+const WEEKDAYS = ["M", "T", "W", "T", "F", "S", "S"];
+const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+function toDateKey(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function getCalendarDays(year: number, month: number) {
+  const firstDayOffset = (new Date(year, month, 1).getDay() + 6) % 7;
+  const firstVisibleDate = new Date(year, month, 1 - firstDayOffset);
+
+  return Array.from({ length: 42 }, (_, index) => {
+    const date = new Date(firstVisibleDate);
+    date.setDate(firstVisibleDate.getDate() + index);
+    return date;
+  });
+}
+
+function formatEventDate(dateKey: string) {
+  const [year, month, day] = dateKey.split("-").map(Number);
+  return new Intl.DateTimeFormat("en", {
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
 
 export function FounderCircleBentoSection() {
-  const studioPhoto = PHOTOS.scatteredCard;
+  const gridRef = useRef<HTMLDivElement>(null);
+  const hasEntered = useInView(gridRef, { once: true, amount: 0.08 });
+  const prefersReducedMotion = useReducedMotion();
+  const reduceMotion = prefersReducedMotion === true;
+  const today = new Date().toISOString().slice(0, 10);
+  const upcomingEvents = PLACEHOLDER_COMMUNITY_CONTENT.events.filter(
+    (event) => event.date >= today
+  );
+  const nextEventDate = upcomingEvents[0]?.date;
+  const eventByDate = new Map<string, (typeof PLACEHOLDER_COMMUNITY_CONTENT.events)[number]>(
+    upcomingEvents.map((event) => [event.date, event])
+  );
+  const eventSummary = upcomingEvents
+    .map((event) => `${formatEventDate(event.date)} ${event.city}`)
+    .join(", ");
+
+  const tileMotion = (index: number) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 16 },
+    animate:
+      reduceMotion || hasEntered
+        ? { opacity: 1, y: 0 }
+        : { opacity: 0, y: 16 },
+    transition: reduceMotion
+      ? { duration: 0 }
+      : { duration: 0.45, delay: index * 0.06, ease: EASE_OUT },
+  });
 
   return (
-    <section className="relative border-t border-[#111111]/10 dark:border-white/10 bg-[#F7F4F1] dark:bg-[#111111] text-[#111111] dark:text-white py-16 lg:py-24 transition-colors duration-200">
-      <div className="intent-container relative z-10 space-y-12">
-        {/* Wireframe Block 7 Header — controlled, balanced proportions */}
-        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-5 space-y-4">
-            <SectionEyebrow>Founder &amp; community</SectionEyebrow>
-            <h2 className="type-h2 text-[#111111] dark:text-white">
-              Built by a founder, for founders.
-            </h2>
-          </div>
-          <div className="lg:col-span-7">
-            <p className="type-p2 max-w-xl text-[#52504C] dark:text-[#A3A09A] lg:ml-auto">
-              Direct creative leadership from Ansh Kapila — paired with Intent Circle, our curated space for builders who care how digital products actually work.
-            </p>
-          </div>
-        </div>
+    <section className={styles.section} aria-labelledby="intent-circle-title">
+      <div className={styles.container}>
+        <header className={styles.sectionHeader}>
+          <h2 id="intent-circle-title" className={styles.sectionTitle}>
+            Stay close to how{" "}
+            <em className={`${styles.headlineAccent} ${newsreader.className}`}>
+              builders
+            </em>{" "}
+            actually build.
+          </h2>
+          <p className={styles.sectionIntro}>
+            Intent Circle is our community for founders and creative partners.
+            Event updates, practical resources and city meetups, shared by
+            people who ship.
+          </p>
+        </header>
 
-        {/* Wireframe Block 7: Asymmetric 3-column × 2-row 6-cell editorial bento */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {/* Cell 1: Founder Note */}
-          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#1F1E1C] p-6 sm:p-7">
-            <div className="space-y-3">
-              <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
-                Founder’s note
-              </span>
-              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
-                {SITE.founder.name}
-              </h3>
-              <p className="text-[15px] leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
-                {SITE.founder.shortNote}
-              </p>
-            </div>
-            <div className="mt-6 border-t border-[#111111]/10 dark:border-white/10 pt-4">
-              <Link
-                href="/about/"
-                className="group inline-flex min-h-[36px] items-center gap-2 text-[15px] font-medium text-[#111111] dark:text-[#F5F5F5] hover:text-[#F24E1E] transition-colors duration-150"
+        <div ref={gridRef} className={styles.grid}>
+          <motion.article
+            {...tileMotion(0)}
+            className={`${styles.tileItem} ${styles.calendarItem}`}
+          >
+            <div className={`${styles.tile} ${styles.whiteTile} ${styles.calendarTile}`}>
+              <header className={styles.tileHeader}>
+                <h3 className={styles.tileHeading}>Event updates</h3>
+                <p className={styles.tileSubheading}>
+                  Dates, cities and RSVPs in one place
+                </p>
+              </header>
+
+              <div
+                className={styles.calendarData}
+                role="group"
+                aria-label={`Upcoming events: ${eventSummary || "No dates listed"}`}
               >
-                Read the full story
-                <ArrowRight
-                  className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-[3px]"
-                  aria-hidden="true"
-                />
-              </Link>
-            </div>
-          </div>
+                <div className={styles.months} aria-hidden="true">
+                  {CALENDAR_MONTHS.map(({ year, month }) => {
+                    const monthDate = new Date(year, month, 1);
+                    const days = getCalendarDays(year, month);
 
-          {/* Cell 2: Studio Craft & Founder Credentials (real studio material photograph, zero AI face, zero debug label) */}
-          <div className="relative overflow-hidden rounded-[16px] border border-[#111111]/10 bg-[#111111] text-[#F5F5F5] flex flex-col justify-between min-h-[300px]">
-            <img
-              src={studioPhoto.src}
-              srcSet={studioPhoto.srcSet}
-              sizes="(max-width: 1023px) 100vw, 33vw"
-              width={studioPhoto.width}
-              height={studioPhoto.height}
-              alt={studioPhoto.alt}
-              loading="lazy"
-              decoding="async"
-              data-source={studioPhoto.source}
-              data-subject={studioPhoto.subject}
-              className="absolute inset-0 h-full w-full object-cover opacity-35 grayscale"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35"
-            />
+                    return (
+                      <div
+                        key={`${year}-${month}`}
+                        className={styles.month}
+                      >
+                        <h4 className={styles.monthTitle}>
+                          {new Intl.DateTimeFormat("en", {
+                            month: "short",
+                            year: "numeric",
+                          }).format(monthDate)}
+                        </h4>
+                        <div className={styles.weekdays}>
+                          {WEEKDAYS.map((weekday, index) => (
+                            <span key={`${weekday}-${index}`}>{weekday}</span>
+                          ))}
+                        </div>
+                        <div className={styles.days}>
+                          {days.map((date) => {
+                            const dateKey = toDateKey(date);
+                            const event = eventByDate.get(dateKey);
+                            const isInMonth = date.getMonth() === month;
+                            const isNextEvent = dateKey === nextEventDate;
+                            const cityClass =
+                              event?.city === "Bangalore"
+                                ? styles.bangaloreEvent
+                                : styles.delhiEvent;
 
-            <div className="relative z-10 p-7 flex flex-1 flex-col justify-between">
-              <span className="text-[13px] font-medium text-[#FFD1C2]">
-                Creative direction
-              </span>
-
-              <div className="my-6 space-y-1.5">
-                <p className="text-xl font-semibold tracking-[-0.02em] text-[#F5F5F5]">
-                  {SITE.founder.name}
-                </p>
-                <p className="text-[15px] text-[#A0A0A0]">
-                  {SITE.founder.role}
-                </p>
+                            return (
+                              <span
+                                key={dateKey}
+                                className={[
+                                  styles.day,
+                                  !isInMonth ? styles.outsideMonth : "",
+                                  event ? `${styles.eventDay} ${cityClass}` : "",
+                                  isNextEvent ? styles.nextEvent : "",
+                                ]
+                                  .filter(Boolean)
+                                  .join(" ")}
+                              >
+                                {String(date.getDate()).padStart(2, "0")}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <ul className={styles.screenReaderOnly}>
+                  {upcomingEvents.map((event) => (
+                    <li key={event.date}>
+                      {formatEventDate(event.date)} {event.city}: {event.title}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="flex items-center justify-between border-t border-white/15 pt-4 text-[14px] text-[#F5F5F5]/85">
+              <div className={styles.calendarLegend}>
+                <span className={styles.legendChip}>
+                  <span className={`${styles.legendDot} ${styles.delhiDot}`} />
+                  Delhi
+                </span>
+                <span className={styles.legendChip}>
+                  <span className={`${styles.legendDot} ${styles.bangaloreDot}`} />
+                  Bangalore
+                </span>
+              </div>
+            </div>
+          </motion.article>
+
+          <motion.article
+            {...tileMotion(1)}
+            className={`${styles.tileItem} ${styles.stepsItem}`}
+          >
+            <div className={`${styles.tile} ${styles.orangeTile} ${styles.stepsTile}`}>
+              <header className={styles.tileHeader}>
+                <h3 className={styles.tileHeading}>How Intent Circle works</h3>
+                <p className={styles.orangeSubheading}>
+                  Four simple steps to join the room
+                </p>
+              </header>
+
+              <ol className={styles.stepsGrid} aria-label="Four steps to join">
+                {PLACEHOLDER_COMMUNITY_CONTENT.steps.map((step, index) => {
+                  const StepIcon = step.icon;
+
+                  return (
+                    <li key={step.number} className={styles.stepItem}>
+                      <motion.div
+                        className={styles.stepCard}
+                        initial={
+                          reduceMotion ? false : { opacity: 0, scaleY: 0 }
+                        }
+                        animate={
+                          reduceMotion || hasEntered
+                            ? { opacity: 1, scaleY: 1 }
+                            : { opacity: 0, scaleY: 0 }
+                        }
+                        transition={
+                          reduceMotion
+                            ? { duration: 0 }
+                            : {
+                                duration: 0.42,
+                                delay: 0.18 + index * 0.12,
+                                ease: EASE_OUT,
+                              }
+                        }
+                      >
+                        <span className={styles.stepNumber}>{step.number}</span>
+                        <StepIcon
+                          className={styles.stepIcon}
+                          strokeWidth={1.6}
+                          aria-hidden="true"
+                        />
+                        <span className={styles.stepName}>{step.name}</span>
+                      </motion.div>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          </motion.article>
+
+          <motion.article
+            {...tileMotion(2)}
+            className={`${styles.tileItem} ${styles.numberItem}`}
+          >
+            <div className={`${styles.tile} ${styles.darkTile} ${styles.numberTile}`}>
+              <h3 className={styles.cityNumber}>02</h3>
+              <p className={styles.cityCaption}>
+                Cities at launch. Delhi and Bangalore.
+              </p>
+              <div className={styles.cityChips}>
+                <span className={styles.cityChip}>
+                  <MapPin aria-hidden="true" />
+                  Delhi
+                </span>
+                <span className={styles.cityChip}>
+                  <MapPin aria-hidden="true" />
+                  Bangalore
+                </span>
+              </div>
+            </div>
+          </motion.article>
+
+          <motion.article
+            {...tileMotion(3)}
+            className={`${styles.tileItem} ${styles.resourcesItem}`}
+          >
+            <div className={`${styles.tile} ${styles.whiteTile} ${styles.resourcesTile}`}>
+              <header className={styles.tileHeader}>
+                <h3 className={styles.tileHeading}>What members get</h3>
+                <p className={styles.tileSubheading}>
+                  Resources, references and updates
+                </p>
+              </header>
+              <div className={styles.tagCloud} aria-label="Community resources">
+                {PLACEHOLDER_COMMUNITY_CONTENT.resources.map((resource) => (
+                  <span
+                    key={resource.label}
+                    className={[
+                      styles.resourceChip,
+                      styles[resource.size],
+                      styles[resource.placement],
+                    ].join(" ")}
+                  >
+                    {resource.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.article>
+
+          <motion.article
+            {...tileMotion(4)}
+            className={`${styles.tileItem} ${styles.hostItem}`}
+          >
+            <div className={`${styles.tile} ${styles.darkTile} ${styles.hostTile}`}>
+              <p className={styles.tileSubheading}>Hosted by</p>
+              <h3 className={styles.hostName}>{SITE.founder.name}</h3>
+              <p className={styles.hostRole}>{SITE.founder.role}</p>
+              <div className={styles.hostLinks}>
                 <a
                   href={SITE.founder.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white underline decoration-white/25 underline-offset-4"
+                  className={styles.tileLink}
                 >
-                  {SITE.founder.instagramHandle}
+                  <span>{SITE.founder.instagramHandle}</span>
+                  <ArrowUpRight aria-hidden="true" />
                 </a>
                 <a
                   href={SITE.founder.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white underline decoration-white/25 underline-offset-4"
+                  className={styles.tileLink}
                 >
-                  LinkedIn
+                  <span>LinkedIn</span>
+                  <ArrowUpRight aria-hidden="true" />
                 </a>
               </div>
             </div>
-          </div>
+          </motion.article>
 
-          {/* Cell 3: Signature #F24E1E Accent Card — Intent Circle Teaser */}
-          <div className="relative overflow-hidden rounded-[16px] bg-[#F24E1E] p-7 text-white flex flex-col justify-between min-h-[300px]">
-            <span className="text-[13px] font-medium text-white/90">
-              {INTENT_CIRCLE.name}
-            </span>
-
-            <div className="my-6 space-y-3">
-              <h3 className="text-2xl font-semibold leading-[1.15] tracking-[-0.025em]">
-                Stay close to how we build.
-              </h3>
-              <p className="text-[15px] leading-[1.6] text-white/92">
-                {INTENT_CIRCLE.teaserSentence}
-              </p>
+          <motion.article
+            {...tileMotion(5)}
+            className={`${styles.tileItem} ${styles.joinItem}`}
+          >
+            <div className={`${styles.tile} ${styles.whiteTile} ${styles.joinTile}`}>
+              <div className={styles.joinCopy}>
+                <h3 className={styles.joinTitle}>Join Intent Circle</h3>
+                <p className={styles.joinDescription}>
+                  Get event updates, resources and city meetups first.
+                </p>
+              </div>
+              <div className={styles.joinActions}>
+                <Link
+                  href={INTENT_CIRCLE.href}
+                  className={`${styles.joinPrimary} ${styles.joinLink}`}
+                >
+                  <span>Join Intent Circle</span>
+                  <ArrowUpRight aria-hidden="true" />
+                </Link>
+                <Link
+                  href={SITE.primaryCta.href}
+                  className={`${styles.joinSecondary} ${styles.joinLink}`}
+                >
+                  <span>Book a 15-minute discovery call</span>
+                  <ArrowUpRight aria-hidden="true" />
+                </Link>
+              </div>
             </div>
-
-            <div>
-              <Button href={INTENT_CIRCLE.href} variant="light-primary" size="md" showArrow>
-                {INTENT_CIRCLE.teaserCta}
-              </Button>
-            </div>
-          </div>
-
-          {/* Cell 4: Studio Standard Card */}
-          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] p-7">
-            <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
-              Design philosophy
-            </span>
-            <div className="my-6 space-y-2">
-              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
-                Craft earns trust.
-              </h3>
-              <p className="text-[15px] leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
-                Spacing rhythm, typographic contrast, micro-interactions, and load speed are not polish — they are why visitors trust you.
-              </p>
-            </div>
-            <div className="h-[2px] w-12 bg-[#F24E1E]" aria-hidden="true" />
-          </div>
-
-          {/* Cell 5: High-Contrast Card — Direct Partnership */}
-          <div className="relative overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-[#111111] dark:bg-[#161616] p-7 text-[#F5F5F5] flex flex-col justify-between">
-            <span className="text-[13px] font-medium text-[#A0A0A0]">
-              Direct access
-            </span>
-            <div className="my-6 space-y-2">
-              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#F5F5F5]">
-                No account managers.
-              </h3>
-              <p className="text-[15px] leading-[1.6] text-[#A0A0A0]">
-                You speak directly with the people designing your system and writing your production code.
-              </p>
-            </div>
-            <p className="text-[13px] font-medium text-[#FFD1C2]">
-              Practical innovation · Honest pushback
-            </p>
-          </div>
-
-          {/* Cell 6: Action Card */}
-          <div className="flex flex-col justify-between rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] p-7">
-            <div className="space-y-2">
-              <span className="text-[13px] font-medium text-[#52504C] dark:text-[#A0A0A0]">
-                Next step
-              </span>
-              <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#F5F5F5]">
-                Have a project in mind?
-              </h3>
-              <p className="text-[15px] leading-[1.6] text-[#52504C] dark:text-[#A0A0A0]">
-                Bring your current site, product idea, or launch goal to a 15-minute discovery call.
-              </p>
-            </div>
-            <div className="mt-6">
-              <Button
-                href={SITE.primaryCta.href}
-                variant="primary"
-                size="md"
-                showArrow
-                className="w-full"
-              >
-                {SITE.primaryCta.label}
-              </Button>
-            </div>
-          </div>
+          </motion.article>
         </div>
       </div>
     </section>

@@ -1,0 +1,912 @@
+.section {
+  --brand-light: #f5f4f2;
+  --brand-dark: #0a0a0a;
+  --brand-orange: #ff4b20;
+  --ink: #111111;
+  --muted: #666666;
+  --line: #e5e5e5;
+  --tile-white: #ffffff;
+  --soft-surface: #f5f4f2;
+  --soft-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+
+  padding-block: clamp(64px, 7vw, 104px);
+  background: var(--brand-light);
+  color: var(--ink);
+}
+
+.container {
+  width: min(calc(100% - 40px), 1400px);
+  margin-inline: auto;
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  grid-column: span 5;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(36px, 4.2vw, 64px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.headlineAccent {
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.sectionIntro {
+  grid-column: span 7;
+  max-width: 62ch;
+  margin: 0 0 0 auto;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows:
+    minmax(270px, auto)
+    minmax(250px, auto)
+    minmax(280px, auto)
+    minmax(210px, auto);
+  grid-template-areas:
+    "calendar calendar calendar calendar calendar calendar steps steps steps steps steps steps"
+    "number number number number number number steps steps steps steps steps steps"
+    "number number number number number number resources resources resources resources resources resources"
+    "host host host host join join join join join join join join";
+  gap: 8px;
+}
+
+.tileItem {
+  display: flex;
+  min-width: 0;
+}
+
+.calendarItem {
+  grid-area: calendar;
+}
+
+.stepsItem {
+  grid-area: steps;
+}
+
+.numberItem {
+  grid-area: number;
+}
+
+.resourcesItem {
+  grid-area: resources;
+}
+
+.hostItem {
+  grid-area: host;
+}
+
+.joinItem {
+  grid-area: join;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 24px;
+  border-radius: 24px;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.tile:hover {
+  z-index: 1;
+  transform: translateY(-4px);
+}
+
+.whiteTile {
+  border: 1px solid var(--line);
+  background: var(--tile-white);
+  color: var(--ink);
+}
+
+.whiteTile:hover {
+  box-shadow: var(--soft-shadow);
+}
+
+.darkTile {
+  background: var(--brand-dark);
+  color: var(--brand-light);
+}
+
+.orangeTile {
+  background: var(--brand-orange);
+  color: var(--tile-white);
+}
+
+.tileHeader {
+  display: grid;
+  gap: 4px;
+}
+
+.tileHeading {
+  margin: 0;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.tileSubheading {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.calendarData {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.months {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.month {
+  min-width: 0;
+}
+
+.monthTitle {
+  margin: 0 0 5px;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.weekdays,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  justify-items: center;
+  gap: 1px;
+  text-align: center;
+}
+
+.weekdays {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.days {
+  grid-auto-rows: 18px;
+  margin-top: 3px;
+}
+
+.day {
+  position: relative;
+  display: inline-flex;
+  width: min(100%, 20px);
+  aspect-ratio: 1;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: inherit;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.outsideMonth {
+  color: var(--muted);
+  opacity: 0.4;
+}
+
+.eventDay {
+  z-index: 0;
+  color: var(--tile-white);
+  font-weight: 700;
+}
+
+.delhiEvent,
+.delhiDot {
+  background: var(--brand-dark);
+}
+
+.bangaloreEvent,
+.bangaloreDot {
+  background: var(--brand-orange);
+}
+
+.bangaloreEvent {
+  color: var(--brand-dark);
+}
+
+.nextEvent {
+  box-shadow:
+    0 0 0 2px var(--calendar-background, var(--tile-white)),
+    0 0 0 3px var(--event-ring, var(--brand-dark));
+}
+
+.calendarLegend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.legendChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft-surface);
+  color: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.legendDot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+}
+
+.screenReaderOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.numberTile {
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.cityNumber {
+  margin: 0;
+  color: var(--brand-light);
+  font-size: clamp(140px, 22vw, 320px);
+  font-weight: 700;
+  line-height: 0.78;
+  letter-spacing: -0.05em;
+}
+
+.cityCaption {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--brand-light);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.cityChips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cityChip {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--tile-white);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.cityChip svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+}
+
+.stepsTile {
+  justify-content: space-between;
+}
+
+.orangeSubheading {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--tile-white);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.orangeTile .tileHeading {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.stepsGrid {
+  display: grid;
+  height: 232px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepItem {
+  display: flex;
+  min-width: 0;
+  align-items: flex-end;
+}
+
+.stepItem:nth-child(1) {
+  height: 142px;
+}
+
+.stepItem:nth-child(2) {
+  height: 170px;
+}
+
+.stepItem:nth-child(3) {
+  height: 200px;
+}
+
+.stepItem:nth-child(4) {
+  height: 228px;
+}
+
+.stepCard {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 10px;
+  transform-origin: bottom;
+  border-radius: 16px;
+  background: var(--tile-white);
+  color: var(--ink);
+}
+
+.stepNumber {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.stepIcon {
+  width: 28px;
+  height: 28px;
+  margin: auto;
+  flex: 0 0 auto;
+}
+
+.stepName {
+  align-self: flex-start;
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.resourcesTile {
+  justify-content: space-between;
+}
+
+.tagCloud {
+  position: relative;
+  height: 220px;
+  margin-top: 14px;
+}
+
+.resourceChip {
+  position: absolute;
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft-surface);
+  color: var(--ink);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.large {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.medium {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.small {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.featured {
+  min-height: 48px;
+  padding: 12px 20px;
+  border-color: var(--brand-orange);
+  background: var(--brand-orange);
+  color: var(--tile-white);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.playbooksChip {
+  top: 8%;
+  left: 3%;
+}
+
+.eventUpdatesChip {
+  top: 8%;
+  right: 3%;
+}
+
+.cityReferencesChip {
+  top: 42%;
+  left: 12%;
+}
+
+.templatesChip {
+  top: 42%;
+  left: 52%;
+}
+
+.teardownsChip {
+  bottom: 7%;
+  left: 7%;
+}
+
+.aiWorkflowsChip {
+  right: 32%;
+  bottom: 7%;
+}
+
+.membersChip {
+  top: 47%;
+  right: 7%;
+  transform: rotate(-45deg);
+}
+
+.hostTile {
+  justify-content: center;
+}
+
+.hostTile .tileSubheading,
+.hostRole {
+  color: rgba(245, 244, 242, 0.74);
+}
+
+.hostName {
+  margin: 8px 0 0;
+  color: var(--brand-light);
+  font-size: clamp(24px, 2.2vw, 32px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.hostRole {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.hostLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-top: 18px;
+}
+
+.tileLink {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 5px;
+  color: var(--brand-light);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 160ms ease;
+}
+
+.tileLink:hover {
+  color: var(--brand-orange);
+}
+
+.tileLink svg,
+.joinLink svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.joinTile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.joinCopy {
+  max-width: 34ch;
+}
+
+.joinTitle {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.joinDescription {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.joinActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.joinLink {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.joinPrimary {
+  border-color: var(--brand-orange);
+  background: var(--brand-orange);
+  color: var(--brand-dark);
+}
+
+.joinPrimary:hover {
+  background: var(--tile-white);
+  border-color: var(--tile-white);
+  color: var(--ink);
+}
+
+.joinSecondary {
+  border-color: var(--line);
+  background: transparent;
+  color: var(--ink);
+}
+
+.joinSecondary:hover {
+  border-color: var(--brand-dark);
+  background: var(--brand-dark);
+  color: var(--brand-light);
+}
+
+.section a:focus-visible,
+.section button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.hostTile a:focus-visible {
+  outline-color: var(--brand-light);
+}
+
+:global(html[data-theme="dark"]) .section {
+  --line: #222222;
+  --tile-white: #151515;
+  --soft-surface: #1d1d1d;
+  --muted: #b7b7b7;
+  --calendar-background: #151515;
+  --event-ring: #f5f4f2;
+
+  background: var(--brand-dark);
+  color: var(--brand-light);
+}
+
+:global(html[data-theme="dark"]) .whiteTile {
+  border-color: var(--line);
+  color: var(--brand-light);
+}
+
+:global(html[data-theme="dark"]) .whiteTile .tileSubheading,
+:global(html[data-theme="dark"]) .sectionIntro {
+  color: var(--muted);
+}
+
+:global(html[data-theme="dark"]) .joinSecondary:hover {
+  border-color: var(--brand-light);
+  background: var(--brand-light);
+  color: var(--brand-dark);
+}
+
+@media (max-width: 1023px) {
+  .sectionHeader {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 16px;
+  }
+
+  .sectionTitle,
+  .sectionIntro {
+    grid-column: auto;
+  }
+
+  .sectionIntro {
+    margin: 0;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-template-areas:
+      "calendar"
+      "steps"
+      "number"
+      "resources"
+      "host"
+      "join";
+  }
+
+  .months {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .month:nth-child(n + 3) {
+    display: none;
+  }
+
+  .calendarTile {
+    min-height: 290px;
+  }
+
+  .stepsTile {
+    min-height: 390px;
+  }
+
+  .numberTile {
+    min-height: 340px;
+  }
+
+  .resourcesTile {
+    min-height: 340px;
+  }
+
+  .hostTile,
+  .joinTile {
+    min-height: 190px;
+  }
+}
+
+@media (max-width: 639px) {
+  .section {
+    padding-block: 56px;
+  }
+
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .sectionHeader {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .sectionTitle {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+
+  .tile {
+    padding: 20px;
+  }
+
+  .months {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .month:nth-child(n + 2) {
+    display: none;
+  }
+
+  .calendarTile {
+    min-height: 300px;
+  }
+
+  .days {
+    grid-auto-rows: 20px;
+  }
+
+  .day {
+    max-width: 22px;
+    font-size: 10px;
+  }
+
+  .numberTile {
+    min-height: 300px;
+    gap: 16px;
+  }
+
+  .cityNumber {
+    font-size: clamp(140px, 22vw, 220px);
+  }
+
+  .stepsTile {
+    min-height: 310px;
+  }
+
+  .orangeSubheading {
+    font-size: 20px;
+  }
+
+  .stepsGrid {
+    height: 156px;
+    gap: 7px;
+    margin-top: 18px;
+  }
+
+  .stepItem:nth-child(1) {
+    height: 92px;
+  }
+
+  .stepItem:nth-child(2) {
+    height: 110px;
+  }
+
+  .stepItem:nth-child(3) {
+    height: 132px;
+  }
+
+  .stepItem:nth-child(4) {
+    height: 156px;
+  }
+
+  .stepCard {
+    padding: 8px 5px;
+    border-radius: 12px;
+  }
+
+  .stepNumber {
+    font-size: 10px;
+  }
+
+  .stepIcon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .stepName {
+    font-size: clamp(12px, 3.8vw, 16px);
+  }
+
+  .resourcesTile {
+    min-height: 320px;
+  }
+
+  .tagCloud {
+    display: flex;
+    height: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .tagCloud .resourceChip {
+    position: static;
+    min-height: 40px;
+    padding: 9px 13px;
+    transform: none;
+  }
+
+  .tagCloud .large {
+    font-size: 16px;
+  }
+
+  .tagCloud .medium {
+    font-size: 14px;
+  }
+
+  .tagCloud .small {
+    font-size: 13px;
+  }
+
+  .tagCloud .featured {
+    font-size: 18px;
+  }
+
+  .hostTile,
+  .joinTile {
+    min-height: 0;
+  }
+
+  .joinTile {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .joinActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .joinLink {
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tileLink,
+  .joinLink {
+    transition: none;
+  }
+
+  .tile:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

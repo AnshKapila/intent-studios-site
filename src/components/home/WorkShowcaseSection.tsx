@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { getFeaturedProjects } from "@/data/projects";
 import { ProjectVisualFrame } from "@/components/ui/ProjectVisualFrame";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { INTENT_EASE, VIEWPORT_CONFIG } from "@/lib/motion";
 
@@ -18,7 +17,6 @@ export function WorkShowcaseSection() {
         {/* Clean, proportional section header */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-4 max-w-2xl">
-            <SectionEyebrow>Selected work</SectionEyebrow>
             <h2 className="type-h2 text-[#111111] dark:text-white">
               Featured studio work across fitness, D2C, and software.
             </h2>
@@ -28,7 +26,7 @@ export function WorkShowcaseSection() {
           </Button>
         </div>
 
-        {/* Featured Project Card — 80vh height on desktop, 16px Balanced Modern radius */}
+        {/* Featured Project Card — 80vh height on desktop */}
         <Link
           href={`/work/${featured.slug}/`}
           className="group relative flex flex-col overflow-hidden rounded-[16px] border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#1F1E1C] p-6 sm:p-8 lg:h-[80svh] lg:max-h-[80svh] transition-[border-color,transform] duration-200 hover:-translate-y-[2px] hover:border-[#111111]/25 dark:hover:border-white/25"
@@ -115,7 +113,7 @@ export function WorkShowcaseSection() {
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#111111]/10 dark:border-white/10 pt-3.5 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5]">
+                <div className="flex items-center justify-end gap-2 border-t border-[#111111]/10 dark:border-white/10 pt-3.5 text-[14px] font-medium text-[#111111] dark:text-[#F5F5F5]">
                   <span>View case study</span>
                   <ArrowRight
                     className="h-4 w-4 text-[#F24E1E] transition-transform duration-150 group-hover:translate-x-[3px]"

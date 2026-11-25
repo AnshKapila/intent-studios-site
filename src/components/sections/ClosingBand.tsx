@@ -1,30 +1,25 @@
 import { SITE } from "@/data/site";
 import { Button } from "@/components/ui/Button";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 interface ClosingBandProps {
-  eyebrow?: string;
   headline?: string;
   italicAccent?: string;
   subline?: string;
 }
 
 export function ClosingBand({
-  eyebrow = "Start a conversation",
   headline = "Ready to build something with",
   italicAccent = "actual intent?",
   subline = "Tell us where your business stands today. We will give you an honest assessment and a clear next step in 15 minutes.",
 }: ClosingBandProps) {
   return (
-    <section className="relative overflow-hidden bg-warm-dark border-t border-[#111111]/10 dark:border-white/10 py-20 sm:py-24 transition-colors duration-200">
+    <section className="relative overflow-hidden bg-warm-dark border-t border-[#111111]/10 dark:border-white/10 py-16 lg:py-24 transition-colors duration-200">
       <div className="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true" />
       <div className="absolute inset-0 glow-edge-bottom-right opacity-40 dark:opacity-100" aria-hidden="true" />
 
       <div className="intent-container relative z-10">
         <div className="mx-auto max-w-2xl text-center">
-          <SectionEyebrow>{eyebrow}</SectionEyebrow>
-
-          <h2 className="type-h2 mt-5 text-[#111111] dark:text-white">
+          <h2 className="type-h2 text-[#111111] dark:text-white">
             {headline}{" "}
             <span className="font-editorial font-normal text-[#F24E1E] dark:text-[#FFD1C2]">
               {italicAccent}

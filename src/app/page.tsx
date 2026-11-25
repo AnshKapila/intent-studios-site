@@ -42,7 +42,7 @@ export default function HomePage() {
       <ServicesDeckSection />
 
       {/* 8. How We Work + Best Fit / Not a Fit Lists (Wireframe Block 6 Split) */}
-      <HowWeWorkSection fitList={HOME_FIT_LIST} />
+      <HowWeWorkSection showEyebrow={false} fitList={HOME_FIT_LIST} />
 
       {/* 9. Founder Block + 10. Intent Circle Teaser (Wireframe Block 7 Editorial Bento) */}
       <FounderCircleBentoSection />

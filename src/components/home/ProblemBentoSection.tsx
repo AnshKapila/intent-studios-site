@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play, Plus, ArrowUpRight, Sparkles } from "lucide-react";
+import { Plus, ArrowUpRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProblemMessage {
@@ -275,7 +275,6 @@ export function ProblemBentoSection() {
 
   const [isInView, setIsInView] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isManuallyPaused, setIsManuallyPaused] = useState(false);
   const [likedMap, setLikedMap] = useState<Record<string, boolean>>({});
 
   // Track user manual wheel/touch interaction so auto-scroll yields immediately
@@ -304,7 +303,7 @@ export function ProblemBentoSection() {
 
   // Video-style smooth downward auto-scroll when in view + seamless infinite loop
   useEffect(() => {
-    if (!isInView || isHovered || isManuallyPaused) return;
+    if (!isInView || isHovered) return;
     if (typeof window === "undefined") return;
 
     const prefersReduced = window.matchMedia(
@@ -338,7 +337,7 @@ export function ProblemBentoSection() {
 
     rafId = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(rafId);
-  }, [isInView, isHovered, isManuallyPaused]);
+  }, [isInView, isHovered]);
 
   // Keep seamless wrapping when the user manually scrolls up or down
   const handleManualScroll = () => {
@@ -372,8 +371,6 @@ export function ProblemBentoSection() {
     };
   }, []);
 
-  const isPlaying = isInView && !isHovered && !isManuallyPaused;
-
   return (
     <section
       ref={sectionRef}
@@ -384,19 +381,9 @@ export function ProblemBentoSection() {
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Left Column (5 cols): Editorial Header */}
           <div className="lg:col-span-5 flex flex-col items-start">
-            <div className="flex items-center gap-3">
-              <span
-                aria-hidden="true"
-                className="inline-block h-[1px] w-6 bg-[#F24E1E]"
-              />
-              <span className="text-[13px] font-medium tracking-[0.01em] text-[#52504C] dark:text-[#A0A0A0]">
-                Sound familiar?
-              </span>
-            </div>
-
             <h2
               id="problem-section-heading"
-              className="mt-5 max-w-[440px] text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]"
+              className="max-w-[440px] text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.035em] text-[#111111] dark:text-[#F5F5F5]"
             >
               Hard to trust
               <br />
@@ -409,33 +396,6 @@ export function ProblemBentoSection() {
               content doesn’t signal quality on sight, most never make it to a
               conversation.
             </p>
-
-            {/* Video-feed status + manual playback toggle */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setIsManuallyPaused((p) => !p)}
-                className="inline-flex h-[36px] cursor-pointer items-center gap-2 rounded-full border border-[#111111]/15 dark:border-white/15 bg-[#FAF9F7] dark:bg-[#141414] px-3.5 text-[12.5px] font-medium text-[#111111] dark:text-[#F5F5F5] transition-colors hover:border-[#111111]/35 dark:hover:border-white/35"
-              >
-                {isManuallyPaused ? (
-                  <Play className="h-3.5 w-3.5 text-[#F24E1E]" aria-hidden="true" />
-                ) : (
-                  <Pause className="h-3.5 w-3.5 text-[#F24E1E]" aria-hidden="true" />
-                )}
-                <span>{isManuallyPaused ? "Resume feed" : "Pause feed"}</span>
-              </button>
-
-              <span className="inline-flex items-center gap-2 text-[12.5px] text-[#7C756D] dark:text-[#A0A0A0]">
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "h-1.5 w-1.5 rounded-full transition-colors",
-                    isPlaying ? "bg-[#F24E1E] animate-pulse" : "bg-[#111111]/25 dark:bg-white/25"
-                  )}
-                />
-                Scroll up or down anytime
-              </span>
-            </div>
 
             <a
               href="#services-deck"

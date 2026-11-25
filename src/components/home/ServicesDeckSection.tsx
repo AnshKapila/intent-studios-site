@@ -280,10 +280,6 @@ export function ServicesDeckSection() {
         {/* Forma 3-part Header Row + Goal Chips */}
         <div className="space-y-4">
           <div className="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
-            <span className="text-[15px] font-medium text-[#52504C] dark:text-white/85">
-              (Services)
-            </span>
-
             <h2 className="text-[clamp(2rem,3.6vw,3.1rem)] font-medium leading-[1.06] tracking-[-0.03em] text-[#111111] dark:text-white lg:text-center">
               Services{" "}
               <span className="font-editorial font-normal">we offer.</span>

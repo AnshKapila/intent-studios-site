@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { getFeaturedProjects } from "@/data/projects";
 import { ProjectVisualFrame } from "@/components/ui/ProjectVisualFrame";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { INTENT_EASE, VIEWPORT_CONFIG } from "@/lib/motion";
 
@@ -18,7 +17,6 @@ export function WorkShowcaseSection() {
         {/* Clean, proportional section header */}
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-3 max-w-2xl">
-            <SectionEyebrow>Selected work</SectionEyebrow>
             <h2 className="text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
               Featured studio work across fitness, D2C, and software.
             </h2>

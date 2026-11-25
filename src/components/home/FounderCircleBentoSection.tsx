@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { SITE } from "@/data/site";
 import { INTENT_CIRCLE } from "@/data/intent-circle";
 import { PHOTOS } from "@/data/media";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 
 export function FounderCircleBentoSection() {
@@ -17,7 +16,6 @@ export function FounderCircleBentoSection() {
         {/* Wireframe Block 7 Header — controlled, balanced proportions */}
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-5 space-y-3">
-            <SectionEyebrow>Founder &amp; community</SectionEyebrow>
             <h2 className="text-[clamp(1.75rem,2.8vw,2.45rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
               Built by a founder, for founders.
             </h2>

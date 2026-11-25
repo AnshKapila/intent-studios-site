@@ -1,16 +1,13 @@
 import { SITE } from "@/data/site";
 import { Button } from "@/components/ui/Button";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 interface ClosingBandProps {
-  eyebrow?: string;
   headline?: string;
   italicAccent?: string;
   subline?: string;
 }
 
 export function ClosingBand({
-  eyebrow = "Start a conversation",
   headline = "Ready to build something with",
   italicAccent = "actual intent?",
   subline = "Tell us where your business stands today. We will give you an honest assessment and a clear next step in 15 minutes.",
@@ -22,9 +19,7 @@ export function ClosingBand({
 
       <div className="intent-container relative z-10">
         <div className="mx-auto max-w-2xl text-center">
-          <SectionEyebrow>{eyebrow}</SectionEyebrow>
-
-          <h2 className="mt-5 text-[clamp(1.9rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
+          <h2 className="text-[clamp(1.9rem,3.6vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em] text-[#111111] dark:text-[#F5F5F5]">
             {headline}{" "}
             <span className="font-editorial font-normal text-[#F24E1E] dark:text-[#FFD1C2]">
               {italicAccent}

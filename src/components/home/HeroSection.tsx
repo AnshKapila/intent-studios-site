@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, ArrowDown } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE, HOME_PROOF_BAR } from "@/data/site";
 import { PHOTOS } from "@/data/media";
@@ -21,19 +21,6 @@ export function HeroSection() {
       />
 
       <div className="intent-container relative z-10 flex flex-col items-center pt-10 pb-8 sm:pt-14 sm:pb-10">
-        {/* Eyebrow: 22px orange dash + Independent by design. */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: INTENT_EASE }}
-          className="inline-flex items-center gap-3"
-        >
-          <span className="h-[1px] w-[22px] bg-[#F24E1E] shrink-0" aria-hidden="true" />
-          <span className="text-[13px] font-normal leading-[18px] text-[#52504C] dark:text-[#A0A0A0]">
-            Independent by design.
-          </span>
-        </motion.div>
-
         {/* Display H1: Inter Medium 64px + Instrument Serif Italic on conversion, */}
         <motion.h1
           initial={{ opacity: 0, y: 14 }}
@@ -82,16 +69,6 @@ export function HeroSection() {
             />
           </Link>
         </motion.div>
-
-        {/* Micro-line */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.45, delay: 0.26, ease: INTENT_EASE }}
-          className="mt-6 text-center text-[13px] font-normal leading-[18px] text-[#52504C] dark:text-[#A0A0A0]"
-        >
-          A considered approach. From first impression to next action.
-        </motion.p>
 
         {/* 5 Fanned Concept Preview Cards (-7deg, -3deg, 0deg, +3deg, +7deg) */}
         <motion.div
@@ -218,14 +195,6 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Bottom Hero Caption Row */}
-        <div className="mt-4 flex w-full items-center justify-between gap-4 text-[11px] font-normal text-[#52504C] dark:text-[#A0A0A0]">
-          <span>Selected concept directions — not client projects</span>
-          <span className="inline-flex items-center gap-1 shrink-0">
-            Scroll to explore
-            <ArrowDown className="h-3 w-3" aria-hidden="true" />
-          </span>
-        </div>
       </div>
 
       {/* Sitemap Section 3: Theme-Consistent Proof Bar */}

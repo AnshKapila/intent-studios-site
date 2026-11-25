@@ -20,12 +20,9 @@ import { cn } from "@/lib/utils";
 interface StepVisualTheme {
   lightBg: string;
   darkBg: string;
-  rhythmPillClass: string;
   heightClass: string;
   arrowBgClass: string;
   photo: LocalPhotoAsset;
-  rhythmLabel: string;
-  rhythmDetail: string;
   scrollSlice: [number, number];
   initialOffsetY: number;
 }
@@ -34,48 +31,36 @@ const STEP_THEMES: StepVisualTheme[] = [
   {
     lightBg: "linear-gradient(170deg, #E1F0E7 0%, #F7FBF8 100%)",
     darkBg: "linear-gradient(170deg, #16261E 0%, #0E1511 100%)",
-    rhythmPillClass: "bg-[#E1F0E7] dark:bg-[#16261E]",
     heightClass: "lg:min-h-[296px]",
     arrowBgClass: "bg-[#B5D49A] text-[#1E2A14]",
     photo: PHOTOS.studioNotebook,
-    rhythmLabel: "01",
-    rhythmDetail: "Audit",
     scrollSlice: [0.0, 0.38],
     initialOffsetY: 72,
   },
   {
     lightBg: "linear-gradient(170deg, #FCE6D4 0%, #FFF8F2 100%)",
     darkBg: "linear-gradient(170deg, #2B1C12 0%, #16100C 100%)",
-    rhythmPillClass: "bg-[#FCE6D4] dark:bg-[#2B1C12]",
     heightClass: "lg:min-h-[356px]",
     arrowBgClass: "bg-[#F4B98A] text-[#3A1E0A]",
     photo: PHOTOS.stackedBooks,
-    rhythmLabel: "02",
-    rhythmDetail: "Strategy",
     scrollSlice: [0.16, 0.56],
     initialOffsetY: 96,
   },
   {
     lightBg: "linear-gradient(170deg, #DEECF5 0%, #F7FAFD 100%)",
     darkBg: "linear-gradient(170deg, #13212C 0%, #0D1318 100%)",
-    rhythmPillClass: "bg-[#DEECF5] dark:bg-[#13212C]",
     heightClass: "lg:min-h-[416px]",
     arrowBgClass: "bg-[#9EC7E3] text-[#102636]",
     photo: PHOTOS.sunlitLamp,
-    rhythmLabel: "03",
-    rhythmDetail: "Craft",
     scrollSlice: [0.32, 0.74],
     initialOffsetY: 120,
   },
   {
     lightBg: "linear-gradient(170deg, #E6E1F7 0%, #F9F8FD 100%)",
     darkBg: "linear-gradient(170deg, #211B30 0%, #120F1A 100%)",
-    rhythmPillClass: "bg-[#E6E1F7] dark:bg-[#211B30]",
     heightClass: "lg:min-h-[476px]",
     arrowBgClass: "bg-[#111111] text-white dark:bg-[#F24E1E] dark:text-white",
     photo: PHOTOS.darkLightTunnel,
-    rhythmLabel: "04",
-    rhythmDetail: "Launch",
     scrollSlice: [0.48, 0.92],
     initialOffsetY: 144,
   },
@@ -290,29 +275,6 @@ export function HowWeWorkSection({
               theme={STEP_THEMES[idx]}
               scrollProgress={scrollYProgress}
             />
-          ))}
-        </div>
-
-        {/* Taffy-style Sprint Rhythm Strip */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-          <span className="font-editorial mr-1 text-[18px] text-[#52504C] dark:text-[#A0A0A0]">
-            Your rhythm:
-          </span>
-          {STEP_THEMES.map((item) => (
-            <span
-              key={item.rhythmLabel}
-              className={cn(
-                "inline-flex items-center gap-1.5 rounded-[14px] border border-[#111111]/[0.06] dark:border-white/10 px-4 py-2 text-[13.5px] font-medium",
-                item.rhythmPillClass
-              )}
-            >
-              <span className="tabular-nums font-semibold text-[#111111] dark:text-[#F5F5F5]">
-                {item.rhythmLabel}
-              </span>
-              <span className="text-[#52504C] dark:text-[#A0A0A0]">
-                {item.rhythmDetail}
-              </span>
-            </span>
           ))}
         </div>
 

@@ -1,7 +1,8 @@
 "use client";
 
 import { Newsreader } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./ClientQuoteOrbitSection.module.css";
 
 const newsreader = Newsreader({
@@ -11,7 +12,20 @@ const newsreader = Newsreader({
   display: "swap",
 });
 
-const TESTIMONIALS = [
+interface Testimonial {
+  id: string;
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  avatar: string;
+  isPlaceholder: boolean;
+  project?: string;
+  result?: string;
+  link?: string;
+}
+
+const TESTIMONIALS: Testimonial[] = [
   {
     id: "intent-studios",
     quote:
@@ -30,6 +44,9 @@ const TESTIMONIALS = [
     company: "Placeholder",
     avatar: "",
     isPlaceholder: true,
+    // PLACEHOLDER: replace with approved client info
+    project: "Project type pending",
+    result: "Result pending",
   },
   {
     id: "placeholder-03",
@@ -39,6 +56,9 @@ const TESTIMONIALS = [
     company: "Placeholder",
     avatar: "",
     isPlaceholder: true,
+    // PLACEHOLDER: replace with approved client info
+    project: "Project type pending",
+    result: "Result pending",
   },
   {
     id: "placeholder-04",
@@ -48,6 +68,9 @@ const TESTIMONIALS = [
     company: "Placeholder",
     avatar: "",
     isPlaceholder: true,
+    // PLACEHOLDER: replace with approved client info
+    project: "Project type pending",
+    result: "Result pending",
   },
   {
     id: "placeholder-05",
@@ -57,6 +80,9 @@ const TESTIMONIALS = [
     company: "Placeholder",
     avatar: "",
     isPlaceholder: true,
+    // PLACEHOLDER: replace with approved client info
+    project: "Project type pending",
+    result: "Result pending",
   },
 ] as const;
 
@@ -91,10 +117,15 @@ export function ClientQuoteOrbitSection() {
   const orbitRef = useRef<HTMLDivElement>(null);
   const quoteListRef = useRef<HTMLUListElement>(null);
   const quoteRefs = useRef<Array<HTMLLIElement | null>>([]);
+  const quotePanelRefs = useRef<Array<HTMLDivElement | null>>([]);
   const avatarRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const pausedRef = useRef(false);
+  const hoveredCardRef = useRef(false);
+  const focusedCardRef = useRef(false);
+  const touchPointerRef = useRef(false);
   const [hasEntered, setHasEntered] = useState(false);
   const [activeQuote, setActiveQuote] = useState(0);
+  const [expandedQuoteId, setExpandedQuoteId] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -123,6 +154,51 @@ export function ClientQuoteOrbitSection() {
     mediaQuery.addEventListener("change", updatePreference);
     return () => mediaQuery.removeEventListener("change", updatePreference);
   }, []);
+
+  useLayoutEffect(() => {
+    const syncCardHeights = () => {
+      quoteRefs.current.forEach((card, index) => {
+        const panel = quotePanelRefs.current[index];
+        if (!card || !panel) return;
+
+        if (window.innerWidth < 640) {
+          card.style.removeProperty("height");
+          return;
+        }
+
+        const details = panel.querySelector<HTMLElement>("[data-quote-details]");
+        card.style.height = `${panel.offsetHeight - (details?.offsetHeight ?? 0)}px`;
+      });
+    };
+
+    syncCardHeights();
+    window.addEventListener("resize", syncCardHeights);
+    document.fonts.ready.then(syncCardHeights);
+
+    return () => window.removeEventListener("resize", syncCardHeights);
+  }, []);
+
+  useEffect(() => {
+    if (
+      !expandedQuoteId ||
+      !window.matchMedia("(hover: none)").matches
+    ) {
+      return;
+    }
+
+    const closeOnOutsideTap = (event: PointerEvent) => {
+      const index = TESTIMONIALS.findIndex(
+        (testimonial) => testimonial.id === expandedQuoteId
+      );
+      const expandedCard = quoteRefs.current[index];
+      if (expandedCard && !expandedCard.contains(event.target as Node)) {
+        setExpandedQuoteId(null);
+      }
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideTap);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideTap);
+  }, [expandedQuoteId]);
 
   useEffect(() => {
     const orbit = orbitRef.current;
@@ -162,6 +238,13 @@ export function ClientQuoteOrbitSection() {
           Math.min(maxY, outerRadiusY * Math.sin(angle))
         );
 
+        node.dataset.anchorX =
+          x < -bounds.width * 0.12
+            ? "left"
+            : x > bounds.width * 0.12
+              ? "right"
+              : "center";
+        node.dataset.anchorY = y > 0 ? "bottom" : "top";
         node.style.transform = `translate3d(${bounds.width / 2 + x}px, ${bounds.height / 2 + y}px, 0) translate(-50%, -50%)`;
       });
 
@@ -226,15 +309,26 @@ export function ClientQuoteOrbitSection() {
   }, [hasEntered, prefersReducedMotion]);
 
   const pauseOrbit = () => {
+    focusedCardRef.current = true;
     pausedRef.current = true;
+  };
+
+  const updateRestingCardHeight = (index: number) => {
+    const card = quoteRefs.current[index];
+    const panel = quotePanelRefs.current[index];
+    if (!card || !panel || window.innerWidth < 640) return;
+
+    const details = panel.querySelector<HTMLElement>("[data-quote-details]");
+    card.style.height = `${panel.offsetHeight - (details?.offsetHeight ?? 0)}px`;
   };
 
   const resumeOrbitIfUnfocused = (
     event: React.FocusEvent<HTMLUListElement>
   ) => {
     if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-      pausedRef.current = false;
+      focusedCardRef.current = false;
     }
+    pausedRef.current = hoveredCardRef.current || focusedCardRef.current;
   };
 
   const showQuote = (index: number) => {
@@ -344,59 +438,193 @@ export function ClientQuoteOrbitSection() {
               setActiveQuote(nearestIndex);
             }}
           >
-            {TESTIMONIALS.map((testimonial, index) => (
-              <li
-                key={testimonial.id}
-                ref={(node) => {
-                  quoteRefs.current[index] = node;
-                }}
-                className={`${styles.quoteCard} ${testimonial.isPlaceholder ? styles.placeholderCard : ""}`}
-                tabIndex={0}
-                onFocus={() => {
-                  pausedRef.current = true;
-                }}
-                onBlur={(event) => {
-                  if (!event.currentTarget.parentElement?.contains(event.relatedTarget as Node | null)) {
-                    pausedRef.current = false;
+            {TESTIMONIALS.map((testimonial, index) => {
+              const hasExtraInfo = Boolean(
+                testimonial.project || testimonial.result || testimonial.link
+              );
+              const isActive = expandedQuoteId === testimonial.id;
+              const isExpanded = hasExtraInfo && isActive;
+
+              return (
+                <li
+                  key={testimonial.id}
+                  ref={(node) => {
+                    quoteRefs.current[index] = node;
+                  }}
+                  data-quote-card
+                  data-active={isActive}
+                  data-expanded={isExpanded}
+                  aria-expanded={isExpanded}
+                  aria-controls={
+                    hasExtraInfo
+                      ? `testimonial-details-${testimonial.id}`
+                      : undefined
                   }
-                }}
-                onPointerEnter={pauseOrbit}
-                onPointerLeave={() => {
-                  pausedRef.current = Boolean(
-                    quoteListRef.current?.contains(document.activeElement)
-                  );
-                }}
-              >
-                {testimonial.isPlaceholder && (
-                  <span className={styles.placeholderLabel}>Placeholder</span>
-                )}
-                <figure className={styles.quoteFigure}>
-                  <blockquote className={`${styles.quoteText} ${newsreader.className}`}>
-                    “{testimonial.quote}”
-                  </blockquote>
-                  <figcaption className={styles.quoteAuthor}>
-                    <span className={styles.authorAvatar} aria-hidden="true">
-                      {getInitials(testimonial.name)}
-                    </span>
-                    <cite
-                      aria-label={[
-                        testimonial.name,
-                        testimonial.role,
-                        testimonial.company === testimonial.name
-                          ? ""
-                          : testimonial.company,
-                      ]
-                        .filter(Boolean)
-                        .join(", ")}
-                    >
-                      {testimonial.role
-                        ? `${testimonial.name} · ${testimonial.role}`
-                        : testimonial.name}
-                    </cite>
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
+                  className={`${styles.quoteCard} ${testimonial.isPlaceholder ? styles.placeholderCard : ""}`}
+                  tabIndex={0}
+                  onPointerDown={(event) => {
+                    touchPointerRef.current = event.pointerType === "touch";
+                  }}
+                  onPointerCancel={() => {
+                    touchPointerRef.current = false;
+                  }}
+                  onFocus={() => {
+                    focusedCardRef.current = true;
+                    pausedRef.current = true;
+                    if (!touchPointerRef.current) {
+                      setExpandedQuoteId(testimonial.id);
+                    }
+                  }}
+                  onBlur={(event) => {
+                    if (
+                      !event.currentTarget.contains(
+                        event.relatedTarget as Node | null
+                      ) &&
+                      !event.currentTarget.matches(":hover")
+                    ) {
+                      setExpandedQuoteId((current) =>
+                        current === testimonial.id ? null : current
+                      );
+                    }
+                  }}
+                  onPointerEnter={() => {
+                    hoveredCardRef.current = true;
+                    pausedRef.current = true;
+                    if (window.matchMedia("(hover: hover)").matches) {
+                      setExpandedQuoteId(testimonial.id);
+                    }
+                  }}
+                  onPointerLeave={(event) => {
+                    const focused = event.currentTarget.contains(
+                      document.activeElement
+                    );
+                    hoveredCardRef.current = false;
+                    pausedRef.current = focused || focusedCardRef.current;
+                    if (!focused) {
+                      setExpandedQuoteId((current) =>
+                        current === testimonial.id ? null : current
+                      );
+                    }
+                  }}
+                  onClick={(event) => {
+                    if (
+                      window.matchMedia("(hover: none)").matches &&
+                      hasExtraInfo &&
+                      !(
+                        event.target instanceof Element &&
+                        event.target.closest("a")
+                      )
+                    ) {
+                      setExpandedQuoteId((current) =>
+                        current === testimonial.id ? null : testimonial.id
+                      );
+                    }
+                    touchPointerRef.current = false;
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key !== "Escape") return;
+                    setExpandedQuoteId(null);
+                    const activeElement = event.currentTarget.ownerDocument
+                      .activeElement;
+                    if (
+                      activeElement instanceof HTMLElement &&
+                      event.currentTarget.contains(activeElement)
+                    ) {
+                      activeElement.blur();
+                    }
+                  }}
+                >
+                  <div
+                    ref={(node) => {
+                      quotePanelRefs.current[index] = node;
+                    }}
+                    className={styles.quotePanel}
+                  >
+                    {testimonial.isPlaceholder && (
+                      <span className={styles.placeholderLabel}>
+                        Placeholder
+                      </span>
+                    )}
+                    <figure className={styles.quoteFigure}>
+                      <blockquote
+                        className={`${styles.quoteText} ${newsreader.className}`}
+                      >
+                        “{testimonial.quote}”
+                      </blockquote>
+                      <figcaption className={styles.quoteAuthor}>
+                        <span
+                          className={styles.authorAvatar}
+                          aria-hidden="true"
+                        >
+                          {getInitials(testimonial.name)}
+                        </span>
+                        <cite
+                          aria-label={[
+                            testimonial.name,
+                            testimonial.role,
+                            testimonial.company === testimonial.name
+                              ? ""
+                              : testimonial.company,
+                          ]
+                            .filter(Boolean)
+                            .join(", ")}
+                        >
+                          {testimonial.role
+                            ? `${testimonial.name} · ${testimonial.role}`
+                            : testimonial.name}
+                        </cite>
+                      </figcaption>
+                    </figure>
+                    {hasExtraInfo && (
+                      <div
+                        data-quote-details
+                        id={`testimonial-details-${testimonial.id}`}
+                        className={styles.quoteDetails}
+                        onTransitionEnd={(event) => {
+                          if (
+                            event.propertyName === "max-height" &&
+                            !isExpanded
+                          ) {
+                            updateRestingCardHeight(index);
+                          }
+                        }}
+                      >
+                        <div className={styles.quoteDetailsInner}>
+                          <div
+                            className={styles.quoteDivider}
+                            aria-hidden="true"
+                          />
+                          {testimonial.project && (
+                            <p className={styles.projectTag}>
+                              {testimonial.project}
+                            </p>
+                          )}
+                          {testimonial.result && (
+                            <p className={styles.projectResult}>
+                              {testimonial.result}
+                            </p>
+                          )}
+                          {testimonial.link && (
+                            <a
+                              className={styles.projectLink}
+                              href={testimonial.link}
+                              tabIndex={isExpanded ? 0 : -1}
+                              onClick={(event) => {
+                                touchPointerRef.current = false;
+                                event.stopPropagation();
+                              }}
+                            >
+                              View project
+                              <ArrowUpRight aria-hidden="true" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
 
           <div className={styles.carouselDots} aria-label="Choose a testimonial">

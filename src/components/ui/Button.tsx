@@ -111,7 +111,7 @@ export function Button({
         <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-7" />
         <ArrowRight className="absolute h-3.5 w-3.5 -translate-x-7 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0" />
       </span>
-      <span>{children}</span>
+      <span className="flex-1 text-center">{children}</span>
     </>
   ) : isSwapPill ? (
     <>

@@ -1,11 +1,10 @@
-import { Calendar } from "lucide-react";
 import { SITE } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 
 /**
- * Differentiated #F24E1E Orange Founder Island inspired directly by intentstudios.in,
+ * Differentiated #F24E1E Orange Founder Island inspired by intentstudios.in,
  * adapted to DESIGN.md (16px/12px Balanced Modern radii, .type-h2/.type-p2, Forma Kinetic Pill buttons)
- * with a cleanly balanced #111111 CTA sub-card (eliminating the empty void from the original).
+ * with a clean, balanced #111111 CTA sub-card (no status pill, no calendar icon, centered button text).
  */
 export function FounderIslandSection() {
   return (
@@ -60,25 +59,14 @@ export function FounderIslandSection() {
               </div>
             </div>
 
-            {/* Right CTA Sub-Card — Balanced #111111 Charcoal Card (zero awkward empty space) */}
-            <div className="lg:w-[340px] shrink-0 flex flex-col justify-between gap-6 rounded-[12px] border border-white/12 bg-[#111111] p-6 text-white">
-              {/* Top availability header */}
-              <div className="flex items-center justify-between gap-3">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11.5px] font-medium text-white/90">
-                  <span className="h-2 w-2 rounded-full bg-[#F24E1E] animate-pulse" aria-hidden="true" />
-                  Taking select projects
-                </div>
-                <span
-                  aria-hidden="true"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/80"
-                >
-                  <Calendar className="h-4 w-4" />
+            {/* Right CTA Sub-Card — Clean, Balanced #111111 Card */}
+            <div className="lg:w-[340px] shrink-0 flex flex-col justify-between gap-6 rounded-[12px] border border-white/12 bg-[#111111] p-7 text-white">
+              <div className="space-y-2.5">
+                <span className="type-p3 inline-flex items-center gap-2 text-[#FFD1C2]">
+                  <span className="h-[1px] w-5 bg-[#F24E1E]" aria-hidden="true" />
+                  Direct access
                 </span>
-              </div>
-
-              {/* Middle clear offer copy */}
-              <div className="space-y-1.5">
-                <h3 className="text-[20px] font-medium leading-[28px] tracking-[-0.02em] text-white">
+                <h3 className="type-h3 text-white">
                   15-minute discovery call
                 </h3>
                 <p className="text-[14px] leading-[22px] text-[#A3A09A]">
@@ -87,14 +75,13 @@ export function FounderIslandSection() {
                 </p>
               </div>
 
-              {/* Bottom balanced 2-CTA container */}
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 pt-2">
                 <Button
                   href={SITE.primaryCta.href}
                   variant="primary"
-                  size="md"
+                  size="lg"
                   showArrow
-                  className="w-full justify-between"
+                  className="w-full"
                 >
                   Book your call
                 </Button>

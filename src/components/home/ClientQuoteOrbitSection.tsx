@@ -370,10 +370,8 @@ export function ClientQuoteOrbitSection() {
 
           <div className={styles.centerpiece}>
             <p className={styles.centerTitle}>
-              <span className={`${styles.numberHighlight} ${hasEntered ? styles.highlightEntered : ""}`}>
-                Trusted by{" "}
-                <span className="font-editorial font-normal">proof.</span>
-              </span>
+              Trusted by{" "}
+              <span className="font-editorial font-normal">proof.</span>
             </p>
             <p className={styles.caption}>
               Real work shipped. Real founders backing it.

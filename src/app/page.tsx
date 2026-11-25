@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HOME_FAQ, HOME_FIT_LIST, SITE } from "@/data/site";
+import { HOME_FAQ, SITE } from "@/data/site";
 import { HeroSection } from "@/components/home/HeroSection";
 import { LogoMarqueeSection } from "@/components/home/LogoMarqueeSection";
 import { ProblemBentoSection } from "@/components/home/ProblemBentoSection";
@@ -7,6 +7,7 @@ import { WorkShowcaseSection } from "@/components/home/WorkShowcaseSection";
 import { ClientQuoteOrbitSection } from "@/components/home/ClientQuoteOrbitSection";
 import { ServicesDeckSection } from "@/components/home/ServicesDeckSection";
 import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
+import { WhoWeHelpScarletSection } from "@/components/home/WhoWeHelpScarletSection";
 import { FounderIslandSection } from "@/components/home/FounderIslandSection";
 import { FounderCircleBentoSection } from "@/components/home/FounderCircleBentoSection";
 import { FaqSection } from "@/components/sections/FaqSection";
@@ -42,10 +43,13 @@ export default function HomePage() {
       {/* 7. Service Cards, Goal Chips & Industry Line (Wireframe Block 4 Stacked Deck) */}
       <ServicesDeckSection />
 
-      {/* 8. How We Work + Best Fit / Not a Fit Lists */}
-      <HowWeWorkSection showEyebrow={false} fitList={HOME_FIT_LIST} />
+      {/* 8. How We Work (4-Step Staircase) */}
+      <HowWeWorkSection showEyebrow={false} />
 
-      {/* 9. About the Founder Full-Width Island */}
+      {/* 9. Who We Help (Scarlet-style 3-column interactive selector, replacing Honest Fit Check) */}
+      <WhoWeHelpScarletSection />
+
+      {/* 10. About the Founder Full-Width Orange Island */}
       <FounderIslandSection />
 
       {/* 10. Intent Circle Community Bento Grid */}

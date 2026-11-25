@@ -1,16 +1,8 @@
 "use client";
 
-import { Newsreader } from "next/font/google";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./ClientQuoteOrbitSection.module.css";
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 interface Testimonial {
   id: string;
@@ -356,13 +348,10 @@ export function ClientQuoteOrbitSection() {
       className={styles.section}
       aria-labelledby="client-voices-title"
     >
-      <div className={styles.container}>
-        <h2 id="client-voices-title" className={styles.heading}>
-          Don't just take{" "}
-          <em className={`${styles.headingAccent} ${newsreader.className}`}>
-            our word
-          </em>{" "}
-          for it.
+      <div className={`intent-container ${styles.container}`}>
+        <h2 id="client-voices-title" className={`type-h2 ${styles.heading}`}>
+          Don’t just take{" "}
+          <span className="font-editorial font-normal">our word</span> for it.
         </h2>
 
         <div
@@ -380,13 +369,14 @@ export function ClientQuoteOrbitSection() {
           </svg>
 
           <div className={styles.centerpiece}>
-            <p className={`${styles.number} ${newsreader.className}`}>
+            <p className={styles.centerTitle}>
               <span className={`${styles.numberHighlight} ${hasEntered ? styles.highlightEntered : ""}`}>
-                11+
+                Trusted by{" "}
+                <span className="font-editorial font-normal">proof.</span>
               </span>
             </p>
             <p className={styles.caption}>
-              projects shipped for founders who wanted results, not decks
+              Real work shipped. Real founders backing it.
             </p>
           </div>
 
@@ -546,9 +536,7 @@ export function ClientQuoteOrbitSection() {
                       </span>
                     )}
                     <figure className={styles.quoteFigure}>
-                      <blockquote
-                        className={`${styles.quoteText} ${newsreader.className}`}
-                      >
+                      <blockquote className={styles.quoteText}>
                         “{testimonial.quote}”
                       </blockquote>
                       <figcaption className={styles.quoteAuthor}>
